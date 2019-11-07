@@ -1,7 +1,6 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
     <ion-menu contentId="main-content" type="overlay">
-<<<<<<< HEAD
       <ion-header no-border no-shadow>
         <ion-toolbar>
         </ion-toolbar>
@@ -23,22 +22,6 @@
                 </ion-item>
               </ion-col>
               </ion-row>
-=======
-      <ion-header>
-        <ion-toolbar>
-          <ion-title>Menu</ion-title>
-        </ion-toolbar>
-      </ion-header>
-      <ion-content>
-        <ion-list>
-          <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-            <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
-              <ion-icon slot="start" [name]="p.icon"></ion-icon>
-              <ion-label>
-                {{p.title}}
-              </ion-label>
-            </ion-item>
->>>>>>> 1b8ace90748548bc250556b84191d7fec8515bd9
           </ion-menu-toggle>
         </ion-list>
       </ion-content>
