@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "626536669460",
+    "firebase_url": "https://dgpc-tech-conference.firebaseio.com",
+    "project_id": "dgpc-tech-conference",
+    "storage_bucket": "dgpc-tech-conference.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:626536669460:android:bdcd70d1c7dc65dc092201",
+        "android_client_info": {
+          "package_name": "bt.drukgreen.dgpc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "626536669460-vkj3s6dgsrt10r3toucikg709sdhsd1r.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqX8PKstdzryEngVRVhNP6ArJ2k5XF8HE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "626536669460-vkj3s6dgsrt10r3toucikg709sdhsd1r.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,37 @@
+.sidemenuHeader{
+
+    height: 30%;    
+    width: 100%;
+    text-align: center;
+}
+ion-img{
+    width:70%;
+    margin: auto;
+}
+
+ion-label{
+    color: gray;
+    font-family: 'raleway-regular';
+}
+
+ion-content{
+    --background: #b8dfca;
+}
+
+ion-list{
+    background: #b8dfca;
+}
+
+ion-item{
+    --background: #caf0db;
+    border-radius: 15px;
+}
+
+
+ion-toolbar{
+    --background: #b8dfca;
+}
+ion-col{
+    margin:auto;
+}
+

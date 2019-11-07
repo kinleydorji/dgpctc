@@ -1,0 +1,31 @@
+<ion-app>
+  <ion-split-pane contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-header no-border no-shadow>
+        <ion-toolbar>
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <div class = "sidemenuHeader">
+          <ion-img src = "assets/img/logo.png"></ion-img>
+          <ion-label color = "dark" style = "font-size: 20px;">Meeting</ion-label><br>
+          <ion-label  color = "primary">DGPC Technical conference</ion-label>
+        </div>
+        <ion-list>
+          <ion-menu-toggle auto-hide="false" >
+              <ion-row>
+                <ion-col size="11" *ngFor="let p of appPages" class = "colList">
+                  <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" lines = "none"><ion-icon slot="start" [name]="p.icon"></ion-icon>
+                  <ion-label  style = "font-family: raleway-regular;">
+                    {{p.title}}
+                  </ion-label>
+                </ion-item>
+              </ion-col>
+              </ion-row>
+          </ion-menu-toggle>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>
