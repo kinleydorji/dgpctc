@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 ion-toolbar{
@@ -36,3 +37,43 @@ text-transform: none;
 
 
 
+=======
+
+
+ion-toolbar{
+  --background: #b8dfca; 
+}
+
+ion-input{
+    border-style: solid;
+    border-bottom-width: 1px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-left-width: 0px;
+    border-bottom-color: #989aa2;
+  
+  }
+
+  .inputDiv{
+
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+.inputIcon{
+    padding-right: 10px;
+    width: 20px;
+    height: 20px;
+}
+.registerbtn{
+
+font-family: 'raleway-regular';
+text-transform: none;
+    
+}
+
+
+
+
+>>>>>>> 1b8ace90748548bc250556b84191d7fec8515bd9
