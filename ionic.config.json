@@ -1,0 +1,7 @@
+{
+  "name": "dgpcTechnical",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
