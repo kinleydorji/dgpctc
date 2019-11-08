@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -8,9 +9,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
   styleUrls: ['./user-dashboard.page.scss'],
 })
 export class UserDashboardPage implements OnInit {
-  
-  constructor( private afAuth: AngularFireAuth, private alertCtrl: AlertController, private navCtrl: NavController) { 
-
+  private userName: any;
+  constructor( private afAuth: AngularFireAuth, private alertCtrl: AlertController, private navCtrl: NavController, private afs: AngularFirestore) { 
+    
   }
 
   logout()
@@ -39,7 +40,20 @@ export class UserDashboardPage implements OnInit {
   }
 
   
-  ngOnInit(){}
+  ngOnInit(){
+    console.log("inside:" + this.afAuth.auth.currentUser.uid);
+    this.afs.collection<any>('participants',ref => ref.where('uuid','==',this.afAuth.auth.currentUser.uid))
+           .valueChanges().subscribe(data =>{     
+               if(data.length > 0)
+               {
+                let uName:String[] = data[0].username.split(" ");
+                this.userName = uName[0];
+                console.log(data[0].username);
+               };
+              })
+
+
+  }
 
 
   
