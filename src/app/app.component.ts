@@ -17,14 +17,6 @@ export class AppComponent {
       icon: 'home'
     },
     {
-<<<<<<< HEAD
-=======
-      title: 'List',
-      url: '/list',
-      icon: 'list'
-    },
-    {
->>>>>>> 1b8ace90748548bc250556b84191d7fec8515bd9
       title: 'Add User',
       url: '/registration',
       icon: 'person-add'
