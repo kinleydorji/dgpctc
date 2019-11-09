@@ -10,8 +10,15 @@ import { AngularFirestore } from 'angularfire2/firestore';
 })
 export class UserDashboardPage implements OnInit {
   private userName: any;
+  private confName;
+  private venue;
+  private time;
+  private date;
+  private banner;
   constructor( private afAuth: AngularFireAuth, private alertCtrl: AlertController, private navCtrl: NavController, private afs: AngularFirestore) { 
-    
+
+
+
   }
 
   logout()
@@ -39,6 +46,21 @@ export class UserDashboardPage implements OnInit {
     await alert.present();
   }
 
+
+  getConferenceInfo(){
+    this.afs.collection<any>('conference',ref => ref.where('id','==','1'))
+    .valueChanges().subscribe(data =>{     
+        if(data.length > 0)
+        {
+          this.confName = data[0].confName,
+          this.venue = data[0].venue,
+          this.time = data[0].time,
+          this.date = data[0].date
+          console.log("data: ", data);
+        };
+       })    
+  }
+
   
   ngOnInit(){
     console.log("inside:" + this.afAuth.auth.currentUser.uid);
@@ -52,7 +74,7 @@ export class UserDashboardPage implements OnInit {
                };
               })
 
-
+    this.getConferenceInfo();
   }
 
 
