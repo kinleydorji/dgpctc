@@ -15,6 +15,7 @@ export class UserDashboardPage implements OnInit {
   private time;
   private date;
   private banner;
+  private url;
   constructor( private afAuth: AngularFireAuth, private alertCtrl: AlertController, private navCtrl: NavController, private afs: AngularFirestore) { 
 
 
@@ -55,7 +56,8 @@ export class UserDashboardPage implements OnInit {
           this.confName = data[0].confName,
           this.venue = data[0].venue,
           this.time = data[0].time,
-          this.date = data[0].date
+          this.date = data[0].date,
+          this.url = data[0].url,
           console.log("data: ", data);
         };
        })    
