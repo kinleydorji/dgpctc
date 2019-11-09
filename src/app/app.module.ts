@@ -17,6 +17,8 @@ import { UserregisterService } from './services/userregister.service';
 import { environment } from 'src/environments/environment';
 import { PasswordrecoveryPage } from './modal/passwordrecovery/passwordrecovery.page';
 import { PasswordrecoveryPageModule } from './modal/passwordrecovery/passwordrecovery.module';
+import { FileChooser } from '@ionic-native/file-chooser/ngx';
+import { File } from '@ionic-native/file/ngx';
 
 
 @NgModule({
@@ -37,6 +39,8 @@ import { PasswordrecoveryPageModule } from './modal/passwordrecovery/passwordrec
     Firebase,
     UserloginService,
     UserregisterService,
+    FileChooser,
+    File,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

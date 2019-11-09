@@ -19,7 +19,8 @@ const routes: Routes = [
   { path: 'user-dashboard', loadChildren: './user-dashboard/user-dashboard.module#UserDashboardPageModule' },
   { path: 'userlogin', loadChildren: './userlogin/userlogin.module#UserloginPageModule' },
   { path: 'changepassword', loadChildren: './changepassword/changepassword.module#ChangepasswordPageModule' },
-  { path: 'passwordrecovery', loadChildren: './modal/passwordrecovery/passwordrecovery.module#PasswordrecoveryPageModule' }
+  { path: 'passwordrecovery', loadChildren: './modal/passwordrecovery/passwordrecovery.module#PasswordrecoveryPageModule' },
+  { path: 'overallconference', loadChildren: './overallconference/overallconference.module#OverallconferencePageModule' }
 ];
 
 @NgModule({
