@@ -30,6 +30,7 @@ const routes: Routes = [
 
   //{ path: 'movieupdate/:movietitle', loadChildren: './movieupdate/movieupdate.module#MovieupdatePageModule' },
 
+  { path: 'overallconference', loadChildren: './overallconference/overallconference.module#OverallconferencePageModule' }
 ];
 
 @NgModule({
