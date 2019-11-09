@@ -1,0 +1,42 @@
+<ion-header>
+    <ion-toolbar>
+      <ion-title>Update Notification</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col size="3">
+          Title:
+      </ion-col>
+      <ion-col size="9">
+        <ion-input type="text" class="m-style" [(ngModel)]="postTitle"></ion-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="3">
+          Message:
+      </ion-col>
+      <ion-col size="9">
+        <ion-textarea type="text" class="m-style" [(ngModel)]="postMessage"></ion-textarea>
+      </ion-col>
+    </ion-row>
+    <!-- <ion-row>
+      <ion-col size="2">
+      Date:
+      </ion-col>
+      <ion-col size="10">
+        <ion-input type="text" button=true, placeholder="Date" value={{Date}} (click)="pickDate()" class="m-style" [(ngModel)]="postDate"></ion-input>
+      </ion-col>
+    </ion-row> -->
+    <ion-row>
+        <ion-col size="3"></ion-col>
+      <ion-col size="9">
+        <ion-button color="primary" expand="full" (click)="goUpdate()">Update</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </ion-content>
+  
