@@ -19,18 +19,7 @@ const routes: Routes = [
   { path: 'user-dashboard', loadChildren: './user-dashboard/user-dashboard.module#UserDashboardPageModule' },
   { path: 'userlogin', loadChildren: './userlogin/userlogin.module#UserloginPageModule' },
   { path: 'changepassword', loadChildren: './changepassword/changepassword.module#ChangepasswordPageModule' },
-  { path: 'passwordrecovery', loadChildren: './modal/passwordrecovery/passwordrecovery.module#PasswordrecoveryPageModule' },
-  { path: 'admin-post-notification', loadChildren: './admin-post-notification/admin-post-notification.module#AdminPostNotificationPageModule' },
-  { path: 'notification', loadChildren: './notification/notification.module#NotificationPageModule' },
-  { path: 'feedback', loadChildren: './feedback/feedback.module#FeedbackPageModule' },
-  { path: 'post-feedback', loadChildren: './post-feedback/post-feedback.module#PostFeedbackPageModule' },
-  { path: 'internet-status', loadChildren: './internet-status/internet-status.module#InternetStatusPageModule' },
-  { path: 'add-notification', loadChildren: './add-notification/add-notification.module#AddNotificationPageModule' },
-  { path: 'notification-update/:title', loadChildren: './notification-update/notification-update.module#NotificationUpdatePageModule' },
-
-  //{ path: 'movieupdate/:movietitle', loadChildren: './movieupdate/movieupdate.module#MovieupdatePageModule' },
-
-  { path: 'overallconference', loadChildren: './overallconference/overallconference.module#OverallconferencePageModule' }
+  { path: 'passwordrecovery', loadChildren: './modal/passwordrecovery/passwordrecovery.module#PasswordrecoveryPageModule' }
 ];
 
 @NgModule({

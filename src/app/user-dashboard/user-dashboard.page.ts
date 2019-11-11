@@ -10,6 +10,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 export class UserDashboardPage implements OnInit {
 <<<<<<< HEAD
   private userName: any;
+<<<<<<< HEAD
   private confName;
   private venue;
   private time;
@@ -24,6 +25,10 @@ export class UserDashboardPage implements OnInit {
   constructor( private afAuth: AngularFireAuth, private alertCtrl: AlertController, private navCtrl: NavController) { 
 >>>>>>> de6bd979ae0ae85ee953009fe33a3f49f81a4214
 
+=======
+  constructor( private afAuth: AngularFireAuth, private alertCtrl: AlertController, private navCtrl: NavController, private afs: AngularFirestore) { 
+    
+>>>>>>> parent of b5f9c81... adding conference added
   }
 
   logout()
@@ -52,6 +57,7 @@ export class UserDashboardPage implements OnInit {
   }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   getConferenceInfo(){
     this.afs.collection<any>('conference',ref => ref.where('id','==','1'))
@@ -72,6 +78,23 @@ export class UserDashboardPage implements OnInit {
 >>>>>>> de6bd979ae0ae85ee953009fe33a3f49f81a4214
   
   ngOnInit(){}
+=======
+  
+  ngOnInit(){
+    console.log("inside:" + this.afAuth.auth.currentUser.uid);
+    this.afs.collection<any>('participants',ref => ref.where('uuid','==',this.afAuth.auth.currentUser.uid))
+           .valueChanges().subscribe(data =>{     
+               if(data.length > 0)
+               {
+                let uName:String[] = data[0].username.split(" ");
+                this.userName = uName[0];
+                console.log(data[0].username);
+               };
+              })
+
+
+  }
+>>>>>>> parent of b5f9c81... adding conference added
 
 
   
