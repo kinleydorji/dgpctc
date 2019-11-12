@@ -24,4 +24,5 @@ describe('AddNotificationPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
 });
