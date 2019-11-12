@@ -26,11 +26,9 @@ const routes: Routes = [
   { path: 'post-feedback', loadChildren: './post-feedback/post-feedback.module#PostFeedbackPageModule' },
   { path: 'internet-status', loadChildren: './internet-status/internet-status.module#InternetStatusPageModule' },
   { path: 'add-notification', loadChildren: './add-notification/add-notification.module#AddNotificationPageModule' },
-  { path: 'notification-update/:title', loadChildren: './notification-update/notification-update.module#NotificationUpdatePageModule' },
+  { path: 'notification-update/:id', loadChildren: './notification-update/notification-update.module#NotificationUpdatePageModule' },
+  { path: 'feedback-update', loadChildren: './feedback-update/feedback-update.module#FeedbackUpdatePageModule' },
 
-  //{ path: 'movieupdate/:movietitle', loadChildren: './movieupdate/movieupdate.module#MovieupdatePageModule' },
-
-  { path: 'overallconference', loadChildren: './overallconference/overallconference.module#OverallconferencePageModule' }
 ];
 
 @NgModule({
