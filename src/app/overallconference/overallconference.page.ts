@@ -17,8 +17,8 @@ private venue = "";
 private time = "";
 private date = "";
 private imageName = "";
-  constructor(private alertCtrl: AlertController, private afs : AngularFirestore , private fileChooser: FileChooser,
-   private file : File) { }
+  constructor(private alertCtrl: AlertController, private afs : AngularFirestore , 
+    private fileChooser: FileChooser, private file : File) { }
 
    uploadFs={
     name:'',
@@ -92,11 +92,7 @@ private imageName = "";
 
     let storage = firebase.storage();
     let uploadTask: UploadTask = storage.ref('images/' + name).put(blob);
-    // .then((result) =>{
-    //   this.alert("Okay", "Success" );
-    // }).catch((error) =>{
-    //   this.alert("Upload Failure", "oops there was some error");
-    // })
+  
     uploadTask.then((snapshot)=>
   {  
     firebase.storage().ref(`images/`+name).getDownloadURL().then((url)=>{

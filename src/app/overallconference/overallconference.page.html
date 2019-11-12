@@ -1,0 +1,38 @@
+<ion-header no-shadow no-border>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+      <ion-title>Conference</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class = "inputDiv">
+    <ion-item lines ="none">
+      <ion-input type="text" placeholder = "Conference Name" [(ngModel)] = "conferenceName" >
+        <ion-icon name = "contacts" class= 'inputIcon' color = "medium" ></ion-icon>
+      </ion-input>
+    </ion-item><br>
+    <ion-item lines ="none">
+      <ion-input type="text" placeholder = "venue" [(ngModel)] = "venue">
+        <ion-icon name = "pin" class= 'inputIcon' color = "medium" ></ion-icon>
+      </ion-input>
+    </ion-item><br>
+    <ion-item lines ="none">
+      <ion-input type="time"  [(ngModel)] = "time">
+        <ion-icon name = "time" class= 'inputIcon' color = "medium" ></ion-icon>
+      </ion-input>
+    </ion-item><br>
+    <ion-item lines ="none">
+      <ion-input type="date" [(ngModel)] = "date">
+        <ion-icon name = "calendar" class= 'inputIcon' color = "medium" ></ion-icon>
+      </ion-input>
+    </ion-item><br>
+    <ion-item lines ="none">
+      <ion-label color = "medium">Add Conference Banner</ion-label>
+      <ion-icon name = "image" color = "medium" (click) = "chooseFile()" style = "width: 50px; height: 50px;"></ion-icon>
+    </ion-item><br>
+    <ion-button shape = "block" color = "dark" class = 'addConferenceBtn' (click) = "addConference()">Add Conference</ion-button><br> 
+</div>
+</ion-content>

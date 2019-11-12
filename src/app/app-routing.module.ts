@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'userlogin', loadChildren: './userlogin/userlogin.module#UserloginPageModule' },
   { path: 'changepassword', loadChildren: './changepassword/changepassword.module#ChangepasswordPageModule' },
   { path: 'passwordrecovery', loadChildren: './modal/passwordrecovery/passwordrecovery.module#PasswordrecoveryPageModule' },
-  { path: 'overallconference', loadChildren: './overallconference/overallconference.module#OverallconferencePageModule' }
+  { path: 'overallconference', loadChildren: './overallconference/overallconference.module#OverallconferencePageModule' },
 ];
 
 @NgModule({
