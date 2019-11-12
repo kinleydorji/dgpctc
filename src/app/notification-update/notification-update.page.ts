@@ -9,11 +9,13 @@ import { AlertController, NavController, LoadingController,} from '@ionic/angula
   styleUrls: ['./notification-update.page.scss'],
 })
 export class NotificationUpdatePage implements OnInit {
+  
+  postId : any;
   postTitle : any;
   postMessage : any;
   postData:any[]=[];
   timeoutStatus: any;
-title: string=this.route.snapshot.params['title'];
+id: string=this.route.snapshot.params['id'];
   constructor(
     public route: ActivatedRoute,
     private fs : AngularFirestore,
@@ -28,23 +30,28 @@ title: string=this.route.snapshot.params['title'];
   }
 
   loadfromFirebase(){
-    this.fs.collection('/t_notification').doc(`${this.title}`).get().subscribe(res=>
+    this.fs.collection('/t_notification').doc(`${this.id}`).get().subscribe(res=>
 
      {
        this.postData.push({
+         id :res.data().id,
          title:res.data().title,
          message:res.data().message,
        })
+       this.postId = res.data().id;
+       console.log("notification id : "+this.id);
        this.postTitle = res.data().title;
-       console.log("notification title : "+this.title);
-       this.postMessage = res.data().message; 
+       console.log("title :"+this.postTitle);
+       this.postMessage = res.data().message;
+       console.log("message :"+this.postMessage); 
      })
  }
 
  goUpdate(){
   let basePath:string="/t_notification";
-  this.fs.collection(`${basePath}`).doc(`${this.postTitle}`).update(
+  this.fs.collection(`${basePath}`).doc(`${this.postId}`).update(
     {
+    id : this.postId,
     title : this.postTitle,
     message : this.postMessage,
   }
@@ -70,3 +77,4 @@ async alert(header : string, message : string)
   alert.present();
 }
 }
+
