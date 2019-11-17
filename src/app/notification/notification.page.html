@@ -1,0 +1,18 @@
+<ion-header >
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button color = "primary"></ion-menu-button>
+      <ion-back-button color="primary"></ion-back-button>
+      <ion-title id="title" color="primary"><b>Notification</b></ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor='let data of postData'>
+    <ion-card-content style="font-family: 'Times New Roman', Times, serif;">
+        <div style="color:dodgerblue; font-size: 12pt;"><b>{{data.title}}</b></div>
+        <div style="color:dodgerblue; font-size: 12pt;"><b>{{data.message}}</b></div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

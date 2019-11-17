@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { UploadTask } from '@angular/fire/storage/interfaces';
 import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { File } from '@ionic-native/file/ngx';
 import * as firebase from 'firebase';
 
 @Component({
-  selector: 'app-overallconference',
+  selector: 'app-overallconferencce',
   templateUrl: './overallconference.page.html',
   styleUrls: ['./overallconference.page.scss'],
 })

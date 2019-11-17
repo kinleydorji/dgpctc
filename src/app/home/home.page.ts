@@ -11,8 +11,9 @@ export class HomePage {
   constructor(private router: Router) {}
 
 
-  addConference()
-  {
+
+  addConference(){
     this.router.navigate(['overallconference']);
+
   }
 }

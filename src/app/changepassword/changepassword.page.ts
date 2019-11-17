@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { AlertController, ToastController, NavController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { error } from '@angular/compiler/src/util';
-import { AngularFirestore } from 'angularfire2/firestore';
 
 @Component({
   selector: 'app-changepassword',
@@ -12,18 +11,15 @@ import { AngularFirestore } from 'angularfire2/firestore';
 export class ChangepasswordPage implements OnInit {
   private newpasswd = "";
   private confirmpasswd = "";
-  private userName = "";
-  private organisation = "";
-  private uid = "";
   constructor(private alertCtrl: AlertController, private afAuth: AngularFireAuth,
-     private toastCtrl: ToastController, private navCtrl: NavController, private afs: AngularFirestore) { 
+     private toastCtrl: ToastController, private navCtrl: NavController) { 
 
 
   }
 
  
   passwordChange(){
-    if(this.newpasswd == "" || this.confirmpasswd == "" || this.userName == "" || this.organisation == "")
+    if(this.newpasswd == "" || this.confirmpasswd == "")
     {
       this.alert("Empty field(s)","Fill in all the field(s)");
     }
@@ -38,16 +34,8 @@ export class ChangepasswordPage implements OnInit {
         }).then(toast =>{
           toast.present();
         })
-      this.uid = this.afAuth.auth.currentUser.uid;
 
-      let value = {
-        uuid: this.uid,
-        username: this.userName,
-        org: this.organisation
-
-      }
-      this.afs.collection('participants').doc(this.uid).set(value);
-      this.navCtrl.navigateRoot('userlogin');
+        this.navCtrl.navigateRoot('userlogin');
 
       })
     }

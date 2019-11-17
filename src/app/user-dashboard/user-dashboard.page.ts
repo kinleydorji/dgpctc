@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController, NavController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from 'angularfire2/firestore';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-user-dashboard',
@@ -15,11 +15,8 @@ export class UserDashboardPage implements OnInit {
   private time;
   private date;
   private banner;
-  private url;
-  constructor( private afAuth: AngularFireAuth, private alertCtrl: AlertController, private navCtrl: NavController, private afs: AngularFirestore) { 
-
-
-
+  constructor( private afAuth: AngularFireAuth, private alertCtrl: AlertController, 
+    private navCtrl: NavController, private afs: AngularFirestore) { 
   }
 
   logout()
@@ -47,23 +44,22 @@ export class UserDashboardPage implements OnInit {
     await alert.present();
   }
 
-
-  getConferenceInfo(){
+  getConferenceDetails()
+  {
     this.afs.collection<any>('conference',ref => ref.where('id','==','1'))
     .valueChanges().subscribe(data =>{     
         if(data.length > 0)
         {
-          this.confName = data[0].confName,
-          this.venue = data[0].venue,
-          this.time = data[0].time,
-          this.date = data[0].date,
-          this.url = data[0].url,
-          console.log("data: ", data);
+          this.confName = data[0].confName;
+          this.venue = data[0].venue;
+          this.date = data[0].date;
+          this.time = data[0].time;
         };
-       })    
+       })
   }
 
-  
+
+ 
   ngOnInit(){
     console.log("inside:" + this.afAuth.auth.currentUser.uid);
     this.afs.collection<any>('participants',ref => ref.where('uuid','==',this.afAuth.auth.currentUser.uid))
@@ -76,10 +72,7 @@ export class UserDashboardPage implements OnInit {
                };
               })
 
-    this.getConferenceInfo();
+    this.getConferenceDetails();
   }
-
-
-  
 
 }
