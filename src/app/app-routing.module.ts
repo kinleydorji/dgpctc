@@ -21,6 +21,15 @@ const routes: Routes = [
   { path: 'changepassword', loadChildren: './changepassword/changepassword.module#ChangepasswordPageModule' },
   { path: 'passwordrecovery', loadChildren: './modal/passwordrecovery/passwordrecovery.module#PasswordrecoveryPageModule' },
   { path: 'overallconference', loadChildren: './overallconference/overallconference.module#OverallconferencePageModule' },
+  { path: 'admin-post-notification', loadChildren: './admin-post-notification/admin-post-notification.module#AdminPostNotificationPageModule' },
+  { path: 'notification', loadChildren: './notification/notification.module#NotificationPageModule' },
+  { path: 'feedback', loadChildren: './feedback/feedback.module#FeedbackPageModule' },
+  { path: 'post-feedback', loadChildren: './post-feedback/post-feedback.module#PostFeedbackPageModule' },
+  { path: 'internet-status', loadChildren: './internet-status/internet-status.module#InternetStatusPageModule' },
+  { path: 'add-notification', loadChildren: './add-notification/add-notification.module#AddNotificationPageModule' },
+  { path: 'notification-update/:id', loadChildren: './notification-update/notification-update.module#NotificationUpdatePageModule' },
+  { path: 'feedback-update', loadChildren: './feedback-update/feedback-update.module#FeedbackUpdatePageModule' },
+
 ];
 
 @NgModule({

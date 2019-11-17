@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DatePicker } from '@ionic-native/date-picker/ngx';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AlertController, NavController, LoadingController} from '@ionic/angular';
 
@@ -15,7 +14,6 @@ export class AddNotificationPage implements OnInit {
   postMessage : any;
   // postDate : any;
   constructor(
-    private datePicker: DatePicker,
     private fs : AngularFirestore,
     private altCtl : AlertController,
     private navCtl : NavController,
@@ -70,4 +68,5 @@ export class AddNotificationPage implements OnInit {
    //     //console.log('Got date: ', date),
    //   );
    // }
+   
 }

@@ -24,4 +24,5 @@ describe('AdminPostNotificationPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+  
 });

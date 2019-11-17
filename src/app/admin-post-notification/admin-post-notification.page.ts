@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DatePicker } from '@ionic-native/date-picker/ngx';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AlertController, NavController, LoadingController,} from '@ionic/angular';
 
@@ -16,7 +15,6 @@ export class AdminPostNotificationPage implements OnInit {
   timeoutStatus: any;
 
   constructor(
-    private datePicker: DatePicker,
     private fs : AngularFirestore,
     private altCtl : AlertController,
     private navCtl : NavController,
@@ -57,7 +55,6 @@ export class AdminPostNotificationPage implements OnInit {
 
   async presentLoading() {
     const loading = await this.loadingController.create({
-     // message: 'Hellooo',
       duration: 15000,
       spinner: 'crescent',
       cssClass: 'loaderClass'
@@ -65,25 +62,17 @@ export class AdminPostNotificationPage implements OnInit {
     return await loading.present();
   }
 
+  //for adding notification
   goAddmore(){
     this.navCtl.navigateForward('/add-notification');
   }
 
   //for deleting the notification item
-  goDelete(title:any){
-    this.presentAlertConfirm(title);
+  goDelete(id:any){
+    this.presentAlertConfirm(id);
   }
-  deleteSure(title){
-    let basePath:string="/t_notification";
-    this.fs.collection(`${basePath}`).doc(`${title}`).delete().then(data=>
-      {
-          this.alert("For Information","Deletion successful");
-          this.navCtl.navigateForward('/notification');
-      }
-      )
-  }
-
-  async presentAlertConfirm(title) {
+ 
+  async presentAlertConfirm(id) {
     const alert = await this.altCtl.create({
       header: 'Confirm!',
       message: 'Are you sure you want to delete?',
@@ -93,13 +82,13 @@ export class AdminPostNotificationPage implements OnInit {
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
+            console.log('No : Confirm Cancel');
           }
         }, {
           text: 'Yes',
           handler: () => {
-            console.log('Confirm Okay');
-            this.deleteSure(title);
+            console.log('yes : Confirm Okay');
+            this.deleteSure(id);
           }
         }
       ]
@@ -108,21 +97,31 @@ export class AdminPostNotificationPage implements OnInit {
     await alert.present();
   }
 
-  //for updating the item
-  goEdit(title : any){
-    console.log(title);
-    this.navCtl.navigateForward('/notification-update/'+title);
+  deleteSure(id){
+    let basePath:string="/t_notification";
+    this.fs.collection(`${basePath}`).doc(`${id}`).delete().then(data=>
+      {
+          this.alert("For Information","Deletion successful");
+          this.navCtl.navigateForward('/notification');
+      }
+      )
+  }
+
+  //for editing or updating the notiding item
+  goEdit(id : any){
+    console.log(id);
+    this.navCtl.navigateForward('/notification-update/'+id);
   }
 
   //for the alert
-async alert(header : string, message : string)
-{
-  const alert = await this.altCtl.create({
-    header : header,
-    message : message,
-    cssClass : 'ok',
-    buttons : ['OK']
-  });
-  alert.present();
-}
-}
+  async alert(header : string, message : string)
+    {
+      const alert = await this.altCtl.create({
+        header : header,
+        message : message,
+        cssClass : 'ok',
+        buttons : ['OK']
+      });
+      alert.present();
+    }
+  }
