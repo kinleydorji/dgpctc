@@ -35,6 +35,10 @@
     src: url("assets/fonts/Raleway-Light.ttf");
 }
 
+*{
+    font-family: 'raleway-regular';
+}
+
 .backgroundLogo{
 
     width:80%;
@@ -44,7 +48,7 @@
 .homebg
 {
   background: #b8dfca;
-  height: 40%;
+  height: 30%;
   width: 100;
   margin: 0px 0px;
 }
