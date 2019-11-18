@@ -54,6 +54,7 @@ export class UserDashboardPage implements OnInit {
           this.venue = data[0].venue;
           this.date = data[0].date;
           this.time = data[0].time;
+          this.banner = data[0].url;
         };
        })
   }
