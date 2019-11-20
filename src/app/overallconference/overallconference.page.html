@@ -31,8 +31,11 @@
     </ion-item><br>
     <ion-item lines ="none">
       <ion-label color = "medium">Add Conference Banner</ion-label>
-      <input type = "file" color = "medium" (change) = "detectFiles($event)" style = "width: 50px; height: 50px;" placeholder="Upload File">
-    </ion-item><br>
+    </ion-item>
+    <ion-item lines = "none">
+      <input type = "file" color = "medium" (change) = "detectFiles($event)" style = "height: 50px;" placeholder="Upload File">      
+    </ion-item>
+    <br>
     <ion-button shape = "block" color = "dark" class = 'addConferenceBtn' (click) = "addConference()">Add Conference</ion-button><br> 
 </div>
 </ion-content>
