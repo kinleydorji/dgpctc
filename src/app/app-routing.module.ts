@@ -29,6 +29,7 @@ const routes: Routes = [
   { path: 'add-notification', loadChildren: './add-notification/add-notification.module#AddNotificationPageModule' },
   { path: 'notification-update/:id', loadChildren: './notification-update/notification-update.module#NotificationUpdatePageModule' },
   { path: 'feedback-update', loadChildren: './feedback-update/feedback-update.module#FeedbackUpdatePageModule' },
+  { path: 'editconference', loadChildren: './editconference/editconference.module#EditconferencePageModule' },
 
 ];
 

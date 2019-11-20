@@ -16,11 +16,21 @@
               <ion-row>
                 <ion-col size="11" *ngFor="let p of appPages" class = "colList">
                   <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" lines = "none"><ion-icon slot="start" [name]="p.icon"></ion-icon>
-                  <ion-label  style = "font-family: raleway-regular;">
-                    {{p.title}}
-                  </ion-label>
-                </ion-item>
-              </ion-col>
+                    <ion-label  style = "font-family: raleway-regular;">
+                      {{p.title}}
+                    </ion-label>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size ="11" *ngIf="isConfThere == 1" class="colList">
+                  <ion-item routerDirection="'root'" routerLink="editconference" lines ="none">
+                    <ion-icon slot="start" name="create"></ion-icon>
+                    <ion-label style="font-family: raleway-regular;">
+                      Edit Conference
+                    </ion-label>
+                  </ion-item>
+                </ion-col>
               </ion-row>
           </ion-menu-toggle>
         </ion-list>
