@@ -19,12 +19,6 @@ export class EditconferencePage implements OnInit {
   private time;
   private date;
   private banner;
-  private sponsorurl1 ="";
-  private sponsorurl2 ="";
-  private sponsorurl3 ="";
-  private sponsorurl4 ="";
-  private sponsorurl5 ="";
-  private sponsorurl6 ="";
   urlbanner:string;
   sponsorsFiles: FileList[]=[];
   bannerFile: FileList;
