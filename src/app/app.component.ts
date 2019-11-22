@@ -25,6 +25,16 @@ export class AppComponent {
       title: 'User login',
       url:'/userlogin',
       icon: 'lock'
+    },
+    {
+      title: 'Create Poll',
+      url:'/createpoll',
+      icon: 'checkbox-outline'
+    },
+    {
+      title: 'conference',
+      url:'/conferencetabs',
+      icon: 'people'
     }
   ];
 

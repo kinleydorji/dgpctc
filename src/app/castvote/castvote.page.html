@@ -1,0 +1,42 @@
+<ion-header no-shadow no-border>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+      <ion-title>Vote</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class = "contentDiv">
+  <ion-item lines = "none">
+    <ion-label color = "medium">Top 5 presenter select by the judges</ion-label>
+  </ion-item>
+   <ion-card (click) = "castVote(i)" *ngFor = "let presenter of results; index as i">
+     <ion-row>
+       <ion-col size = "3">
+          <ion-avatar>
+            <ion-img src = "assets/img/face.jpg"></ion-img>
+          </ion-avatar>
+       </ion-col>
+       <ion-col>
+        <ion-row>
+          <ion-col>
+              <ion-text>Presenter : <span class = "name">{{ presenter.presenterName }}</span></ion-text>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+              <ion-text>Paper Title : <span class = "name"> {{ presenter.topic}}</span> </ion-text>
+          </ion-col>
+        </ion-row>
+       </ion-col>
+     </ion-row>
+   </ion-card>
+   <div class = "messageDiv">
+    <ion-label color = "medium">Tap on one presenter to cast your vote</ion-label><br>
+    <ion-label class = "warningMessage">Please be reminded that you can cast your vote once only</ion-label>
+  </div>
+
+</div>
+</ion-content>

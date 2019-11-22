@@ -1,0 +1,41 @@
+
+<ion-header no-shadow no-border>
+  <ion-toolbar>
+   <ion-buttons>
+      <ion-back-button></ion-back-button>
+      <ion-title>Create Poll</ion-title>
+   </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class = "inputDiv">
+    <ion-item lines ="none">
+      <ion-avatar class = "avatar">
+        <ion-img src = "assets/img/banner.jpg" ></ion-img>
+      </ion-avatar>
+    </ion-item><br>
+    <ion-item lines ="none">
+      <ion-input type="text" placeholder = "Presenter Name" [(ngModel)] = "presenter" >
+        <ion-icon name = "person" class= 'inputIcon' color = "medium" ></ion-icon>
+      </ion-input>
+    </ion-item><br>
+    <ion-item lines ="none">
+      <ion-input type="text" placeholder = "Topic" [(ngModel)] = "topic">
+        <ion-icon name = "information-circle-outline" class= 'inputIcon' color = "medium" ></ion-icon>
+      </ion-input>
+    </ion-item><br>
+    <ion-item lines ="none">
+        <ion-input type="text" placeholder = "Unique Id" [(ngModel)] = "key">
+          <ion-icon name = "key" class= 'inputIcon' color = "medium" ></ion-icon>
+        </ion-input>
+      </ion-item><br>
+    <ion-button shape = "block" color = "dark" class = 'createpollbtn' (click) = "createpoll()">Add Presenter</ion-button><br>
+    
+    <ion-item lines = "none">
+        <ion-label style = "font-size : 14px; " color = "success">Open Voting Lines</ion-label>
+        <ion-toggle  [(ngModel)]="votingLine" (ngModelChange) = "votingStatus()" checked></ion-toggle>
+    </ion-item> 
+ 
+</div>
+</ion-content>
