@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  private isConfThere = 0;
   public appPages = [
     {
       title: 'Home',
@@ -41,11 +43,22 @@ export class AppComponent {
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private afs: AngularFirestore,
   ) {
+    this.getConferenceDetails();
     this.initializeApp();
   }
-
+  getConferenceDetails()
+  {
+    this.afs.collection<any>('conference',ref => ref.where('id','==','1'))
+    .valueChanges().subscribe(data =>{     
+        if(data.length > 0)
+        {
+          this.isConfThere = 1;
+        };
+       })
+  }
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();

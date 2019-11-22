@@ -1,0 +1,62 @@
+<ion-header no-shadow no-border>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+      <ion-title>Edit Conference</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class = "inputDiv">
+    <ion-item lines ="none">
+      <ion-input type="text" placeholder = "Conference Name" [(ngModel)] = "confName"  >
+        <ion-icon name = "contacts" class= 'inputIcon' color = "medium" ></ion-icon>
+      </ion-input>
+    </ion-item><br>
+    <ion-item lines ="none">
+      <ion-input type="text" placeholder = "venue" [(ngModel)] = "venue">
+        <ion-icon name = "pin" class= 'inputIcon' color = "medium" ></ion-icon>
+      </ion-input>
+    </ion-item><br>
+    <ion-item lines ="none">
+      <ion-input type="time"  [(ngModel)] = "time">
+        <ion-icon name = "time" class= 'inputIcon' color = "medium" ></ion-icon>
+      </ion-input>
+    </ion-item><br>
+    <ion-item lines ="none">
+      <ion-input type="date" [(ngModel)] = "date">
+        <ion-icon name = "calendar" class= 'inputIcon' color = "medium" ></ion-icon>
+      </ion-input>
+    </ion-item><br>
+    <ion-item lines ="none">
+      <ion-label color = "medium">Add/Edit Conference Banner</ion-label>
+    </ion-item>
+    <ion-item lines="none">
+        <input type = "file" color = "medium" (change) = "detectBFiles($event)" style = "height: 50px;" placeholder="Upload File">
+    </ion-item>
+    <ion-item lines ="none">
+      <ion-label color = "medium">Add/Edit Sponsors</ion-label>
+    </ion-item>
+    <ion-item lines="none">
+        <input type = "file" color = "medium" (change) = "detectSFiles($event,0)" style = "height: 50px;" placeholder="Upload File">
+    </ion-item>
+    <ion-item lines="none">
+        <input type = "file" color = "medium" (change) = "detectSFiles($event,1)" style = "height: 50px;" placeholder="Upload File">
+    </ion-item>
+    <ion-item lines="none">
+        <input type = "file" color = "medium" (change) = "detectSFiles($event,2)" style = "height: 50px;" placeholder="Upload File">
+    </ion-item>
+    <ion-item lines="none">
+        <input type = "file" color = "medium" (change) = "detectSFiles($event,3)" style = "height: 50px;" placeholder="Upload File">
+    </ion-item>
+    <ion-item lines="none">
+        <input type = "file" color = "medium" (change) = "detectSFiles($event,4)" style = "height: 50px;" placeholder="Upload File">
+    </ion-item>
+    <ion-item lines="none">
+        <input type = "file" color = "medium" (change) = "detectSFiles($event,5)" style = "height: 50px;" placeholder="Upload File">
+    </ion-item>
+
+    <ion-button shape = "block" color = "dark" class = 'addConferenceBtn' (click) = "saveChanges()">Save Changes</ion-button><br> 
+</div>
+</ion-content>

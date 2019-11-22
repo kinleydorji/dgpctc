@@ -29,16 +29,23 @@ const routes: Routes = [
   { path: 'feedback-update', loadChildren: './feedback-update/feedback-update.module#FeedbackUpdatePageModule' },
   { path: 'createpoll', loadChildren: './createpoll/createpoll.module#CreatepollPageModule' },
   { path: 'conferencetabs', loadChildren: './conferencetabs/conferencetabs.module#ConferencetabsPageModule' },
-  { path: '', loadChildren: './conferencetabs/conferencetabs.module#ConferencetabsPageModule' },  { path: 'castvote', loadChildren: './castvote/castvote.module#CastvotePageModule' },
-
-
+  { path: '', loadChildren: './conferencetabs/conferencetabs.module#ConferencetabsPageModule' },
+  { path: 'castvote', loadChildren: './castvote/castvote.module#CastvotePageModule' },
+  { path: 'registration', loadChildren: './registration/registration.module#RegistrationPageModule', runGuardsAndResolvers:'always' },
+  { path: 'user-dashboard', loadChildren: './user-dashboard/user-dashboard.module#UserDashboardPageModule' },
+  { path: 'userlogin', loadChildren: './userlogin/userlogin.module#UserloginPageModule' },
+  { path: 'changepassword', loadChildren: './changepassword/changepassword.module#ChangepasswordPageModule' },
+  { path: 'feedback', loadChildren: './feedback/feedback.module#FeedbackPageModule' },
+  { path: 'post-feedback', loadChildren: './post-feedback/post-feedback.module#PostFeedbackPageModule' },
+  { path: 'feedback-update', loadChildren: './feedback-update/feedback-update.module#FeedbackUpdatePageModule' },
+  { path: 'editconference', loadChildren: './editconference/editconference.module#EditconferencePageModule' },
 
 ];
 
 @NgModule({
   imports: [
-  RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })  ],
-  exports: [RouterModule],
-  
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+  ],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}
