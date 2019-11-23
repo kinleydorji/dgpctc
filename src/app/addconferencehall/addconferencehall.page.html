@@ -1,0 +1,20 @@
+
+<ion-header no-shadow no-border>
+  <ion-toolbar>
+   <ion-buttons>
+      <ion-back-button></ion-back-button>
+      <ion-title>Add Hall</ion-title>
+   </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class = "inputDiv">
+    <ion-item lines ="none">
+      <ion-input type="text" placeholder = "Hall Name" [(ngModel)] = "hallName" >
+        <ion-icon name = "home" class= 'inputIcon' color = "medium" ></ion-icon>
+      </ion-input>
+    </ion-item><br>
+     <ion-button shape = "block" (click) = "addhall()">Add hall</ion-button>
+  </div>
+</ion-content>
