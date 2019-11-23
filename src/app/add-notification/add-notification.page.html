@@ -16,46 +16,32 @@
 <!-- for posting notifications by admin -->
 <ion-grid>
     <ion-row>
-        <ion-col size="3">
-            Id:
-        </ion-col>
-        <ion-col size="9">
+        <ion-col size="12">
           <ion-input type="text" placeholder="Enter unique id" class="m-style" [(ngModel)]="postId"></ion-input>
         </ion-col>
       </ion-row>
   <ion-row>
-    <ion-col size="3">
-        Title:
-    </ion-col>
-    <ion-col size="9">
+    <ion-col size="12">
       <ion-input type="text" placeholder="Eg: Changes in schedule..." class="m-style" [(ngModel)]="postTitle"></ion-input>
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col size="3">
-        Message:
-    </ion-col>
-    <ion-col size="9">
+    <ion-col size="12">
       <ion-textarea type="text" placeholder="Enter message" class="m-style" [(ngModel)]="postMessage"></ion-textarea>
     </ion-col>
   </ion-row>
   <ion-row>
-      <ion-col size="3">
-          Posted on:
-      </ion-col>
-      <ion-col size="9">
+      <ion-col size="12">
         <ion-textarea type="text" placeholder="Eg: Tuesday, 7,2019" class="m-style" [(ngModel)]="postOn"></ion-textarea>
       </ion-col>
     </ion-row>
   <ion-row>
-      <ion-col size="3"></ion-col>
-    <ion-col size="9">
+    <ion-col size="12">
       <ion-button color="primary" shape="block" (click)="insertPost()">Add</ion-button>
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col size="3"></ion-col>
-  <ion-col size="9">
+  <ion-col size="12">
     <ion-button color="primary" shape="block" (click)="goUpdate()">Edit</ion-button>
   </ion-col>
 </ion-row>
