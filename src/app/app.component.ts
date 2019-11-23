@@ -25,6 +25,16 @@ export class AppComponent {
       title: 'User login',
       url:'/userlogin',
       icon: 'lock'
+    },
+    {
+      title: 'Add Notification',
+      url:'/add-notification',
+      icon: 'notifications'
+    },
+    {
+      title: 'Update Feedback',
+      url:'/feedback-update',
+      icon: 'quote'
     }
   ];
 

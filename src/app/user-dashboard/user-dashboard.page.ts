@@ -75,4 +75,7 @@ export class UserDashboardPage implements OnInit {
     this.getConferenceDetails();
   }
 
+  goDetails(){
+    this.navCtrl.navigateRoot('conference-detail');
+  }
 }

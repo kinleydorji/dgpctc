@@ -1,10 +1,17 @@
-<ion-header>
+<ion-header no-shadow no-border>
     <ion-toolbar>
-      <ion-title>Update Notification</ion-title>
+      <ion-item slot="start" lines = "none">
+        <ion-icon color="primary" name = "notifications"></ion-icon>
+        <ion-label color="primary">Edit Notification</ion-label>
+      </ion-item>
+      <ion-buttons slot = "end">
+        <ion-button style = "text-transform: none;" color="primary" (click) = "logout()"><ion-icon color="primary" name = "log-out"></ion-icon>logout</ion-button>
+      </ion-buttons>
     </ion-toolbar>
   </ion-header>
   
   <ion-content>
+      <span style="color:teal; font-size: 12pt;"><b>__________</b><span style="color:black; font-size: 12pt;"><b>__________</b></span></span>      
 
   <ion-grid>
       <ion-row>
@@ -31,18 +38,18 @@
         <ion-textarea type="text" class="m-style" [(ngModel)]="postMessage"></ion-textarea>
       </ion-col>
     </ion-row>
-    <!-- <ion-row>
-      <ion-col size="2">
-      Date:
-      </ion-col>
-      <ion-col size="10">
-        <ion-input type="text" button=true, placeholder="Date" value={{Date}} (click)="pickDate()" class="m-style" [(ngModel)]="postDate"></ion-input>
-      </ion-col>
-    </ion-row> -->
+    <ion-row>
+        <ion-col size="3">
+            Posted on:
+        </ion-col>
+        <ion-col size="9">
+          <ion-textarea type="text" class="m-style" [(ngModel)]="postOn"></ion-textarea>
+        </ion-col>
+      </ion-row>
     <ion-row>
         <ion-col size="3"></ion-col>
       <ion-col size="9">
-        <ion-button color="primary" expand="full" (click)="goUpdate()">Update</ion-button>
+        <ion-button color="primary" shape="block" (click)="goUpdate()">Edit</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
