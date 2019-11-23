@@ -25,7 +25,7 @@ url1:string;
   constructor(private alertCtrl: AlertController, private afs : AngularFirestore , 
     private fileChooser: FileChooser, private file : File,private navCtrl: NavController) { }
 
-   uploadFs:UploadMo ={
+  uploadFs:UploadMo ={
     name:'',
     url:undefined,
     createdAt:''
@@ -34,7 +34,6 @@ url1:string;
   detectFiles(event:any)
   {
     this.selectedFiles = event.target.files;
-
   }
 
   addConference()
@@ -90,7 +89,7 @@ url1:string;
     await alert.present();
   }
 
-  pushUpload1(upload: Upload) {
+pushUpload1(upload: Upload) {
     //name of image
     let name:string=upload.file.name;
     let uploadTask: UploadTask = firebase.storage().ref('images/'+name).put(upload.file);
@@ -108,7 +107,7 @@ url1:string;
       this.saveFileData(url);
     });
   })
-}
+  }
 
 
   // chooseFile()
