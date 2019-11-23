@@ -38,7 +38,10 @@ const routes: Routes = [
   { path: 'feedback', loadChildren: './feedback/feedback.module#FeedbackPageModule' },
   { path: 'post-feedback', loadChildren: './post-feedback/post-feedback.module#PostFeedbackPageModule' },
   { path: 'feedback-update', loadChildren: './feedback-update/feedback-update.module#FeedbackUpdatePageModule' },
-  { path: 'editconference', loadChildren: './editconference/editconference.module#EditconferencePageModule' },
+  { path: 'editconference', loadChildren: './editconference/editconference.module#EditconferencePageModule' },  { path: 'addconferencehall', loadChildren: './addconferencehall/addconferencehall.module#AddconferencehallPageModule' },
+  { path: 'addagenda', loadChildren: './addagenda/addagenda.module#AddagendaPageModule' },
+  { path: 'addnews', loadChildren: './addnews/addnews.module#AddnewsPageModule' },
+
 
 ];
 
