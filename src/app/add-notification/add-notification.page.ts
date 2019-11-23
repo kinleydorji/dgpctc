@@ -36,7 +36,7 @@ export class AddNotificationPage implements OnInit {
       {
         console.log("reach here with data: "+data);
           this.alert("For Information","Insertion successful");
-          this.navCtl.navigateForward('conference-detail/notification');
+          this.navCtl.navigateForward('conferencetabs');
         console.log(data);
       }
       )

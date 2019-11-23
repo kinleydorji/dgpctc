@@ -64,7 +64,7 @@ id: string=this.route.snapshot.params['id'];
     {
       console.log("reach here with data: "+data);
         this.alert("For Information","update successful");
-        this.navCtl.navigateForward('conference-detail/notification');
+        this.navCtl.navigateForward('announcements');
       console.log(data);
     }
     )

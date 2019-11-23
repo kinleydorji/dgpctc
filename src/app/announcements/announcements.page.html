@@ -1,9 +1,20 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>announcements</ion-title>
+    <ion-title>Announcement</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+<ion-list *ngFor='let data of postData'>
+    <ion-item style="font-family: 'Times New Roman', Times, serif;">
+        <span style="color:dodgerblue; font-size: 12pt;">
+            <span style="color:teal; font-size: 12pt;">{{data.title}}</span>
+            <ion-label color="primary"></ion-label>
+            {{data.message}}
+            <span style="color:black; font-size: 12pt;">Posted On:</span>
+            <span style="color:black; font-size: 12pt;">{{data.poston}}</span>
+        </span>
+    </ion-item>
+</ion-list>
 </ion-content>
+
