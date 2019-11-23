@@ -12,7 +12,7 @@
 
 <ion-content>
 <ion-card>
-  <ion-img src = "assets/img/cfc.jpg" style = "width: 100%; height:30%"></ion-img>
+  <ion-img src = "{{banner}}" style = "width: 100%; height:30%"></ion-img>
   <ion-card-content>
 
     <ion-item lines = "none">
@@ -34,18 +34,18 @@
     <ion-button shape = "block" color = "dark" (click)="goDetails()">Details</ion-button>
   </ion-card-content>
 </ion-card>
-<div class = "sponsors">
+<div class = "sponsors" *ngIf = "sponsor1!='none' || sponsor2!='none' || sponsor3!='none' || sponsor4!='none' || sponsor5!='none' || sponsor6!='none'">
     <ion-label color = "primary">Sponsors</ion-label>
-<ion-grid>
+<ion-grid >
   <ion-row>
-    <ion-col><ion-img src = "assets/img/tcell.png"></ion-img></ion-col>
-    <ion-col><ion-img src = "assets/img/bt.png"></ion-img></ion-col>
-    <ion-col><ion-img src = "assets/img/bob.jpg"></ion-img></ion-col>
+    <ion-col><ion-img *ngIf="sponsor1!='none'" src = "{{sponsor1}}"></ion-img></ion-col>
+    <ion-col><ion-img *ngIf="sponsor2!='none'" src = "{{sponsor2}}"></ion-img></ion-col>
+    <ion-col><ion-img *ngIf="sponsor3!='none'" src = "{{sponsor3}}"></ion-img></ion-col>
   </ion-row>
   <ion-row>
-      <ion-col><ion-img src = "assets/img/ngn.png"></ion-img></ion-col>
-      <ion-col></ion-col>
-      <ion-col></ion-col>
+      <ion-col><ion-img *ngIf="sponsor4!='none'" src = "{{sponsor4}}"></ion-img></ion-col>
+      <ion-col><ion-img *ngIf="sponsor5!='none'" src = "{{sponsor5}}"></ion-img></ion-col>
+      <ion-col><ion-img *ngIf="sponsor6!='none'" src = "{{sponsor6}}"></ion-img></ion-col>
   </ion-row>
 </ion-grid>
 </div>

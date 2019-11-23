@@ -15,6 +15,12 @@ export class UserDashboardPage implements OnInit {
   private time;
   private date;
   private banner;
+  private sponsor1;
+  private sponsor2;
+  private sponsor3;
+  private sponsor4;
+  private sponsor5;
+  private sponsor6;
   constructor( private afAuth: AngularFireAuth, private alertCtrl: AlertController, 
     private navCtrl: NavController, private afs: AngularFirestore) { 
   }
@@ -54,6 +60,13 @@ export class UserDashboardPage implements OnInit {
           this.venue = data[0].venue;
           this.date = data[0].date;
           this.time = data[0].time;
+          this.banner = data[0].url;
+          this.sponsor1 = data[0].url1;
+          this.sponsor2 = data[0].url2;
+          this.sponsor3 = data[0].url3;
+          this.sponsor4 = data[0].url4;
+          this.sponsor5 = data[0].url5;
+          this.sponsor6 = data[0].url6;
         };
        })
   }

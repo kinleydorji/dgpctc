@@ -1,0 +1,38 @@
+.contentDiv{
+    width: 90%;
+    margin: auto;
+    margin-top: 20px;
+}
+
+ion-item{
+    margin: auto;
+    text-align: center;
+    font-size: 14px;
+  
+}
+
+ion-label{
+    font-weight: lighter;
+    font-family: "raleway-regular"
+}
+
+.name{
+
+    color : #243d7f;
+}
+
+ion-card{
+    --background: #f4f5f8;
+}
+
+.warningMessage{
+    font-size: 12px;
+    color : red;
+}
+
+.messageDiv{
+    text-align: center;
+}
+ion-toolbar{
+    --background : #b8dfca;
+}
