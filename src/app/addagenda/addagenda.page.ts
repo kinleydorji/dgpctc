@@ -39,19 +39,14 @@ export class AddagendaPage implements OnInit {
       this.afs.collection("Conference Hall").doc(this.selectedHall).collection("agenda").doc("agendacount").update({agendacount : increment});
      
       this.afs.collection<any> ("Conference Hall").doc(this.selectedHall).collection("agenda").valueChanges().subscribe(data =>{
-        this.agendaCount = data;
-        console.log("result :", this.
-        agendaCount[0].agendacount);
+        console.log("result :", data[data.length - 1].agendacount);
        // this.agendaCount = this.agendaCount[0].agendacount;
 
    
       })
-      if(this.agendaCount!= undefined)
-      {
         this.afs.collection("Conference Hall").doc(this.selectedHall).collection("agenda")
       .doc("agenda_" + String(this.agendaCount)).set(presenterDetails);
-      console.log("count :", this.agendaCount);
-      }   
+      console.log("count :", this.agendaCount);  
     }
   }
 
@@ -61,7 +56,7 @@ export class AddagendaPage implements OnInit {
 
   }
 
-  
+
   async alert(header:string,message:any) {
     const alert = await this.alertCtrl.create({
       header: header,
