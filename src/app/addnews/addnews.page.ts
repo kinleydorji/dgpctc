@@ -16,7 +16,7 @@ import { stringify } from '@angular/compiler/src/util';
 export class AddnewsPage implements OnInit {
   selectedFiles: FileList;
   currentUpload: Upload;
-  newsCount = "";
+  newsCount: number = 0;
   private serial = "";
   private presenterName = "";
   private title = "";
@@ -36,20 +36,32 @@ export class AddnewsPage implements OnInit {
   {
     this.hall = stringify(this.hall);
     console.log("hall="+this.hall);
-    this.afs.collection("Conference Hall").doc(this.hall).collection("news").doc("newscount").get().subscribe(data=>
-      {
-        this.newsCount = data[0].newscount;
-      })
-
-    console.log("news count"+this.newsCount);
-    // if(this.serial  == "" || this.presenterName == "" || this.title == "" || this.time == "" || this.description == "")
-    // {
-    //   this.alert("Empty Field(s)", "Fill in all empty field(s)");
-    // }
-    // else{
+    if(this.serial  == "" || this.presenterName == "" || this.title == "" || this.time == "" || this.description == "")
+    {
+      this.alert("Empty Field(s)", "Fill in all empty field(s)");
+    }
+    else
+    {
+      this.afs.collection("Conference Hall").doc(this.hall).collection("news").valueChanges().subscribe(data=>
+        {
+            this.newsCount = parseInt(data[data.length - 1].newscount);
+        })
+        this.newsCount += 1;
+        this.afs.collection("Conference Hall").doc(this.hall).collection("news").doc("newscount").set({newscount: this.newsCount});
+        this.afs.collection("Conference Hall").doc(this.hall).collection("news").doc("news"+this.newsCount).set({presenter : this.presenterName, time: this.time, title: this.title, description: this.description});
+    }
     
-    //   this.afs.collection("Conference Hall").doc(this.hall).collection("news").doc("news"+this.newsCount).set({presenter : this.presenterName, time: this.time, title: this.title, description: this.description});
+    // if(this.newsCount == '1')
+    // {
+    //   console.log("Hello");
     // }
+    // else
+    // {
+    //   console.log("No");
+    // }
+    console.log("news count"+this.newsCount);
+    
+    
   }
 
 
