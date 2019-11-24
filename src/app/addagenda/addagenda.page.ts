@@ -61,7 +61,7 @@ export class AddagendaPage implements OnInit {
 
   }
 
-
+  
   async alert(header:string,message:any) {
     const alert = await this.alertCtrl.create({
       header: header,
