@@ -16,7 +16,7 @@ import { stringify } from '@angular/compiler/src/util';
 export class AddnewsPage implements OnInit {
   selectedFiles: FileList;
   currentUpload: Upload;
-  newsCount: number = 0;
+  newsCount: number = undefined;
   private serial = "";
   private presenterName = "";
   private title = "";
@@ -31,24 +31,50 @@ export class AddnewsPage implements OnInit {
     url:undefined,
     createdAt:''
   };
-  
-  addNews()
+
+  detectFiles(event:any)
   {
-    this.hall = stringify(this.hall);
-    console.log("hall="+this.hall);
-    if(this.serial  == "" || this.presenterName == "" || this.title == "" || this.time == "" || this.description == "")
+    this.selectedFiles = event.target.files;
+  }
+  
+ async addNews()
+  {
+    if(this.serial  == "" || this.presenterName == "" || this.title == "" || this.time == "" || this.description == "" || this.hall == "")
     {
       this.alert("Empty Field(s)", "Fill in all empty field(s)");
     }
     else
     {
-      this.afs.collection("Conference Hall").doc(this.hall).collection("news").valueChanges().subscribe(data=>
+      // await this.afs.collection("Conference Hall").doc(this.hall).collection("news").valueChanges().subscribe(data=>
+      //   {
+      //       this.newsCount = parseInt(data[data.length - 1].newscount);
+      //       console.log("count="+this.newsCount);
+      //   })
+      if(this.selectedFiles != undefined)
+      {
+        let file = this.selectedFiles.item(0)
+        this.currentUpload = new Upload(file);
+      }
+      
+      
+        console.log("count="+this.newsCount);
+        if(isNaN(this.newsCount))
         {
-            this.newsCount = parseInt(data[data.length - 1].newscount);
-        })
+          console.log("hello");
+          this.getCount();
+        }
         this.newsCount += 1;
         this.afs.collection("Conference Hall").doc(this.hall).collection("news").doc("newscount").set({newscount: this.newsCount});
-        this.afs.collection("Conference Hall").doc(this.hall).collection("news").doc("news"+this.newsCount).set({presenter : this.presenterName, time: this.time, title: this.title, description: this.description});
+        this.afs.collection("Conference Hall").doc(this.hall).collection("news").doc("news"+this.newsCount).set({presenter : this.presenterName, time: this.time, title: this.title, description: this.description}).then(
+         data =>
+         {
+          if(this.selectedFiles != undefined)
+          {
+            this.pushUpload1(this.currentUpload);
+          }
+          this.alert("Successful","Your post has been successfully posted.");
+         }
+        );
     }
     
     // if(this.newsCount == '1')
@@ -59,11 +85,18 @@ export class AddnewsPage implements OnInit {
     // {
     //   console.log("No");
     // }
-    console.log("news count"+this.newsCount);
     
     
   }
 
+  getCount()
+  {
+    this.afs.collection("Conference Hall").doc(this.hall).collection("news").valueChanges().subscribe(data=>
+      {
+          this.newsCount = parseInt(data[data.length - 1].newscount);
+          console.log("getcount="+this.newsCount);
+      })
+  }
 
   getHall()
   {
@@ -110,7 +143,7 @@ export class AddnewsPage implements OnInit {
     this.uploadFs.url=url;
     console.log('save data url='+url)
     console.log(this.uploadFs.name,this.uploadFs.url,this.uploadFs.createdAt);
-    this.afs.collection("conference").doc('1').update(this.uploadFs);
+    this.afs.collection("Conference Hall").doc(this.hall).collection("news").doc("news"+this.newsCount).update(this.uploadFs);
   }
 
   ngOnInit() {
@@ -120,5 +153,7 @@ export class AddnewsPage implements OnInit {
         this.halls.push(doc.id);   
       })
     })
+
+ 
   }
 }
