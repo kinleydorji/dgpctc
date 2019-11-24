@@ -45,7 +45,7 @@ export class AppComponent {
     },
     {
       title: 'conference',
-      url:'/conferencetabs',
+      url:'/conferenceselect',
       icon: 'people'
     }
   ];
