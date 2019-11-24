@@ -29,6 +29,16 @@ export class AppComponent {
       icon: 'lock'
     },
     {
+      title: 'Add Notification',
+      url:'/add-notification',
+      icon: 'notifications'
+    },
+    {
+      title: 'Update Feedback',
+      url:'/feedback-update',
+      icon: 'quote'
+    },
+    {
       title: 'Create Poll',
       url:'/createpoll',
       icon: 'checkbox-outline'

@@ -1,12 +1,14 @@
-<ion-header >
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button color = "primary"></ion-menu-button>
-      <ion-back-button color="primary"></ion-back-button>
-      <ion-title id="title" color="primary"><b>feedback</b></ion-title>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<ion-header no-shadow no-border>
+    <ion-toolbar>
+      <ion-item slot="start" lines = "none">
+        <ion-icon name = "person"></ion-icon>
+        <ion-label>Hello {{ userName }}</ion-label>
+      </ion-item>
+      <ion-buttons slot = "end">
+        <ion-button style = "text-transform: none;" (click) = "logout()"><ion-icon name = "log-out"></ion-icon>logout</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content>
   <ion-card *ngFor='let data of fData'>

@@ -13,6 +13,7 @@ export class NotificationUpdatePage implements OnInit {
   postId : any;
   postTitle : any;
   postMessage : any;
+  postOn : any;
   postData:any[]=[];
   timeoutStatus: any;
 id: string=this.route.snapshot.params['id'];
@@ -37,13 +38,16 @@ id: string=this.route.snapshot.params['id'];
          id :res.data().id,
          title:res.data().title,
          message:res.data().message,
+         poston:res.data().poston,
        })
        this.postId = res.data().id;
        console.log("notification id : "+this.id);
        this.postTitle = res.data().title;
        console.log("title :"+this.postTitle);
        this.postMessage = res.data().message;
-       console.log("message :"+this.postMessage); 
+       console.log("message :"+this.postMessage);
+       this.postOn = res.data().poston;
+       console.log("message :"+this.postOn);
      })
  }
 
@@ -54,12 +58,13 @@ id: string=this.route.snapshot.params['id'];
     id : this.postId,
     title : this.postTitle,
     message : this.postMessage,
+    poston : this.postOn,
   }
   ).then(data=>
     {
       console.log("reach here with data: "+data);
         this.alert("For Information","update successful");
-        this.navCtl.navigateForward('/notification');
+        this.navCtl.navigateForward('announcements');
       console.log(data);
     }
     )

@@ -14,7 +14,11 @@
       <ion-avatar class = "avatar">
         <ion-img src = "assets/img/banner.jpg" ></ion-img>
       </ion-avatar>
-    </ion-item><br>
+    </ion-item>
+    <ion-item lines = "none">
+      <input type = "file" color = "medium" (change) = "detectFiles($event)" style = "height: 50px;">      
+    </ion-item>
+    <br>
     <ion-item lines ="none">
       <ion-input type="text" placeholder = "Presenter Name" [(ngModel)] = "presenter" >
         <ion-icon name = "person" class= 'inputIcon' color = "medium" ></ion-icon>

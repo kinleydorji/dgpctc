@@ -1,50 +1,47 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>addNotification</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-header no-shadow no-border>
+    <ion-toolbar>
+      <ion-item slot="start" lines = "none">
+        <ion-icon color="primary" name = "notifications"></ion-icon>
+        <ion-label color="primary" >Add notifications</ion-label>
+      </ion-item>
+      <ion-buttons slot = "end">
+        <ion-button style = "text-transform: none;" color="primary" (click) = "logout()"><ion-icon color="primary" name = "log-out"></ion-icon>logout</ion-button>
+      </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content>
 <!-- for posting notifications by admin -->
 <ion-grid>
     <ion-row>
-        <ion-col size="3">
-            nId:
-        </ion-col>
-        <ion-col size="9">
-          <ion-input type="text" placeholder="Enter uniqueId" class="m-style" [(ngModel)]="postId"></ion-input>
+        <ion-col size="12">
+          <ion-input type="text" placeholder="Enter unique id" class="m-style" [(ngModel)]="postId"></ion-input>
         </ion-col>
       </ion-row>
   <ion-row>
-    <ion-col size="3">
-        Title:
-    </ion-col>
-    <ion-col size="9">
-      <ion-input type="text" placeholder="Enter title" class="m-style" [(ngModel)]="postTitle"></ion-input>
+    <ion-col size="12">
+      <ion-input type="text" placeholder="Eg: Changes in schedule..." class="m-style" [(ngModel)]="postTitle"></ion-input>
     </ion-col>
   </ion-row>
   <ion-row>
-    <ion-col size="3">
-        Message:
-    </ion-col>
-    <ion-col size="9">
+    <ion-col size="12">
       <ion-textarea type="text" placeholder="Enter message" class="m-style" [(ngModel)]="postMessage"></ion-textarea>
     </ion-col>
   </ion-row>
-  <!-- <ion-row>
-    <ion-col size="2">
-    Date:
-    </ion-col>
-    <ion-col size="10">
-      <ion-input type="text" button=true, placeholder="Date" value={{Date}} (click)="pickDate()" class="m-style" [(ngModel)]="postDate"></ion-input>
-    </ion-col>
-  </ion-row> -->
   <ion-row>
-      <ion-col size="3"></ion-col>
-    <ion-col size="9">
-      <ion-button color="primary" expand="full" (click)="insertPost()">Post</ion-button>
+      <ion-col size="12">
+        <ion-textarea type="text" placeholder="Eg: Tuesday, 7,2019" class="m-style" [(ngModel)]="postOn"></ion-textarea>
+      </ion-col>
+    </ion-row>
+  <ion-row>
+    <ion-col size="12">
+      <ion-button color="primary" shape="block" (click)="insertPost()">Add</ion-button>
     </ion-col>
   </ion-row>
+  <ion-row>
+  <ion-col size="12">
+    <ion-button color="primary" shape="block" (click)="goUpdate()">Edit</ion-button>
+  </ion-col>
+</ion-row>
 </ion-grid>
-
 </ion-content>

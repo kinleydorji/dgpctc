@@ -1,15 +1,8 @@
-ion-toolbar{
-    --background: #b8dfca; 
-  }
-
 .m-style{
     border-style: solid;
-    border-width: 1px;
-    //border-radius: 5px;
-    border-color: teal; 
-    border-radius: 5px;
-}
-  
-
-  
-  
+    border-bottom-width: 1px;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-left-width: 0px;
+    border-bottom-color: #989aa2;
+  }
