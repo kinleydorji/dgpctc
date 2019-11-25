@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 
 @Component({
@@ -9,7 +9,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 })
 export class ConferencetabsPage implements OnInit {
   private voteOption;
-  constructor(private router: Router, private afs: AngularFirestore) { }
+  private hall="";
+  constructor(private router: Router, private afs: AngularFirestore, private route: ActivatedRoute) { }
 
   castvote()
   {
@@ -17,6 +18,10 @@ export class ConferencetabsPage implements OnInit {
   }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      this.hall = params['hallno']; 
+    });
+    console.log("hallno:"+this.hall);
     let results;
     this.afs.collection('t_overallStatus').valueChanges().subscribe(result => {
       results = result;

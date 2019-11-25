@@ -1,0 +1,15 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>conferenceselect</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-card *ngFor = "let hall of halls">
+        <ion-card-content>
+          <ion-item lines = "none" (click) = "goToHall(hall)">
+            <ion-label >{{hall}}</ion-label>
+          </ion-item>
+        </ion-card-content>
+      </ion-card>
+</ion-content>

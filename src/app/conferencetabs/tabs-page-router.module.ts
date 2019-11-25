@@ -5,7 +5,7 @@ import { ConferencetabsPage } from './conferencetabs.page';
 
 const routes: Routes = [
   {
-    path: 'conferencetabs',
+    path: 'conferencetabs/:hallno',
     component: ConferencetabsPage,
     children: [
       {

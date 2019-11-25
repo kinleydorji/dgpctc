@@ -1,9 +1,51 @@
-<ion-header>
+
+<ion-header no-shadow no-border>
   <ion-toolbar>
-    <ion-title>addnews</ion-title>
+   <ion-buttons>
+      <ion-back-button></ion-back-button>
+      <ion-title>Add News</ion-title>
+   </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <div class = "inputDiv">
+    <ion-item lines ="none">
+      <ion-select placeholder="Select Hall" (click) = "getHall()" (ionChange)="getCount()" [(ngModel)] = "hall">
+        <ion-select-option *ngFor = "let hall of halls">{{hall}}</ion-select-option>
+      </ion-select>
+    </ion-item><br>
+    <ion-item lines ="none">
+      <ion-input type="number" placeholder = "Serial No" [(ngModel)] = "serial" >
+        <ion-icon name = "key" class= 'inputIcon' color = "medium" ></ion-icon>
+      </ion-input>
+    </ion-item><br>
+    <ion-item lines ="none">
+      <ion-input type="text" placeholder = "Presenter Name" [(ngModel)] = "presenterName" >
+        <ion-icon name = "person" class= 'inputIcon' color = "medium" ></ion-icon>
+      </ion-input>
+    </ion-item><br>
+    <ion-item lines ="none">
+      <ion-input type="text" placeholder = "Title" [(ngModel)] = "title" >
+        <ion-icon name = "paper" class= 'inputIcon' color = "medium" ></ion-icon>
+      </ion-input>
+    </ion-item><br>
+    <ion-item lines ="none">
+      <ion-input type="text" placeholder = "Description" [(ngModel)] = "description" >
+        <ion-icon name = "time" class= 'inputIcon' color = "medium" ></ion-icon>
+      </ion-input>
+    </ion-item><br>
+    <ion-item lines ="none">
+      <ion-input type="time" placeholder = "Time" [(ngModel)] = "time" >
+        <ion-icon name = "time" class= 'inputIcon' color = "medium" ></ion-icon>
+      </ion-input>
+    </ion-item><br>
+    <ion-item lines ="none">
+      <ion-label color = "medium">Add Image</ion-label>
+    </ion-item>
+    <ion-item lines = "none">
+      <input type = "file" color = "medium" (change) = "detectFiles($event)" style = "height: 50px;" placeholder="Upload File">      
+    </ion-item><br>
+     <ion-button shape = "block" (click) = "addNews()">Add News</ion-button>
+  </div>
 </ion-content>

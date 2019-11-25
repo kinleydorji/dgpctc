@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Upload } from 'src/models/upload/upload';
 import * as firebase from 'firebase';
 
 @Component({
@@ -9,6 +10,8 @@ import * as firebase from 'firebase';
   styleUrls: ['./addagenda.page.scss'],
 })
 export class AddagendaPage implements OnInit {
+  selectedFiles: FileList;
+  currentUpload: Upload;
   private serial = "";
   private presenterName = "";
   private topic = "";
