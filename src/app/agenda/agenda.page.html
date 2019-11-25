@@ -7,8 +7,9 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
-
+<ion-select placeholder="--Select--" [(ngModel)] = "selectedDay" (ionChange) = "getAgendaDoc()">
+    <ion-select-option *ngFor = "let day of days" value = "{{day}}">{{day}}</ion-select-option>
+</ion-select>
 <ion-content>
   <div>
     <ion-card color>
@@ -17,14 +18,15 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          9 : 00 AM
+          {{startTime}}
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          10 : 00 AM
+          {{endTime}}
         </ion-col>
       </ion-row>
     </ion-card>
   </div>
+  <ion-button (click) = "getAgendaDoc()">get data</ion-button>
 </ion-content>

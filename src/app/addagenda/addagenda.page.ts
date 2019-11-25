@@ -19,7 +19,10 @@ export class AddagendaPage implements OnInit {
   private endTime = "";
   private halls: any = [];
   private selectedHall = "";
-  private agendaCount:any;
+  private agendaCount:number;
+  private selectedDay = "";
+  private confDuration;
+  private days:any = [];
   constructor(private alertCtrl: AlertController, private afs: AngularFirestore) { }
 
   
@@ -31,45 +34,32 @@ export class AddagendaPage implements OnInit {
       console.log("selected Hall : ", this.selectedHall);
     }
     else{
-
+      let presenterDetails = {
+        presentername : this.presenterName,
+        topic : this.topic,
+        startTime : this.startTime,
+        endTime : this.endTime,
+      }
+      console.log("count="+this.agendaCount);
+   
       this.getAgendaCount();
-      this.addUniqueAgenda();
-      let increment = firebase.firestore.FieldValue.increment(1);
-      console.log("increment : ", increment)
-      await this.afs.collection("Conference Hall").doc(this.selectedHall).collection("agenda").doc("agendacount").update({agendacount : increment});
+      this.agendaCount += 1;
+      this.afs.collection("Conference Hall").doc(this.selectedHall).collection("agenda").doc("agendacount").set({agendacount: this.agendaCount});
+      this.afs
+      .collection("Conference Hall").doc(this.selectedHall)
+      .collection("agenda").doc("days")
+      .collection(this.selectedDay).doc("agenda_"+this.agendaCount).set(presenterDetails);
     }
   }
 
 
-  async getAgendaCount()
+  getAgendaCount()
   {
-    await this.afs.collection ("Conference Hall").doc(this.selectedHall).collection("agenda").valueChanges().subscribe( data =>{
+    this.afs.collection ("Conference Hall").doc(this.selectedHall).collection("agenda").valueChanges().subscribe( data =>{
       this.agendaCount = data[data.length - 1].agendacount;
-      console.log("result :", data[data.length - 1].agendacount);  
-      console.log("length : ", data.length);     
-      })
+      console.log("getcount="+this.agendaCount);   
+      })    
   }
-
-  async addUniqueAgenda()
-  {
-    let presenterDetails = {
-      presentername : this.presenterName,
-      topic : this.topic,
-      startTime : this.startTime,
-      endTime : this.endTime,
-    }
-
-    await this.afs.collection("Conference Hall").doc(this.selectedHall).collection("agenda")
-    .doc("agenda_" + String(this.agendaCount)).set(presenterDetails);
-    console.log("count :", this.agendaCount); 
-  }
-
-
-  getHall()
-  {
-
-  }
-
 
   async alert(header:string,message:any) {
     const alert = await this.alertCtrl.create({
@@ -87,6 +77,26 @@ export class AddagendaPage implements OnInit {
     await alert.present();
   }
 
+
+
+  getConferenceDay()
+  {
+
+    this.afs.collection<any>('conference',ref => ref.where('id','==','1'))
+    .valueChanges().subscribe(data =>{     
+        if(data.length > 0)
+        {
+          this.confDuration = data[0].duration;
+          console.log("Duration : ", this.confDuration);
+          for(let i = 0; i < this.confDuration; i++)
+          {
+            this.days.push("Day " + (i+1));
+          }
+        };
+       })
+  }
+
+
   ngOnInit() {
       this.afs.firestore.collection('Conference Hall').get().then((querySnapshot) => { 
       querySnapshot.forEach((doc) => {
@@ -94,6 +104,7 @@ export class AddagendaPage implements OnInit {
         this.halls.push(doc.id);   
       })
     })
+    this.getConferenceDay();
   }
 
 }

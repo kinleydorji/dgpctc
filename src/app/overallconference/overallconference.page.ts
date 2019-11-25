@@ -20,6 +20,7 @@ private conferenceName = "";
 private venue = "";
 private time = "";
 private date = "";
+private duration = "";
 private imageName = "";
 url1:string;
   constructor(private alertCtrl: AlertController, private afs : AngularFirestore , 
@@ -41,7 +42,8 @@ url1:string;
     if(this.conferenceName == "" 
     || this.venue == "" 
     || this.time == "" 
-    || this.date == "")
+    || this.date == ""
+    || this.duration == "")
     {
       this.alert("Empty Field(s)", "Fill in all empty field(s)");
     }
@@ -57,6 +59,7 @@ url1:string;
         venue : this.venue,
         time : this.time,
         date : this.date,
+        duration : this.duration,
         id : '1'
       }
       this.afs.collection("conference").doc(confDetails.id).set(confDetails).
@@ -65,8 +68,7 @@ url1:string;
           this.pushUpload1(this.currentUpload);
           this.alert("Info","Successfuly added event.");
           this.navCtrl.navigateForward('/home');
-            console.log(data);
-            
+            console.log(data);           
         }
     
       );

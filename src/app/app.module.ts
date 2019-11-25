@@ -22,6 +22,8 @@ import { FileChooser } from '@ionic-native/file-chooser/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { AngularFirestore } from '@angular/fire/firestore';
 
+import { IonicStorageModule } from '@ionic/storage';
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [PasswordrecoveryPage],
@@ -32,7 +34,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireAuthModule,
-    PasswordrecoveryPageModule
+    PasswordrecoveryPageModule,
+    IonicStorageModule.forRoot()
   ],
   providers: [
     StatusBar,
@@ -44,6 +47,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
     File,
     FileChooser,
     AngularFirestore,
+    Storage,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
