@@ -20,7 +20,7 @@ export class AddagendaPage implements OnInit {
   constructor(private alertCtrl: AlertController, private afs: AngularFirestore) { }
 
   
-  addAgenda()
+  async addAgenda()
   {
     if(this.serial  == "" || this.presenterName == "" || this.topic == "" || this.startTime == "" || this.endTime == "")
     {
@@ -28,26 +28,37 @@ export class AddagendaPage implements OnInit {
       console.log("selected Hall : ", this.selectedHall);
     }
     else{
-      let presenterDetails = {
-        presentername : this.presenterName,
-        topic : this.topic,
-        startTime : this.startTime,
-        endTime : this.endTime,
-      }
+
+      this.getAgendaCount();
+      this.addUniqueAgenda();
       let increment = firebase.firestore.FieldValue.increment(1);
       console.log("increment : ", increment)
-      this.afs.collection("Conference Hall").doc(this.selectedHall).collection("agenda").doc("agendacount").update({agendacount : increment});
-     
-      this.afs.collection<any> ("Conference Hall").doc(this.selectedHall).collection("agenda").valueChanges().subscribe(data =>{
-        console.log("result :", data[data.length - 1].agendacount);
-       // this.agendaCount = this.agendaCount[0].agendacount;
-
-   
-      })
-        this.afs.collection("Conference Hall").doc(this.selectedHall).collection("agenda")
-      .doc("agenda_" + String(this.agendaCount)).set(presenterDetails);
-      console.log("count :", this.agendaCount);  
+      await this.afs.collection("Conference Hall").doc(this.selectedHall).collection("agenda").doc("agendacount").update({agendacount : increment});
     }
+  }
+
+
+  async getAgendaCount()
+  {
+    await this.afs.collection ("Conference Hall").doc(this.selectedHall).collection("agenda").valueChanges().subscribe( data =>{
+      this.agendaCount = data[data.length - 1].agendacount;
+      console.log("result :", data[data.length - 1].agendacount);  
+      console.log("length : ", data.length);     
+      })
+  }
+
+  async addUniqueAgenda()
+  {
+    let presenterDetails = {
+      presentername : this.presenterName,
+      topic : this.topic,
+      startTime : this.startTime,
+      endTime : this.endTime,
+    }
+
+    await this.afs.collection("Conference Hall").doc(this.selectedHall).collection("agenda")
+    .doc("agenda_" + String(this.agendaCount)).set(presenterDetails);
+    console.log("count :", this.agendaCount); 
   }
 
 
