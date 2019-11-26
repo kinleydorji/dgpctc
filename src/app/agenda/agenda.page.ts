@@ -14,6 +14,7 @@ export class AgendaPage implements OnInit {
   private selectedDay:any;
   private confDuration;
   private days:any = [];
+  private resultsObj:any = [];
   constructor(private storage: Storage, private afs: AngularFirestore) {
 
 
@@ -29,11 +30,16 @@ export class AgendaPage implements OnInit {
     
   }
 
+  async emptyTheArray()
+  {
+    this.docId = [];
+    this.resultsObj = [];
+    console.log("length : ", this.docId.length);
+  }
 
   getAgendaDoc()
   {
-  
-
+   this.emptyTheArray().then(()=>{
     console.log('triggered');
     this.afs.firestore.collection('Conference Hall')
     .doc(this.selectedHall).collection('agenda')
@@ -42,11 +48,10 @@ export class AgendaPage implements OnInit {
         console.log("doc: ", doc.id)
         this.docId.push(doc.id);
         })
-
-
         this.getAgendaDetails();
-
       })
+   })
+
   }
 
 
@@ -57,7 +62,7 @@ export class AgendaPage implements OnInit {
       this.afs.collection('Conference Hall').doc(this.selectedHall)
       .collection('agenda').doc('days')
       .collection(this.selectedDay).doc(this.docId[i]).valueChanges().subscribe(result => {
-        console.log(result);
+        this.resultsObj.push(result);
       })
     }
   }
