@@ -18,10 +18,6 @@ export class ConferencetabsPage implements OnInit {
   }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.hall = params['hallno']; 
-    });
-    console.log("hallno:"+this.hall);
     let results;
     this.afs.collection('t_overallStatus').valueChanges().subscribe(result => {
       results = result;

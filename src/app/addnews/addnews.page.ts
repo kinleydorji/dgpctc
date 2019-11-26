@@ -6,6 +6,7 @@ import { Upload } from 'src/models/upload/upload';
 import { UploadTask } from '@angular/fire/storage/interfaces';
 import * as firebase from 'firebase';
 import { stringify } from '@angular/compiler/src/util';
+import { formatDate } from '@angular/common';
 
 
 @Component({
@@ -24,11 +25,12 @@ export class AddnewsPage implements OnInit {
   private description = "";
   private halls: any = [];
   private hall;
+  private postingDate: any;
   constructor(private alertCtrl: AlertController, private afs: AngularFirestore) { }
 
   uploadFs:UploadMo ={
     name:'',
-    url:undefined,
+    url:"none",
     createdAt:''
   };
 
@@ -64,6 +66,7 @@ export class AddnewsPage implements OnInit {
           this.getCount();
         }
         this.newsCount += 1;
+        this.postingDate = formatDate(new Date(), 'MMM-dd-yyyy H:mm:ss','en');
         this.afs.collection("Conference Hall").doc(this.hall).collection("news").doc("newscount").set({newscount: this.newsCount});
         this.afs.collection("Conference Hall").doc(this.hall).collection("news").doc("news"+this.newsCount).set({presenter : this.presenterName, time: this.time, title: this.title, description: this.description}).then(
          data =>
@@ -72,6 +75,7 @@ export class AddnewsPage implements OnInit {
           {
             this.pushUpload1(this.currentUpload);
           }
+          this.afs.collection("Conference Hall").doc(this.hall).collection("news").doc("news"+this.newsCount).update({postingDate: this.postingDate});
           this.alert("Successful","Your post has been successfully posted.");
          }
         );
