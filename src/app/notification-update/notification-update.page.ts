@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AlertController, NavController, LoadingController,} from '@ionic/angular';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-notification-update',
@@ -14,9 +15,10 @@ export class NotificationUpdatePage implements OnInit {
   postTitle : any;
   postMessage : any;
   postOn : any;
+  dateTime: any;
   postData:any[]=[];
   timeoutStatus: any;
-id: string=this.route.snapshot.params['id'];
+  id: string=this.route.snapshot.params['id'];
   constructor(
     public route: ActivatedRoute,
     private fs : AngularFirestore,
@@ -35,36 +37,37 @@ id: string=this.route.snapshot.params['id'];
 
      {
        this.postData.push({
-         id :res.data().id,
+         id:res.data().id,
          title:res.data().title,
          message:res.data().message,
          poston:res.data().poston,
        })
        this.postId = res.data().id;
-       console.log("notification id : "+this.id);
+       console.log("id :"+this.postId);
        this.postTitle = res.data().title;
        console.log("title :"+this.postTitle);
        this.postMessage = res.data().message;
        console.log("message :"+this.postMessage);
        this.postOn = res.data().poston;
-       console.log("message :"+this.postOn);
+       console.log("post on :"+this.postOn);
      })
  }
 
  goUpdate(){
+  this.dateTime = formatDate(new Date(), 'MMM-dd-yyyy H:mm:ss', 'en'); //get time and date
   let basePath:string="/t_notification";
-  this.fs.collection(`${basePath}`).doc(`${this.postId}`).update(
+  this.fs.collection(`${basePath}`).doc(`${this.id}`).update(
     {
     id : this.postId,
     title : this.postTitle,
     message : this.postMessage,
-    poston : this.postOn,
+    poston : this.dateTime,
   }
   ).then(data=>
     {
       console.log("reach here with data: "+data);
         this.alert("For Information","update successful");
-        this.navCtl.navigateForward('announcements');
+        this.navCtl.navigateForward('conferencetabs');
       console.log(data);
     }
     )

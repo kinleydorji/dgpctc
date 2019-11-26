@@ -1,37 +1,19 @@
 <ion-header no-shadow no-border>
     <ion-toolbar>
-      <ion-item slot="start" lines = "none">
-        <ion-icon color="primary" name = "quote"></ion-icon>
-        <ion-label>Feedback</ion-label>
-      </ion-item>
-      <ion-buttons slot = "end">
-        <ion-button style = "text-transform: none;" color="primary" (click) = "logout()"><ion-icon color="primary"name = "log-out"></ion-icon>logout</ion-button>
-      </ion-buttons>
+     <ion-buttons>
+        <ion-back-button></ion-back-button>
+        <ion-title>Feedback</ion-title>
+     </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
 <ion-content>
-    <span style="color:teal; font-size: 12pt;"><b>_______</b><span style="color:black; font-size: 12pt;"><b>_______</b></span></span>      
-  <ion-grid>
-    <ion-row>
-      <ion-col size="3">
-          Feedback:
-      </ion-col>
-      <ion-col size="9">
-        <ion-textarea type="text" size="large" placeholder="Kindly provide us feedback..." class="m-style" [(ngModel)]="postFeedback"></ion-textarea>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="3"></ion-col>
-      <ion-col size="9">
-        <ion-button shape = "block" color = "dark" class = 'feedback-add-btn' (click)="insertFeedback()">Add</ion-button>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col size="3"></ion-col>
-      <ion-col size="9">
-        <ion-button shape = "block" color = "dark" class = 'feedback-add-btn' (click)="goFeedback()">View Feedbacks</ion-button>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <div class = "inputDiv">
+        <ion-item lines ="none">
+            <ion-textarea type="text" placeholder="Kindly provide us feedback..." [(ngModel)]="postFeedback">
+            </ion-textarea>
+        </ion-item><br>
+        <ion-button shape = "block" (click)="insertFeedback()">Add</ion-button>
+        <ion-button shape = "block" (click)="goFeedback()">View Feedbacks</ion-button>
+    </div>
 </ion-content>

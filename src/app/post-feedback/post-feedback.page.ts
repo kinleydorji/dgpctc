@@ -44,8 +44,5 @@ async alert(header : string, message : string)
   });
   alert.present();
 }
-goFeedback(){
-  this.navCtl.navigateForward('/feedback');
-}
 }
 

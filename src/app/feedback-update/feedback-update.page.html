@@ -1,18 +1,13 @@
 <ion-header no-shadow no-border>
     <ion-toolbar>
-      <ion-item slot="start" lines = "none">
-        <ion-icon color="primary" name = "notifications"></ion-icon>
-        <ion-label color="primary">Update feedback</ion-label>
-      </ion-item>
-      <ion-buttons slot = "end">
-        <ion-button style = "text-transform: none;" color="primary" (click) = "logout()"><ion-icon color="primary" name = "log-out"></ion-icon>logout</ion-button>
-      </ion-buttons>
+     <ion-buttons>
+        <ion-back-button></ion-back-button>
+        <ion-title>Delete Feedback</ion-title>
+     </ion-buttons>
     </ion-toolbar>
   </ion-header>
   
   <ion-content>
-      <span style="color:teal; font-size: 12pt;"><b>_________</b><span style="color:black; font-size: 12pt;"><b>_________</b></span></span> 
-  <!-- for editing and deleting notification -->
   <ion-list *ngFor='let data of fData'>
     <ion-row>
         <ion-col size="8">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AlertController, NavController, LoadingController} from '@ionic/angular';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-add-notification',
@@ -13,6 +14,7 @@ export class AddNotificationPage implements OnInit {
   postTitle : any;
   postMessage : any;
   postOn : any;
+  dateTime: any;
   // postDate : any;
   constructor(
     private fs : AngularFirestore,
@@ -24,13 +26,14 @@ export class AddNotificationPage implements OnInit {
   ngOnInit() {
   }
   insertPost(){
+    this.dateTime = formatDate(new Date(), 'MMM-dd-yyyy H:mm:ss', 'en'); //get time and date
     let basePath:string="/t_notification";
     this.fs.collection(`${basePath}`).doc(`${this.postId}`).set(
       {
         id : this.postId,
         title : this.postTitle,
         message : this.postMessage,
-        poston : this. postOn
+        poston : this. dateTime
     }
     ).then(data=>
       {

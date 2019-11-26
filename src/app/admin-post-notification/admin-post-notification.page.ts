@@ -9,7 +9,7 @@ import { AlertController, NavController, LoadingController,} from '@ionic/angula
 })
 export class AdminPostNotificationPage implements OnInit {
 
-  postId : any;
+  postOn : any;
   postTitle : any;
   postData:any[]=[];
   timeoutStatus: any;
@@ -22,17 +22,18 @@ export class AdminPostNotificationPage implements OnInit {
     ) {
       this.presentLoading();
       //for retriving the post data from the firestore
-    this.fs.collection('/t_notification',ref=>ref.orderBy('id', 'asc')).get().subscribe(res=>
+    this.fs.collection('/t_notification',ref=>ref.orderBy('id', 'desc')).get().subscribe(res=>
       {
         res.forEach((doc:any)=>
         {
           this.postData.push({
             id : doc.data().id,
+            poston : doc.data().poston,
             title : doc.data().title,
-            message : doc.data().message
+            message : doc.data().message,
             //date : doc.data().date,
           })
-          this.postId = doc.data().id;
+          this.postOn = doc.data().poston;
           if(this.postData){
             console.log("data present");
             this.loadingController.dismiss();      
@@ -41,8 +42,8 @@ export class AdminPostNotificationPage implements OnInit {
       })
       console.log(this.postData);
       this.timeoutStatus = setTimeout(() => {
-        console.log("value="+this.postId);      
-        if(this.postId == undefined){
+        console.log("value="+this.postOn);      
+        if(this.postOn == undefined){
           console.log("No Internet Connection");
           this.loadingController.dismiss();      
           this.navCtl.navigateForward('/internet-status');

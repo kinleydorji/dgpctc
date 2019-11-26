@@ -1,19 +1,16 @@
 <ion-header no-shadow no-border>
     <ion-toolbar>
-      <ion-item slot="start" lines = "none">
-        <ion-icon name = "person"></ion-icon>
-        <ion-label>Hello {{ userName }}</ion-label>
-      </ion-item>
-      <ion-buttons slot = "end">
-        <ion-button style = "text-transform: none;" (click) = "logout()"><ion-icon name = "log-out"></ion-icon>logout</ion-button>
-      </ion-buttons>
+     <ion-buttons>
+        <ion-back-button></ion-back-button>
+        <ion-title>Feedbacks</ion-title>
+     </ion-buttons>
     </ion-toolbar>
   </ion-header>
 
 <ion-content>
   <ion-card *ngFor='let data of fData'>
-    <ion-card-content style="font-family: 'Times New Roman', Times, serif;">
-        <div style="color:dodgerblue; font-size: 12pt;"><b>{{data.feedback}}</b></div>
-    </ion-card-content>
-  </ion-card>
+      <ion-card-content style="font-family: 'Times New Roman', Times, serif;">
+          <div style="font-size: 12pt;"><b>{{data.feedback}}</b></div>
+      </ion-card-content>
+    </ion-card>
 </ion-content>

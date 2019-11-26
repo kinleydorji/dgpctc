@@ -1,14 +1,36 @@
-.m-style{
-    border-style: solid;
-    border-width: 1px;
-    //border-radius: 5px;
-    border-color: teal; 
-    border-radius: 5px;
-}
-
-.feedback-add-btn{
-    font-family: 'raleway-regular';
-    text-transform: none;
-    }
-
+ion-toolbar{
+    --background: #b8dfca; 
+  }
   
+  ion-input{
+      border-style: solid;
+      border-bottom-width: 1px;
+      border-top-width: 0px;
+      border-right-width: 0px;
+      border-left-width: 0px;
+      border-bottom-color: #989aa2;
+      font-family: 'raleway-regular'
+    
+    }
+  ion-textarea{
+      border-style: solid;
+      border-bottom-width: 1px;
+      border-top-width: 0px;
+      border-right-width: 0px;
+      border-left-width: 0px;
+      border-bottom-color: #989aa2;
+      font-family: 'raleway-regular'
+    }
+  
+  .inputDiv{
+  
+      width: 80%;
+      margin: auto;
+      margin-top: 20px;
+  }
+  
+  .inputIcon{
+      padding-right: 10px;
+      width: 20px;
+      height: 20px;
+  }  
