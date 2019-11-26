@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-conferencetabs',
@@ -10,7 +11,10 @@ import { AngularFirestore } from '@angular/fire/firestore';
 export class ConferencetabsPage implements OnInit {
   private voteOption;
   private hall="";
-  constructor(private router: Router, private afs: AngularFirestore, private route: ActivatedRoute) { }
+  private selectedHall;
+  constructor(private router: Router, private afs: AngularFirestore, private route: ActivatedRoute, private storage: Storage) { 
+   
+  }
 
   castvote()
   {
@@ -18,6 +22,10 @@ export class ConferencetabsPage implements OnInit {
   }
 
   ngOnInit() {
+    this.storage.get('hall').then((hall) => {
+      this.selectedHall = hall;
+   });
+    console.log("hallno:"+this.hall);
     let results;
     this.afs.collection('t_overallStatus').valueChanges().subscribe(result => {
       results = result;
