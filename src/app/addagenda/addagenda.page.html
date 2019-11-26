@@ -35,11 +35,18 @@
           <ion-icon name = "time" class= 'inputIcon' color = "medium" ></ion-icon>
         </ion-input>
       </ion-item><br>
-      <!-- <ion-item lines ="none">
-        <ion-select placeholder="Select Hall" (click) = "getHall()">
-          <ion-select-option *ngFor = "let hall of halls" >{{hall.id}}</ion-select-option>
+      <ion-item lines ="none">
+        <ion-label>Select Hall</ion-label>
+        <ion-select placeholder="--Select--" [(ngModel)] = "selectedHall" (ionChange)="getAgendaCount()">
+          <ion-select-option *ngFor = "let hall of halls" value = "{{hall}}">{{hall}}</ion-select-option>
         </ion-select>
-      </ion-item><br> -->
+      </ion-item><br>
+      <ion-item lines ="none">
+        <ion-label>Select Day</ion-label>
+        <ion-select placeholder="--Select--" [(ngModel)] = "selectedDay">
+          <ion-select-option *ngFor = "let day of days" value = "{{day}}">{{day}}</ion-select-option>
+        </ion-select>
+      </ion-item><br>
        <ion-button shape = "block" (click) = "addAgenda()">Add Agenda</ion-button>
     </div>
   </ion-content>

@@ -1,9 +1,57 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>newsfeed</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-
+  <div *ngFor = "let item of result">
+    <ion-card *ngIf="result">
+      <div>
+      <ion-row>
+          <ion-col>
+            <ion-label><b>{{item.postingdate}}</b></ion-label>
+          </ion-col>
+      </ion-row>
+      <ion-row *ngIf="item.url!='none' || item.url">
+        <ion-col>
+            <img src = "{{item.url}}" style = "width: 100%; height:100%">
+        </ion-col>
+      </ion-row>
+      <br>
+    </div>
+      <div>
+      <ion-row>
+          <ion-col>
+            <b>{{item.title}}</b>
+          </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col>
+            <ion-label color="primary">
+            Presenter: 
+            </ion-label>
+            {{item.presenter}}
+          </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col>
+            <ion-label color="primary">
+              Details:
+            </ion-label>
+          </ion-col>
+      </ion-row>
+      <ion-row>
+          <ion-col>
+            {{item.description}}
+          </ion-col>
+      </ion-row>
+    </div>
+    </ion-card>
+    <ion-row *ngIf="!result">
+      <ion-col class="col-center" style="   height: 100%;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      vertical-align: 50%;">
+        <ion-label>No post to show</ion-label>
+      </ion-col>
+    </ion-row>
+  </div>
+  
 </ion-content>

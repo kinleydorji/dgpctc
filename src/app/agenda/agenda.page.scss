@@ -1,3 +1,31 @@
-.sideBanner{
-    --ion-background: #7ff707;
+.sidebanner{
+    background-color: #243d7f;
+    width:10px;
+    height: 100%;
+    text-align: center;
+}
+
+ion-icon{
+    width: 10px;
+    height :10px;
+}
+
+
+
+.topic{
+    font-size: 14px;
+    font-family: 'raleway-regular';
+    white-space: normal;
+}
+
+ion-label{
+    white-space: normal;
+}
+
+ion-col{
+    flex-wrap: wrap;
+}
+
+.time{
+    border-right: thin solid darkgray;
 }

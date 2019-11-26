@@ -43,11 +43,6 @@ export class AppComponent {
       url:'/createpoll',
       icon: 'checkbox-outline'
     },
-    {
-      title: 'conference',
-      url:'/conferencetabs',
-      icon: 'people'
-    }
   ];
 
   constructor(

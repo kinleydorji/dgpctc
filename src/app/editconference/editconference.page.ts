@@ -19,6 +19,7 @@ export class EditconferencePage implements OnInit {
   private time;
   private date;
   private banner;
+  private duration;
   urlbanner:string;
   sponsorurl1:string;
   sponsorurl2:string;
@@ -85,6 +86,7 @@ export class EditconferencePage implements OnInit {
           this.date = data[0].date;
           this.time = data[0].time;
           this.banner = data[0].url;
+          this.duration = data[0].duration;
           this.sponsorurl1 = data[0].url1;
           this.sponsorurl2 = data[0].url2;
           this.sponsorurl3 = data[0].url3;
@@ -119,6 +121,7 @@ export class EditconferencePage implements OnInit {
           venue : this.venue,
           time : this.time,
           date : this.date,
+          duration: this.duration,
           id : '1'
         }
         this.afs.collection("conference").doc(confDetails.id).update(confDetails).
@@ -145,6 +148,7 @@ export class EditconferencePage implements OnInit {
           venue : this.venue,
           time : this.time,
           date : this.date,
+          duratoin : this.duration,
           id : '1'
         }
         this.afs.collection("conference").doc(confDetails.id).update(confDetails).
@@ -240,6 +244,7 @@ export class EditconferencePage implements OnInit {
             venue : this.venue,
             time : this.time,
             date : this.date,
+            duration : this.duration,
             id : '1'
           }
           this.afs.collection("conference").doc(confDetails.id).update(confDetails).

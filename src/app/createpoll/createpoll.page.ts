@@ -18,6 +18,7 @@ export class CreatepollPage implements OnInit {
   private topic = "";
   private key = "";
   private votingLine:boolean = null;
+  private voteResult:boolean = null;
  
   uploadFs:UploadMo ={
     name:'',
@@ -92,6 +93,8 @@ export class CreatepollPage implements OnInit {
     this.loadStatus();
     this.votingLine = !this.votingLine;
     this.afs.collection("t_overallStatus").doc("vote").update(voting);
+    this.afs.collection("t_overallStatus").doc("result").update({resultStatus : false});
+    
   }
 
   loadStatus()
@@ -99,7 +102,29 @@ export class CreatepollPage implements OnInit {
     let results:any;
     this.afs.collection('t_overallStatus').valueChanges().subscribe(result => {
     results = result;
-     this.votingLine = results[0].votingStatus;
+     this.votingLine = results[1].votingStatus;
+     console.log("Firebase : " , results);
+    })
+  }
+
+  resultStatus()
+  {
+    let result = {
+      resultStatus: this.voteResult
+      }
+      this.loadResultStatus();
+      this.voteResult = !this.voteResult;
+      this.afs.collection("t_overallStatus").doc("result").update(result);
+      this.afs.collection("t_overallStatus").doc("vote").update({votingStatus : false});
+    
+  }
+
+  loadResultStatus()
+  {
+    let results:any;
+    this.afs.collection('t_overallStatus').valueChanges().subscribe(result => {
+    results = result;
+     this.voteResult = results[0].resultStatus;
      console.log("Firebase : " , results);
     })
   }

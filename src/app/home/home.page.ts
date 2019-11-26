@@ -25,5 +25,8 @@ export class HomePage {
   {
     this.router.navigate(['addagenda']);
   }
-
+  addNews()
+  {
+    this.router.navigate(['addnews']);
+  }
 }
