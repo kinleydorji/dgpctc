@@ -11,15 +11,7 @@ import { NewsFeedModel } from 'src/models/newsfeed/newsfeed'
 export class NewsfeedPage implements OnInit {
   private selectedHall;
   private docId:any = [];
-  result: NewsFeedModel[] = [{
-    presenter : "",
-    title: "",
-    description: "",
-    time: "",
-    url: "",
-    postingdate: ""    
-
-  }]
+  result: NewsFeedModel[] = [];
 
 
   constructor(private storage: Storage, private afs: AngularFirestore) { }
@@ -56,8 +48,18 @@ export class NewsfeedPage implements OnInit {
       // this.result[i].presenter = "";
       if(this.docId[i] != "newscount")
       {
+        this.result[i]={
+          presenter : "",
+          title: "",
+          description: "",
+          time: "",
+          url: "",
+          postingdate: ""    
+      
+        }
         this.afs.collection('Conference Hall').doc(this.selectedHall)
         .collection('news').doc(this.docId[i]).get().subscribe(result => {
+          console.log(result)
           console.log(result.data().presenter);
           console.log("presenter="+this.result[i].presenter);
           this.result[i].presenter = result.data().presenter;
