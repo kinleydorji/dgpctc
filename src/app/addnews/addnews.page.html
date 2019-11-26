@@ -11,6 +11,7 @@
 <ion-content>
   <div class = "inputDiv">
     <ion-item lines ="none">
+      <ion-label>Select Hall : </ion-label>
       <ion-select placeholder="Select Hall" (click) = "getHall()" (ionChange)="getCount()" [(ngModel)] = "hall">
         <ion-select-option *ngFor = "let hall of halls">{{hall}}</ion-select-option>
       </ion-select>

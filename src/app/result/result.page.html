@@ -10,11 +10,58 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col>
-        <ion-card>
-          
-        </ion-card>
-      </ion-col>
-    </ion-row>
+      <ion-col size = "6" *ngFor = "let result of voteResult; index as i" >     
+        <ion-card style = "--background : #e8f4f8" padding>
+          <!--image-->
+          <ion-row>
+            <ion-col col-4></ion-col>
+            <ion-col>
+              <ion-avatar>
+                  <ion-img src = "{{result.url}}" ></ion-img>
+              </ion-avatar>
+            </ion-col>
+            <ion-col col-4></ion-col>
+          </ion-row>
+          <!--image-->
+
+          <!-- Presenter Name -->
+          <ion-row>
+            <ion-col col-1></ion-col>
+            <ion-col>
+              <ion-label>{{result.presenterName}}</ion-label>
+            </ion-col>
+            <ion-col col-1></ion-col>
+          </ion-row>
+          <!-- Presenter Name -->
+
+
+          <!-- Vote -->
+          <ion-row>
+            <ion-col col-2></ion-col>
+            <ion-col>
+              <ion-label style = "font-size : 20px; font-weight: bold;" color = "primary">{{result.voteCount}}</ion-label>
+            </ion-col>
+            <ion-col col-2></ion-col>
+          </ion-row>
+          <!-- Vote -->
+
+          <!-- position -->
+          <ion-row>
+            <ion-col col-4></ion-col>
+            <ion-col>
+              <ion-label *ngIf = "(i + 1) == 1">{{i + 1}} st</ion-label>
+              <ion-label *ngIf = "(i + 1) == 2">{{i + 1}} nd</ion-label>
+              <ion-label *ngIf = "(i + 1) == 3">{{i + 1}} rd</ion-label>
+              <ion-label *ngIf = "(i + 1) == 4">{{i + 1}} th</ion-label>
+              <ion-label *ngIf = "(i + 1) == 5">{{i + 1}} th</ion-label>
+
+            </ion-col>
+            <ion-col col-4></ion-col>
+          </ion-row>
+          <!-- position -->
+
+          </ion-card>
+        </ion-col>
+      </ion-row>
   </ion-grid>
 </ion-content>

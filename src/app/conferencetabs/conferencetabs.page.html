@@ -31,5 +31,11 @@
         <ion-label>Vote</ion-label>
       </ion-fab-button>
     </ion-fab>
+
+    <ion-fab vertical = 'center' horizontal = "end" color = "dark" *ngIf = "resultOption == true">
+        <ion-fab-button (click) = "result()">
+          <ion-label>Result</ion-label>
+        </ion-fab-button>
+      </ion-fab>
   </ion-content>
   
