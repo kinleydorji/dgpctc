@@ -10,12 +10,12 @@
   </div>
   <div class = "inputDiv">
     <ion-item lines ="none">
-      <ion-input type="text" placeholder = "Email" [(ngModel)] = "inputEmail" >
+      <ion-input [ngClass]="inputStyleUN" type="text" placeholder = "Email" [(ngModel)] = "inputEmail" (ionFocus)="inputFocusUN()">
         <ion-icon name = "mail" class= 'inputIcon' color = "medium" ></ion-icon>
       </ion-input>
     </ion-item><br>
     <ion-item lines ="none">
-      <ion-input type="password" placeholder = "Password" [(ngModel)] = "password">
+      <ion-input [ngClass]="inputStylePW" type="password" placeholder = "Password" [(ngModel)] = "password" (ionFocus)="inputFocusPW()">
         <ion-icon name = "lock" class= 'inputIcon' color = "medium" ></ion-icon>
       </ion-input>
     </ion-item><br>
