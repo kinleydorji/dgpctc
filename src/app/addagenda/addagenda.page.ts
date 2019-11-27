@@ -12,14 +12,13 @@ import * as firebase from 'firebase';
 export class AddagendaPage implements OnInit {
   selectedFiles: FileList;
   currentUpload: Upload;
-  private serial = "";
   private presenterName = "";
   private topic = "";
   private startTime = "";
   private endTime = "";
   private halls: any = [];
   private selectedHall = "";
-  private agendaCount:number;
+  private agendaCount:any;
   private selectedDay = "";
   private confDuration;
   private days:any = [];
@@ -28,7 +27,7 @@ export class AddagendaPage implements OnInit {
   
   async addAgenda()
   {
-    if(this.serial  == "" || this.presenterName == "" || this.topic == "" || this.startTime == "" || this.endTime == "")
+    if(this.topic == "" || this.startTime == "" || this.endTime == "" || this.presenterName == "")
     {
       this.alert("Empty Field(s)", "Fill in all empty field(s)");
       console.log("selected Hall : ", this.selectedHall);
@@ -48,7 +47,7 @@ export class AddagendaPage implements OnInit {
       this.afs
       .collection("Conference Hall").doc(this.selectedHall)
       .collection("agenda").doc("days")
-      .collection(this.selectedDay).doc("agenda_"+this.agendaCount).set(presenterDetails);
+      .collection(this.selectedDay).doc(this.agendaCount.toString()).set(presenterDetails);
     }
   }
 

@@ -29,7 +29,7 @@ export class AppComponent {
       icon: 'lock'
     },
     {
-      title: 'Add Notification',
+      title: 'Add Announcement',
       url:'/add-notification',
       icon: 'notifications'
     },

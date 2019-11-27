@@ -36,3 +36,28 @@ ion-card{
 ion-toolbar{
     --background : #b8dfca;
 }
+.alertVote{
+    
+    .alert-title{
+        font-family: 'raleway-regular';
+        text-align: center;
+    }
+    .alert-message
+    {
+        color:black;
+        font-family: 'raleway-regular';
+        text-align: center;
+    }
+ 
+    .alert-button{
+    
+        color:white;
+        width: 50%;
+        align-items: center;
+        color: black;     
+        background-color: #b8dfca;
+        padding-right: 40%;
+    }
+
+    
+}
