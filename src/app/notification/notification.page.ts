@@ -29,8 +29,8 @@ export class NotificationPage implements OnInit {
           this.postData.push({
             id : doc.data().id,
             title : doc.data().title,
-            message : doc.data().message
-            //date : doc.data().date,
+            message : doc.data().message,
+            poston : doc.data().poston,
           })
           this.postId = doc.data().id;
           if(this.postData){

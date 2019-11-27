@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AlertController, NavController, LoadingController} from '@ionic/angular';
+import {formatDate} from '@angular/common';
 
 @Component({
   selector: 'app-add-notification',
@@ -12,6 +13,8 @@ export class AddNotificationPage implements OnInit {
   postId : any;
   postTitle : any;
   postMessage : any;
+  postOn : any;
+  dateTime: any;
   // postDate : any;
   constructor(
     private fs : AngularFirestore,
@@ -23,19 +26,20 @@ export class AddNotificationPage implements OnInit {
   ngOnInit() {
   }
   insertPost(){
+    this.dateTime = formatDate(new Date(), 'MMM-dd-yyyy H:mm:ss', 'en'); //get time and date
     let basePath:string="/t_notification";
     this.fs.collection(`${basePath}`).doc(`${this.postId}`).set(
       {
         id : this.postId,
         title : this.postTitle,
-        message : this.postMessage
-        // date : this.postDate
+        message : this.postMessage,
+        poston : this. dateTime
     }
     ).then(data=>
       {
         console.log("reach here with data: "+data);
           this.alert("For Information","Insertion successful");
-          this.navCtl.navigateForward('/notification');
+          this.navCtl.navigateForward('conferencetabs');
         console.log(data);
       }
       )
@@ -52,21 +56,8 @@ export class AddNotificationPage implements OnInit {
      });
      alert.present();
    }
-   
-   // pickDate(){
-   //   this.datePicker.show({
-   //     date: new Date(),
-   //     mode: 'date',
-   //     //androidTheme: this.datePicker.ANDROID_THEMES.THEME_HOLO_DARK
-   //     androidTheme : this.datePicker.ANDROID_THEMES.THEME_DEVICE_DEFAULT_LIGHT
-   //   }).then(
-   //     date =>{
-   //       let dateArray=date.toString().split(' ');
-   //       this.postDate=dateArray[0]+" "+dateArray[1]+" "+dateArray[2]+" "+dateArray[3]
-   //       err => console.log('Error occurred while getting date: ', err)
-   //     }
-   //     //console.log('Got date: ', date),
-   //   );
-   // }
-   
+
+   goUpdate(){
+    this.navCtl.navigateForward('/admin-post-notification');
+   }
 }

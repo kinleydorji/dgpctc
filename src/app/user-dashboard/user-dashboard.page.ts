@@ -88,4 +88,7 @@ export class UserDashboardPage implements OnInit {
     this.getConferenceDetails();
   }
 
+  goDetails(){
+    this.navCtrl.navigateForward('conferenceselect');
+  }
 }

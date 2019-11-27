@@ -17,6 +17,14 @@
       Admin has privilege to manipulate all the events
     </ion-text>
   </div>
+
+  <div class = "addDiv">
+    <ion-button shape = "block" (click) = "addHall()"><ion-icon name = "add" style = "margin-right: 20px;"></ion-icon>Add Hall</ion-button>
+    <ion-button shape = "block" (click) = "addAgenda()"><ion-icon name = "add"  style = "margin-right: 20px;"></ion-icon>Add Agenda</ion-button>
+    <ion-button shape = "block" (click) = "addNews()"><ion-icon name = "add" style = "margin-right: 20px;"></ion-icon>Add News</ion-button>
+  </div>
+
+
   <ion-fab vertical = 'bottom' horizontal = "end" >
     <ion-fab-button (click) = "addConference()">
       <ion-icon name = "calendar"></ion-icon><br>

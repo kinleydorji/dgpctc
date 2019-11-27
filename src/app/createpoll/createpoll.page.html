@@ -14,7 +14,11 @@
       <ion-avatar class = "avatar">
         <ion-img src = "assets/img/banner.jpg" ></ion-img>
       </ion-avatar>
-    </ion-item><br>
+    </ion-item>
+    <ion-item lines = "none">
+      <input type = "file" color = "medium" (change) = "detectFiles($event)" style = "height: 50px;">      
+    </ion-item>
+    <br>
     <ion-item lines ="none">
       <ion-input type="text" placeholder = "Presenter Name" [(ngModel)] = "presenter" >
         <ion-icon name = "person" class= 'inputIcon' color = "medium" ></ion-icon>
@@ -34,7 +38,11 @@
     
     <ion-item lines = "none">
         <ion-label style = "font-size : 14px; " color = "success">Open Voting Lines</ion-label>
-        <ion-toggle  [(ngModel)]="votingLine" (ngModelChange) = "votingStatus()" checked></ion-toggle>
+        <ion-toggle  [(ngModel)]="votingLine" (ngModelChange) = "votingStatus()"></ion-toggle>
+    </ion-item> 
+    <ion-item lines = "none">
+        <ion-label style = "font-size : 14px; " color = "success">Declare Result</ion-label>
+        <ion-toggle  [(ngModel)]="voteResult" (ngModelChange) = "resultStatus()" ></ion-toggle>
     </ion-item> 
  
 </div>

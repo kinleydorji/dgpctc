@@ -16,4 +16,17 @@ export class HomePage {
     this.router.navigate(['overallconference']);
 
   }
+
+  addHall()
+  {
+    this.router.navigate(['addconferencehall']);
+  }
+  addAgenda()
+  {
+    this.router.navigate(['addagenda']);
+  }
+  addNews()
+  {
+    this.router.navigate(['addnews']);
+  }
 }

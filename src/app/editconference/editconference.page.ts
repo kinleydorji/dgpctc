@@ -19,7 +19,14 @@ export class EditconferencePage implements OnInit {
   private time;
   private date;
   private banner;
+  private duration;
   urlbanner:string;
+  sponsorurl1:string;
+  sponsorurl2:string;
+  sponsorurl3:string;
+  sponsorurl4:string;
+  sponsorurl5:string;
+  sponsorurl6:string;
   sponsorsFiles: FileList[]=[];
   bannerFile: FileList;
   sponsorUpload: Upload[]=[];
@@ -79,6 +86,13 @@ export class EditconferencePage implements OnInit {
           this.date = data[0].date;
           this.time = data[0].time;
           this.banner = data[0].url;
+          this.duration = data[0].duration;
+          this.sponsorurl1 = data[0].url1;
+          this.sponsorurl2 = data[0].url2;
+          this.sponsorurl3 = data[0].url3;
+          this.sponsorurl4 = data[0].url4;
+          this.sponsorurl5 = data[0].url5;
+          this.sponsorurl6 = data[0].url6;
         };
        })
   }
@@ -107,6 +121,7 @@ export class EditconferencePage implements OnInit {
           venue : this.venue,
           time : this.time,
           date : this.date,
+          duration: this.duration,
           id : '1'
         }
         this.afs.collection("conference").doc(confDetails.id).update(confDetails).
@@ -133,6 +148,7 @@ export class EditconferencePage implements OnInit {
           venue : this.venue,
           time : this.time,
           date : this.date,
+          duratoin : this.duration,
           id : '1'
         }
         this.afs.collection("conference").doc(confDetails.id).update(confDetails).
@@ -162,41 +178,73 @@ export class EditconferencePage implements OnInit {
             let bfile = this.bannerFile.item(0);
             this.currentUpload = new Upload(bfile);
           }
+
           if(this.sponsorsFiles[0] != undefined)
           {
             let sfile1= this.sponsorsFiles[0].item(0);
             this.sponsorUpload[0] = new Upload(sfile1);
           }
+          else
+          {
+            this.uploadSponsor.url1 = this.sponsorurl1;
+          }
+
           if(this.sponsorsFiles[1] != undefined)
           {
             let sfile2= this.sponsorsFiles[1].item(0);
             this.sponsorUpload[1] = new Upload(sfile2);
           }
+          else
+          {
+            this.uploadSponsor.url2 = this.sponsorurl2;
+          }
+
           if(this.sponsorsFiles[2] != undefined)
           {
             let sfile3= this.sponsorsFiles[2].item(0);
             this.sponsorUpload[2] = new Upload(sfile3);
           }
+          else
+          {
+            this.uploadSponsor.url3 = this.sponsorurl3;
+          }
+
           if(this.sponsorsFiles[3] != undefined)
           {
             let sfile4= this.sponsorsFiles[3].item(0);
             this.sponsorUpload[3] = new Upload(sfile4);
           }
+          else
+          {
+            this.uploadSponsor.url4 = this.sponsorurl4;
+          }
+
           if(this.sponsorsFiles[4] != undefined)
           {
             let sfile5= this.sponsorsFiles[4].item(0);
             this.sponsorUpload[4] = new Upload(sfile5);
           }
+          else
+          {
+            this.uploadSponsor.url5 = this.sponsorurl5;
+          }
+
           if(this.sponsorsFiles[5] != undefined)
           {
             let sfile6= this.sponsorsFiles[5].item(0);
             this.sponsorUpload[5] = new Upload(sfile6);
           }
+          else
+          {
+            this.uploadSponsor.url6 = this.sponsorurl6;
+          }
+
           let confDetails =  {
             confName : this.confName,
             venue : this.venue,
             time : this.time,
             date : this.date,
+            duration : this.duration,
             id : '1'
           }
           this.afs.collection("conference").doc(confDetails.id).update(confDetails).

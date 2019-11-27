@@ -29,15 +29,20 @@ export class AppComponent {
       icon: 'lock'
     },
     {
+      title: 'Add Notification',
+      url:'/add-notification',
+      icon: 'notifications'
+    },
+    {
+      title: 'Update Feedback',
+      url:'/feedback-update',
+      icon: 'quote'
+    },
+    {
       title: 'Create Poll',
       url:'/createpoll',
       icon: 'checkbox-outline'
     },
-    {
-      title: 'conference',
-      url:'/conferencetabs',
-      icon: 'people'
-    }
   ];
 
   constructor(
@@ -61,6 +66,7 @@ export class AppComponent {
   }
   initializeApp() {
     this.platform.ready().then(() => {
+      this.getConferenceDetails();
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });

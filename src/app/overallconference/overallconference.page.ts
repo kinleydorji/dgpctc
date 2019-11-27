@@ -20,12 +20,13 @@ private conferenceName = "";
 private venue = "";
 private time = "";
 private date = "";
+private duration = "";
 private imageName = "";
 url1:string;
   constructor(private alertCtrl: AlertController, private afs : AngularFirestore , 
     private fileChooser: FileChooser, private file : File,private navCtrl: NavController) { }
 
-   uploadFs:UploadMo ={
+  uploadFs:UploadMo ={
     name:'',
     url:undefined,
     createdAt:''
@@ -34,7 +35,6 @@ url1:string;
   detectFiles(event:any)
   {
     this.selectedFiles = event.target.files;
-
   }
 
   addConference()
@@ -42,7 +42,8 @@ url1:string;
     if(this.conferenceName == "" 
     || this.venue == "" 
     || this.time == "" 
-    || this.date == "")
+    || this.date == ""
+    || this.duration == "")
     {
       this.alert("Empty Field(s)", "Fill in all empty field(s)");
     }
@@ -58,6 +59,7 @@ url1:string;
         venue : this.venue,
         time : this.time,
         date : this.date,
+        duration : this.duration,
         id : '1'
       }
       this.afs.collection("conference").doc(confDetails.id).set(confDetails).
@@ -66,8 +68,7 @@ url1:string;
           this.pushUpload1(this.currentUpload);
           this.alert("Info","Successfuly added event.");
           this.navCtrl.navigateForward('/home');
-            console.log(data);
-            
+            console.log(data);           
         }
     
       );
@@ -90,7 +91,7 @@ url1:string;
     await alert.present();
   }
 
-  pushUpload1(upload: Upload) {
+pushUpload1(upload: Upload) {
     //name of image
     let name:string=upload.file.name;
     let uploadTask: UploadTask = firebase.storage().ref('images/'+name).put(upload.file);
@@ -108,7 +109,7 @@ url1:string;
       this.saveFileData(url);
     });
   })
-}
+  }
 
 
   // chooseFile()

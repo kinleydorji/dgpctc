@@ -1,8 +1,8 @@
-<ion-header no-shadow no-border>
+<!-- <ion-header no-shadow no-border>
     <ion-toolbar>
       <ion-back-button></ion-back-button>
     </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
   
   <ion-content>
       <ion-tabs>
@@ -29,5 +29,44 @@
             <ion-label>Vote</ion-label>
           </ion-fab-button>
         </ion-fab>
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons>
+      <ion-back-button></ion-back-button>
+      <ion-title>{{selectedHall}}</ion-title>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-tabs>
+      <ion-tab-bar slot="bottom">
+        <ion-tab-button tab="agenda">
+          <ion-icon name="bookmarks"></ion-icon>
+          <ion-label>agenda</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="newsfeed">
+          <ion-icon name="paper"></ion-icon>
+          <ion-label>news Feed</ion-label>
+        </ion-tab-button>
+    
+        <ion-tab-button tab="announcements">
+          <ion-icon name="megaphone"></ion-icon>
+          <ion-label>Announcement</ion-label>
+        </ion-tab-button>
+    
+      </ion-tab-bar>
+    </ion-tabs>
+    <ion-fab vertical = 'center' horizontal = "end" color = "dark" *ngIf = "voteOption == true">
+      <ion-fab-button (click) = "castvote()">
+        <ion-label>Vote</ion-label>
+      </ion-fab-button>
+    </ion-fab>
+
+    <ion-fab vertical = 'center' horizontal = "end" color = "dark" *ngIf = "resultOption == true">
+        <ion-fab-button (click) = "result()">
+          <ion-label>Result</ion-label>
+        </ion-fab-button>
+      </ion-fab>
   </ion-content>
   

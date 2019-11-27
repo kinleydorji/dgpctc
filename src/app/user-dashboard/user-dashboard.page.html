@@ -31,7 +31,7 @@
         <ion-icon name = "calendar"></ion-icon>
         <ion-label>Date : {{date}}</ion-label>
     </ion-item>
-    <ion-button shape = "block" color = "dark">Details</ion-button>
+    <ion-button shape = "block" color = "dark" (click)="goDetails()">Details</ion-button>
   </ion-card-content>
 </ion-card>
 <div class = "sponsors" *ngIf = "sponsor1!='none' || sponsor2!='none' || sponsor3!='none' || sponsor4!='none' || sponsor5!='none' || sponsor6!='none'">

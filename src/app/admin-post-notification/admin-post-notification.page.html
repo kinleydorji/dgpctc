@@ -1,21 +1,17 @@
-<ion-header >
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button color = "primary"></ion-menu-button>
-      <ion-back-button color="primary"></ion-back-button>
-      <ion-title id="title" color="primary"><b>Post Notification</b></ion-title>
-      <p button="true" (click)="goAddmore()" style="color:dodgerblue">Add post</p>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+<ion-header no-shadow no-border>
+    <ion-toolbar>
+     <ion-buttons>
+        <ion-back-button></ion-back-button>
+        <ion-title>Announcement</ion-title>
+     </ion-buttons>
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content>
-
-<!-- for editing and deleting notification -->
 <ion-list *ngFor='let data of postData'>
   <ion-row>
       <ion-col size="6">
-          {{data.id}}<span> : </span>{{data.title}}
+        {{data.id}}<span> : </span>{{data.title}}
       </ion-col>
       <ion-col size="3">
           <ion-button  (click)="goDelete(data.id)" color="danger">Delete</ion-button>
