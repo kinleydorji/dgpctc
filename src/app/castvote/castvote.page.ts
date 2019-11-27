@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-castvote',
@@ -18,15 +18,17 @@ export class CastvotePage implements OnInit {
   private voteCountData:any;
   private userVoteStatus;
   
-  constructor(private afs: AngularFirestore, private afAuth : AngularFireAuth, private alertCtrl: AlertController) { }
+  constructor(private afs: AngularFirestore, private afAuth : AngularFireAuth, private alertCtrl: AlertController, public loadingController: LoadingController) { }
 
   
 
   getPresenter()
   {
+    this.presentLoading();
     this.afs.collection('t_poll').valueChanges().subscribe(result => {
       this.results = result;
       console.log("details", this.results);
+      this.loadingController.dismiss();          
     })
   }
   ngOnInit() {
@@ -112,5 +114,13 @@ export class CastvotePage implements OnInit {
       await alert.present();
     }
 
+    async presentLoading() {
+      const loading = await this.loadingController.create({
+        duration: 3000,
+        spinner: 'crescent',
+        cssClass: 'loaderClass'
+      });
+      return await loading.present();
+    }
 
   }

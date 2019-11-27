@@ -14,6 +14,13 @@ export class ChangepasswordPage implements OnInit {
   private confirmpasswd = "";
   private userName = "";
   private organisation = "";
+
+  inputStyleFN: string = 'inputStyle1';
+  inputStyleOrg: string = 'inputStyle1';
+  inputStylePN: string = 'inputStyle1';
+  inputStyleNP: string = 'inputStyle1';
+  inputStyleCP: string = 'inputStyle1';
+
   constructor(private alertCtrl: AlertController, private afAuth: AngularFireAuth,
      private toastCtrl: ToastController, private navCtrl: NavController, private afs: AngularFirestore) { 
   }
@@ -69,7 +76,24 @@ export class ChangepasswordPage implements OnInit {
     });
     await alert.present();
   }
+  
   ngOnInit() {
   }
 
+  inputFocusFN(){
+    this.inputStyleFN = 'inputStyle2';
+  }
+
+  inputFocusOrg(){
+    this.inputStyleOrg = 'inputStyle2';
+  }
+  inputFocusNP(){
+    this.inputStyleNP = 'inputStyle2';
+  }
+  inputFocusPN(){
+    this.inputStylePN = 'inputStyle2';
+  }
+  inputFocusCP(){
+    this.inputStyleCP = 'inputStyle2';
+  }
 }
