@@ -51,10 +51,8 @@ export class NewsfeedPage implements OnInit {
       if(this.docId[i] != "newscount")
       {
         this.result[i]={
-          presenter : "",
           title: "",
           description: "",
-          time: "",
           url: "",
           postingdate: ""    
       
@@ -63,11 +61,8 @@ export class NewsfeedPage implements OnInit {
         .collection('news').doc(this.docId[i]).get().subscribe(result => {
           console.log(result)
           console.log(result.data().presenter);
-          console.log("presenter="+this.result[i].presenter);
-          this.result[i].presenter = result.data().presenter;
           this.result[i].title = result.data().title;
           this.result[i].description = result.data().description;
-          this.result[i].time = result.data().time;
           this.result[i].url = result.data().url;
           this.result[i].postingdate = result.data().postingDate;
         })
