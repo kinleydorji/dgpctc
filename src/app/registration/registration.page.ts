@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserregisterService } from '../services/userregister.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-registration',
@@ -11,11 +11,26 @@ export class RegistrationPage implements OnInit {
   private inputEmail = "";
   errorMessage: string;
   successMessage: string;
+
+  inputStyle: string = 'inputStyle1';
+
   constructor(private userRegisterService: UserregisterService, private alertCtrl: AlertController,
+    public loadingController: LoadingController
    ) {
   }
 
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      duration: 3000,
+      spinner: 'crescent',
+      cssClass: 'loaderClass'
+    });
+    return await loading.present();
+  }
 
+  inputFocus(){
+    this.inputStyle = 'inputStyle2';
+  }
 
   register()
   {
@@ -50,15 +65,22 @@ export class RegistrationPage implements OnInit {
       this.alertError("Empty Field", "Fill all the field(s)");
     }
     else{
+      this.presentLoading();
       this.userRegisterService.registerUser(value)
       .then(res => {
         console.log(res);
         this.successMessage = "Account has been created";
+        this.loadingController.dismiss();          
         this.alert("Registration Successful", this.successMessage);
       }, err => {
+        this.loadingController.dismiss();          
         console.log(err.message);
         this.errorMessage = err.message;
+        this.loadingController.dismiss();          
+
         this.alertError("Registration faliure", err.message);
+        this.loadingController.dismiss();          
+
         this.successMessage = "";
       }) 
     }   

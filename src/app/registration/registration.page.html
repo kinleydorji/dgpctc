@@ -12,7 +12,7 @@
     </div>
     <div class = "inputDiv">
       <ion-item lines ="none">
-        <ion-input type="text" placeholder = "Email" [(ngModel)] = "inputEmail" >
+        <ion-input [ngClass]="inputStyle" type="text" placeholder = "Email" [(ngModel)] = "inputEmail" (ionFocus)="inputFocus()">
           <ion-icon name = "mail" class= 'inputIcon' color = "medium" ></ion-icon>
         </ion-input>
       </ion-item><br>
