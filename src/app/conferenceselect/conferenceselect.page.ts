@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { NavController } from '@ionic/angular'; 
+import { NavController, LoadingController } from '@ionic/angular'; 
 import { Storage } from '@ionic/storage';
 
 @Component({
@@ -10,7 +10,7 @@ import { Storage } from '@ionic/storage';
 })
 export class ConferenceselectPage implements OnInit {
   private halls: any = [];
-  constructor(private afs: AngularFirestore, private navCtrl: NavController, private storage: Storage) { }
+  constructor(private afs: AngularFirestore, private navCtrl: NavController, private storage: Storage, public loadingController: LoadingController) { }
 
   goToHall(hall: any)
   {
@@ -19,13 +19,24 @@ export class ConferenceselectPage implements OnInit {
   }
  
   ngOnInit() {
+    this.presentLoading();
     this.afs.firestore.collection('Conference Hall').get().then((querySnapshot) => { 
       querySnapshot.forEach((doc) => {
+        this.loadingController.dismiss();          
         console.log(doc.id); 
         this.halls.push(doc.id); 
       })
     })
 
     
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      duration: 3000,
+      spinner: 'crescent',
+      cssClass: 'loaderClass'
+    });
+    return await loading.present();
   }
 }
