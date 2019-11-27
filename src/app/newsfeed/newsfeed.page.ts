@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NewsFeedModel } from 'src/models/newsfeed/newsfeed'
+import { LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-newsfeed',
@@ -14,11 +15,13 @@ export class NewsfeedPage implements OnInit {
   result: NewsFeedModel[] = [];
 
 
-  constructor(private storage: Storage, private afs: AngularFirestore) { }
+  constructor(private storage: Storage, private afs: AngularFirestore, public loadingController: LoadingController) { }
 
   ngOnInit() {
+    this.presentLoading();
     this.storage.get('hall').then((hall) => {
       this.selectedHall = hall;
+      console.log("loading dismissed");
       console.log('Hall Stored : ' , this.selectedHall);
       this.getNewsDoc(this.selectedHall);
    });
@@ -35,9 +38,8 @@ export class NewsfeedPage implements OnInit {
         this.docId.push(doc.id);
         })
 
-
+        this.loadingController.dismiss();          
         this.getNewsFeed();
-
       })
   }
 
@@ -70,7 +72,16 @@ export class NewsfeedPage implements OnInit {
           this.result[i].postingdate = result.data().postingDate;
         })
       }
-      
     }
+  }
+  
+  async presentLoading() {
+    console.log("loading");
+    const loading = await this.loadingController.create({
+      duration: 3000,
+      spinner: 'crescent',
+      cssClass: 'loaderClass'
+    });
+    return await loading.present();
   }
 }

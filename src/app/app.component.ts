@@ -67,7 +67,7 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.getConferenceDetails();
-      this.statusBar.styleDefault();
+      this.statusBar.styleLightContent();
       this.splashScreen.hide();
     });
   }
