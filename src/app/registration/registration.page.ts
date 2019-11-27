@@ -58,7 +58,7 @@ export class RegistrationPage implements OnInit {
 
     let value =  {
       email : this.inputEmail,
-      passwd: "cfc@2019"
+      passwd: "dgpc123"
     }
     if(this.inputEmail == "")
     {

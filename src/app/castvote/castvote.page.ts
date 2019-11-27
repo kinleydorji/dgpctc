@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import * as firebase from 'firebase';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { AlertController } from '@ionic/angular';
+import { AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-castvote',
@@ -18,7 +18,8 @@ export class CastvotePage implements OnInit {
   private voteCountData:any;
   private userVoteStatus;
   
-  constructor(private afs: AngularFirestore, private afAuth : AngularFireAuth, private alertCtrl: AlertController) { }
+  constructor(private afs: AngularFirestore, private afAuth : AngularFireAuth, private alertCtrl: AlertController,
+     private toastCtrl: ToastController) { }
 
   
 
@@ -43,7 +44,7 @@ export class CastvotePage implements OnInit {
       console.log(index);
       if(this.userVoteStatus[0].voteCasted == "no")
       {
-        this.voteAlert("Are You Sure?", index);
+        this.voteAlert("Are You Sure you want to vote for " + this.results[index].presenterName + "?", index);
       }
       else if(this.userVoteStatus[0].voteCasted == "yes")
       {
@@ -80,6 +81,7 @@ export class CastvotePage implements OnInit {
               let increment = firebase.firestore.FieldValue.increment(1);
               this.afs.collection("t_poll").doc(this.results[index].presenterId).update({voteCount : increment}).then(()=>{
                 this.afs.collection("participants").doc(this.afAuth.auth.currentUser.uid).update({voteCasted: "yes"});
+                this.presentToast("Your vote is counted. Thank You!")
               })
             }
           },
@@ -112,5 +114,11 @@ export class CastvotePage implements OnInit {
       await alert.present();
     }
 
-
+    async presentToast(msg) {
+      const toast = await this.toastCtrl.create({
+        message: msg,
+        duration: 2000
+      });
+      toast.present();
+    }
   }

@@ -38,7 +38,7 @@ export class UserloginPage implements OnInit {
       .then(res => {
         console.log(res);
         console.log('login success');
-        if(this.password == "cfc@2019"){
+        if(this.password == "dgpc123"){
           this.loadingController.dismiss();          
           this.navCtrl.navigateRoot('changepassword');      
         }

@@ -63,6 +63,8 @@ export class AgendaPage implements OnInit {
       .collection('agenda').doc('days')
       .collection(this.selectedDay).doc(this.docId[i]).valueChanges().subscribe(result => {
         this.resultsObj.push(result);
+        console.log("result: ", result)
+
       })
     }
   }

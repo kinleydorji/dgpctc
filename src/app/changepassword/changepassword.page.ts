@@ -14,19 +14,21 @@ export class ChangepasswordPage implements OnInit {
   private confirmpasswd = "";
   private userName = "";
   private organisation = "";
+  private phonenumber = "";
   constructor(private alertCtrl: AlertController, private afAuth: AngularFireAuth,
      private toastCtrl: ToastController, private navCtrl: NavController, private afs: AngularFirestore) { 
   }
 
- 
+
   passwordChange(){
-    if(this.newpasswd == "" || this.confirmpasswd == "" || this.userName == "" || this.organisation == "" )
+    if(this.newpasswd == "" || this.confirmpasswd == "" || this.userName == "" || this.organisation == "" || this.phonenumber == "")
     {
       this.alert("Empty field(s)","Fill in all the field(s)");
     }
     else if(this.newpasswd != this.confirmpasswd){
       this.alert("Mismatch", "Password doesnot match");
     }
+
     else{
      
       this.afAuth.auth.currentUser.updatePassword(this.newpasswd).then(res =>{
@@ -41,6 +43,7 @@ export class ChangepasswordPage implements OnInit {
           username : this.userName,
           org : this.organisation,
           uuid : this.afAuth.auth.currentUser.uid,
+          phonenumber : this.phonenumber,
           voteCasted : "no"
         }
         this.afs.collection("participants").doc(userdetails.uuid).set(userdetails);
