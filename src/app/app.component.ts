@@ -29,7 +29,7 @@ export class AppComponent {
       icon: 'lock'
     },
     {
-      title: 'Add Notification',
+      title: 'Add Announcement',
       url:'/add-notification',
       icon: 'notifications'
     },
@@ -67,7 +67,7 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.getConferenceDetails();
-      this.statusBar.styleDefault();
+      this.statusBar.styleLightContent();
       this.splashScreen.hide();
     });
   }

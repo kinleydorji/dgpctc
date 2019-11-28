@@ -14,19 +14,28 @@ export class ChangepasswordPage implements OnInit {
   private confirmpasswd = "";
   private userName = "";
   private organisation = "";
+  private phonenumber = "";
+
+  inputStyleFN: string = 'inputStyle1';
+  inputStyleOrg: string = 'inputStyle1';
+  inputStylePN: string = 'inputStyle1';
+  inputStyleNP: string = 'inputStyle1';
+  inputStyleCP: string = 'inputStyle1';
+
   constructor(private alertCtrl: AlertController, private afAuth: AngularFireAuth,
      private toastCtrl: ToastController, private navCtrl: NavController, private afs: AngularFirestore) { 
   }
 
- 
+
   passwordChange(){
-    if(this.newpasswd == "" || this.confirmpasswd == "" || this.userName == "" || this.organisation == "" )
+    if(this.newpasswd == "" || this.confirmpasswd == "" || this.userName == "" || this.organisation == "" || this.phonenumber == "")
     {
       this.alert("Empty field(s)","Fill in all the field(s)");
     }
     else if(this.newpasswd != this.confirmpasswd){
       this.alert("Mismatch", "Password doesnot match");
     }
+
     else{
      
       this.afAuth.auth.currentUser.updatePassword(this.newpasswd).then(res =>{
@@ -41,6 +50,7 @@ export class ChangepasswordPage implements OnInit {
           username : this.userName,
           org : this.organisation,
           uuid : this.afAuth.auth.currentUser.uid,
+          phonenumber : this.phonenumber,
           voteCasted : "no"
         }
         this.afs.collection("participants").doc(userdetails.uuid).set(userdetails);
@@ -69,7 +79,24 @@ export class ChangepasswordPage implements OnInit {
     });
     await alert.present();
   }
+  
   ngOnInit() {
   }
 
+  inputFocusFN(){
+    this.inputStyleFN = 'inputStyle2';
+  }
+
+  inputFocusOrg(){
+    this.inputStyleOrg = 'inputStyle2';
+  }
+  inputFocusNP(){
+    this.inputStyleNP = 'inputStyle2';
+  }
+  inputFocusPN(){
+    this.inputStylePN = 'inputStyle2';
+  }
+  inputFocusCP(){
+    this.inputStyleCP = 'inputStyle2';
+  }
 }

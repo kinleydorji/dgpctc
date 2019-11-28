@@ -44,6 +44,10 @@
         <ion-label style = "font-size : 14px; " color = "success">Declare Result</ion-label>
         <ion-toggle  [(ngModel)]="voteResult" (ngModelChange) = "resultStatus()" ></ion-toggle>
     </ion-item> 
- 
+    <ion-item lines = "none">
+      <ion-label style = "font-size : 14px; " color = "success">Feedback</ion-label>
+      <ion-toggle  [(ngModel)]="feedback" (ngModelChange) = "feedbackStatus()" ></ion-toggle>
+    </ion-item> 
+
 </div>
 </ion-content>

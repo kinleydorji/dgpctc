@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Storage } from "@ionic/storage";
 import { AngularFirestore } from '@angular/fire/firestore';
+import { LoadingController } from '@ionic/angular';
+
 @Component({
   selector: 'app-agenda',
   templateUrl: './agenda.page.html',
@@ -15,15 +17,17 @@ export class AgendaPage implements OnInit {
   private confDuration;
   private days:any = [];
   private resultsObj:any = [];
-  constructor(private storage: Storage, private afs: AngularFirestore) {
+  constructor(private storage: Storage, private afs: AngularFirestore,public loadingController: LoadingController) {
 
 
    }
 
   ngOnInit() {
-
+    this.presentLoading();
     this.storage.get('hall').then((hall) => {
        this.selectedHall = hall;
+       this.loadingController.dismiss();          
+
        console.log('Hall Stored : ' , this.selectedHall);
     });
     this.getConferenceDay();
@@ -57,12 +61,17 @@ export class AgendaPage implements OnInit {
 
   getAgendaDetails()
   {
+    this.presentLoading();
+
     for(let i = 0; i < this.docId.length; i++)
     {
       this.afs.collection('Conference Hall').doc(this.selectedHall)
       .collection('agenda').doc('days')
       .collection(this.selectedDay).doc(this.docId[i]).valueChanges().subscribe(result => {
+        this.loadingController.dismiss();          
         this.resultsObj.push(result);
+        console.log("result: ", result)
+
       })
     }
   }
@@ -83,5 +92,14 @@ export class AgendaPage implements OnInit {
           }
         };
        })
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      duration: 3000,
+      spinner: 'crescent',
+      cssClass: 'loaderClass'
+    });
+    return await loading.present();
   }
 }
