@@ -57,15 +57,15 @@ export class CreatepollPage implements OnInit {
         this.afs.collection<any> ( 't_poll' , 
         ref => ref.where('presenterId','==',this.key))
            .snapshotChanges().subscribe(data =>{     
-               if(data.length > 0)
-               {
-                 this.alert("Exists", "Presenter is already added");
-               }
-               else{
+              //  if(data.length > 0)
+              //  {
+              //    this.alert("Exists", "Presenter is already added");
+              //  }
+              //  else{
                 this.afs.collection("t_poll").doc(presenterDetails.presenterId).set(presenterDetails);
                 this.pushUpload1(this.currentUpload);
                 this.alert("Upload Successful", presenterDetails.presenterName + " is added to the poll");
-               }
+              //  }
           }) 
          
       }

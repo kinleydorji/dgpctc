@@ -77,8 +77,14 @@ export class CastvotePage implements OnInit {
         cssClass:'alert',
         buttons: [
           {
-            text: 'Okay',
+            text: 'No',
             handler: () => {
+              
+            }
+          },
+          {
+            text: 'Yes',
+            handler: () =>{
               let db = firebase.firestore();
               let increment = firebase.firestore.FieldValue.increment(1);
               this.afs.collection("t_poll").doc(this.results[index].presenterId).update({voteCount : increment}).then(()=>{
@@ -86,14 +92,8 @@ export class CastvotePage implements OnInit {
                 this.presentToast("Your vote is counted. Thank You!")
               })
             }
-          },
-          {
-            text: 'No',
-            handler: () =>{
-
-            }
           }
-        ],  
+        ],   
       });
       await alert.present();
     }

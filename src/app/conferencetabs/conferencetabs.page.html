@@ -33,9 +33,15 @@
     </ion-fab>
 
     <ion-fab vertical = 'center' horizontal = "end" color = "dark" *ngIf = "resultOption == true">
-        <ion-fab-button (click) = "result()">
-          <ion-label>Result</ion-label>
-        </ion-fab-button>
-      </ion-fab>
+      <ion-fab-button (click) = "result()">
+        <ion-label>Result</ion-label>
+      </ion-fab-button>
+    </ion-fab>
+
+    <ion-fab vertical = 'center' horizontal = "start" color = "dark" *ngIf = "feedbackOption == true" >
+      <ion-fab-button (click) = "feedback()" class = "feedbackIcon">
+        <ion-label>feedback</ion-label>
+      </ion-fab-button>
+    </ion-fab>
   </ion-content>
   

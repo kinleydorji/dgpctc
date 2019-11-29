@@ -27,8 +27,8 @@ insertFeedback(){
   ).then(data=>
     {
       console.log("Feedback data: "+data);
-        this.alert("For Information","feedback successful");
-        this.navCtl.navigateForward('/feedback');
+        this.alert("Successful","Thank You for your feedback");
+       // this.navCtl.navigateForward('/feedback');
       console.log(data);
     }
     )
