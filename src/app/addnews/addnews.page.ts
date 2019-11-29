@@ -19,9 +19,7 @@ export class AddnewsPage implements OnInit {
   currentUpload: Upload;
   newsCount: number = undefined;
   private serial = "";
-  private presenterName = "";
   private title = "";
-  private time = "";
   private description = "";
   private halls: any = [];
   private hall;
@@ -41,7 +39,7 @@ export class AddnewsPage implements OnInit {
   
  async addNews()
   {
-    if(this.serial  == "" || this.presenterName == "" || this.title == "" || this.time == "" || this.description == "" || this.hall == "")
+    if(this.serial  == "" || this.title == "" || this.description == "" || this.hall == "")
     {
       this.alert("Empty Field(s)", "Fill in all empty field(s)");
     }
@@ -68,7 +66,7 @@ export class AddnewsPage implements OnInit {
         this.newsCount += 1;
         this.postingDate = formatDate(new Date(), 'MMM-dd-yyyy H:mm:ss','en');
         this.afs.collection("Conference Hall").doc(this.hall).collection("news").doc("newscount").set({newscount: this.newsCount});
-        this.afs.collection("Conference Hall").doc(this.hall).collection("news").doc("news"+this.newsCount).set({presenter : this.presenterName, time: this.time, title: this.title, description: this.description}).then(
+        this.afs.collection("Conference Hall").doc(this.hall).collection("news").doc("news"+this.newsCount).set({title: this.title, description: this.description}).then(
          data =>
          {
           if(this.selectedFiles != undefined)

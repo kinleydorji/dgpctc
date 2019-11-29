@@ -27,7 +27,7 @@ export class AddagendaPage implements OnInit {
   
   async addAgenda()
   {
-    if(this.topic == "" || this.startTime == "" || this.endTime == "" || this.presenterName == "")
+    if(this.topic == "" || this.startTime == "" || this.endTime == "")
     {
       this.alert("Empty Field(s)", "Fill in all empty field(s)");
       console.log("selected Hall : ", this.selectedHall);
