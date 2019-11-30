@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NavController, LoadingController } from '@ionic/angular'; 
 import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-conferenceselect',
@@ -10,12 +11,12 @@ import { Storage } from '@ionic/storage';
 })
 export class ConferenceselectPage implements OnInit {
   private halls: any = [];
-  constructor(private afs: AngularFirestore, private navCtrl: NavController, private storage: Storage, public loadingController: LoadingController) { }
+  constructor(private afs: AngularFirestore,private router: Router, private navCtrl: NavController, private storage: Storage, public loadingController: LoadingController) { }
 
   goToHall(hall: any)
   {
     this.storage.set('hall',hall);
-    this.navCtrl.navigateForward('agenda')
+    this.router.navigateByUrl('/conferencetabs/conferenceselect/42');
   }
  
   ngOnInit() {
