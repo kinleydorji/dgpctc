@@ -1,15 +1,12 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons>
-      <ion-back-button></ion-back-button>
-      <ion-title>{{selectedHall}}</ion-title>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
 <ion-content>
   <ion-tabs>
       <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="agenda">
+        <ion-tab-button tab="user-dashboard">
+          <ion-icon name="home"></ion-icon>
+          <ion-label>Home</ion-label>
+        </ion-tab-button>
+        
+        <ion-tab-button tab="conferenceselect">
           <ion-icon name="bookmarks"></ion-icon>
           <ion-label>agenda</ion-label>
         </ion-tab-button>

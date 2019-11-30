@@ -15,7 +15,7 @@ export class ConferenceselectPage implements OnInit {
   goToHall(hall: any)
   {
     this.storage.set('hall',hall);
-    this.navCtrl.navigateForward('/conferencetabs')
+    this.navCtrl.navigateForward('agenda')
   }
  
   ngOnInit() {

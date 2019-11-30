@@ -28,9 +28,9 @@ export class UserDashboardPage implements OnInit {
   logout()
   {
     this.afAuth.auth.signOut().then(() =>{
-      this.navCtrl.navigateRoot('userlogin');
+      //this.navCtrl.navigateRoot('userlogin');
+      this.alert("Close Session", "You have Logged out Successfully");
     })
-    this.alert("Close Session", "You have Logged out Successfully");
   }
 
   async alert(header:string,message:any) {
@@ -42,7 +42,7 @@ export class UserDashboardPage implements OnInit {
         {
           text: 'Okay',
           handler: () => {
-            
+              this.navCtrl.navigateRoot('userlogin');
           }
         }
       ]
