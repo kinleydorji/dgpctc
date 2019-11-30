@@ -20,12 +20,14 @@
       </ion-input>
     </ion-item><br>
     <ion-item lines ="none">
-      <ion-input type="time"  [(ngModel)] = "time">
-        <ion-icon name = "time" class= 'inputIcon' color = "medium" ></ion-icon>
+      <ion-label position="stacked">Start Date:</ion-label>
+      <ion-input type="date" [(ngModel)] = "startdate">
+        <ion-icon name = "calendar" class= 'inputIcon' color = "medium" ></ion-icon>
       </ion-input>
     </ion-item><br>
     <ion-item lines ="none">
-      <ion-input type="date" [(ngModel)] = "date">
+      <ion-label position="stacked">End Date:</ion-label>
+      <ion-input type="date" [(ngModel)] = "enddate">
         <ion-icon name = "calendar" class= 'inputIcon' color = "medium" ></ion-icon>
       </ion-input>
     </ion-item><br>

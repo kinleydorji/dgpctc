@@ -18,8 +18,8 @@ selectedFiles: FileList;
 currentUpload: Upload;
 private conferenceName = "";
 private venue = "";
-private time = "";
-private date = "";
+private startdate = "";
+private enddate = "";
 private duration = "";
 private imageName = "";
 url1:string;
@@ -41,8 +41,8 @@ url1:string;
   {
     if(this.conferenceName == "" 
     || this.venue == "" 
-    || this.time == "" 
-    || this.date == ""
+    || this.startdate == ""
+    || this.enddate == ""
     || this.duration == "")
     {
       this.alert("Empty Field(s)", "Fill in all empty field(s)");
@@ -57,10 +57,16 @@ url1:string;
       let confDetails =  {
         confName : this.conferenceName,
         venue : this.venue,
-        time : this.time,
-        date : this.date,
+        startdate : this.startdate,
+        enddate : this.enddate,
         duration : this.duration,
-        id : '1'
+        id : '1',
+        url1 : "none",
+        url2 : "none",
+        url3 : "none",
+        url4 : "none",
+        url5 : "none",
+        url6 : "none",
       }
       this.afs.collection("conference").doc(confDetails.id).set(confDetails).
       then(data=>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController, NavController } from '@ionic/angular';
+import { AlertController, NavController, LoadingController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 
@@ -13,7 +13,8 @@ export class UserDashboardPage implements OnInit {
   private confName;
   private venue;
   private time;
-  private date;
+  private startdate;
+  private enddate;
   private banner;
   private sponsor1;
   private sponsor2;
@@ -22,7 +23,7 @@ export class UserDashboardPage implements OnInit {
   private sponsor5;
   private sponsor6;
   constructor( private afAuth: AngularFireAuth, private alertCtrl: AlertController, 
-    private navCtrl: NavController, private afs: AngularFirestore) { 
+    private navCtrl: NavController, private afs: AngularFirestore, public loadingController: LoadingController) { 
   }
 
   logout()
@@ -52,13 +53,15 @@ export class UserDashboardPage implements OnInit {
 
   getConferenceDetails()
   {
+    this.presentLoading();
     this.afs.collection<any>('conference',ref => ref.where('id','==','1'))
     .valueChanges().subscribe(data =>{     
         if(data.length > 0)
         {
           this.confName = data[0].confName;
           this.venue = data[0].venue;
-          this.date = data[0].date;
+          this.startdate = data[0].startdate;
+          this.enddate = data[0].enddate;
           this.time = data[0].time;
           this.banner = data[0].url;
           this.sponsor1 = data[0].url1;
@@ -68,6 +71,7 @@ export class UserDashboardPage implements OnInit {
           this.sponsor5 = data[0].url5;
           this.sponsor6 = data[0].url6;
         };
+        this.loadingController.dismiss();          
        })
   }
 
@@ -90,5 +94,14 @@ export class UserDashboardPage implements OnInit {
 
   goDetails(){
     this.navCtrl.navigateForward('conferenceselect');
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      duration: 3000,
+      spinner: 'crescent',
+      cssClass: 'loaderClass'
+    });
+    return await loading.present();
   }
 }
