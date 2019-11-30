@@ -42,7 +42,9 @@ const routes: Routes = [
   { path: 'addconferencehall', loadChildren: './addconferencehall/addconferencehall.module#AddconferencehallPageModule' },
   { path: 'addagenda', loadChildren: './addagenda/addagenda.module#AddagendaPageModule' },
   { path: 'addnews', loadChildren: './addnews/addnews.module#AddnewsPageModule' },
-  { path: 'conferenceselect', loadChildren: './conferenceselect/conferenceselect.module#ConferenceselectPageModule' },  { path: 'result', loadChildren: './result/result.module#ResultPageModule' },
+  { path: 'result', loadChildren: './result/result.module#ResultPageModule' },
+
+
 
 
 

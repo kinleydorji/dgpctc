@@ -26,18 +26,14 @@ const routes: Routes = [
             loadChildren: () =>
               import('../conferenceselect/conferenceselect.module').then(m => m.ConferenceselectPageModule)
           },
-        ]
-      },
-      {
-        path: 'agenda',
-        children: [
           {
-            path: '',
+            path: ':id',
             loadChildren: () =>
               import('../agenda/agenda.module').then(m => m.AgendaPageModule)
           },
         ]
       },
+      
       {
         path: 'newsfeed',
         children: [
