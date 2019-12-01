@@ -16,8 +16,8 @@ export class EditconferencePage implements OnInit {
 
   private confName;
   private venue;
-  private time;
-  private date;
+  private startdate;
+  private enddate;
   private banner;
   private duration;
   urlbanner:string;
@@ -83,8 +83,8 @@ export class EditconferencePage implements OnInit {
         {
           this.confName = data[0].confName;
           this.venue = data[0].venue;
-          this.date = data[0].date;
-          this.time = data[0].time;
+          this.startdate = data[0].startdate;
+          this.enddate = data[0].enddate;
           this.banner = data[0].url;
           this.duration = data[0].duration;
           this.sponsorurl1 = data[0].url1;
@@ -101,8 +101,8 @@ export class EditconferencePage implements OnInit {
   {
     if(this.confName == "" 
     || this.venue == "" 
-    || this.time == "" 
-    || this.date == "")
+    || this.startdate == ""
+    || this.enddate == "")
     {
       this.alert("Empty Field(s)", "Fill in all empty field(s)");
     }
@@ -119,8 +119,8 @@ export class EditconferencePage implements OnInit {
         let confDetails =  {
           confName : this.confName,
           venue : this.venue,
-          time : this.time,
-          date : this.date,
+          startdate : this.startdate,
+          enddate : this.enddate,
           duration: this.duration,
           id : '1'
         }
@@ -146,8 +146,8 @@ export class EditconferencePage implements OnInit {
         let confDetails =  {
           confName : this.confName,
           venue : this.venue,
-          time : this.time,
-          date : this.date,
+          startdate : this.startdate,
+          enddate : this.enddate,
           duratoin : this.duration,
           id : '1'
         }
@@ -242,8 +242,8 @@ export class EditconferencePage implements OnInit {
           let confDetails =  {
             confName : this.confName,
             venue : this.venue,
-            time : this.time,
-            date : this.date,
+            startdate : this.startdate,
+            enddate : this.enddate,
             duration : this.duration,
             id : '1'
           }

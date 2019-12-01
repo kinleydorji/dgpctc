@@ -9,15 +9,31 @@ const routes: Routes = [
     component: ConferencetabsPage,
     children: [
       {
-        path: 'agenda',
+        path: 'user-dashboard',
         children: [
           {
             path: '',
             loadChildren: () =>
-              import('../agenda/agenda.module').then(m => m.AgendaPageModule)
+              import('../user-dashboard/user-dashboard.module').then(m => m.UserDashboardPageModule)
           }
         ]
       },
+      {
+        path: 'conferenceselect',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../conferenceselect/conferenceselect.module').then(m => m.ConferenceselectPageModule)
+          },
+          {
+            path: ':id',
+            loadChildren: () =>
+              import('../agenda/agenda.module').then(m => m.AgendaPageModule)
+          },
+        ]
+      },
+      
       {
         path: 'newsfeed',
         children: [
@@ -42,7 +58,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/conferencetabs/agenda',
+    redirectTo: '/conferencetabs/user-dashboard',
     pathMatch: 'full'
   }
 ];

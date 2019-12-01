@@ -43,7 +43,7 @@ export class UserloginPage implements OnInit {
           this.navCtrl.navigateRoot('changepassword');      
         }
         else{
-          this.navCtrl.navigateRoot('user-dashboard');  
+          this.navCtrl.navigateRoot('conferencetabs');  
           this.loadingController.dismiss();          
           console.log("password:",this.afAuth.auth.currentUser.uid);    
         }
