@@ -32,3 +32,9 @@ npm-debug.log*
 /www
 /package.json
 /package-lock.json
+src/app/notification/notification.page.scss
+src/app/notification/notification.module.ts
+src/app/notification/notification.module.tss
+src/app/notification/notification.page.ts
+src/app/notification/notification.page.htm
+src/app/notification/notification.page.spec.ts
