@@ -9,7 +9,7 @@ import { AlertController, NavController} from '@ionic/angular';
 })
 export class PostFeedbackPage implements OnInit {
 
-  postFeedback : any;
+  private postFeedback ="";
 
   constructor(
     private fs : AngularFirestore,
@@ -19,30 +19,43 @@ export class PostFeedbackPage implements OnInit {
   ngOnInit() {
   }
 insertFeedback(){
-  let basePath:string="/t_feedback";
-    this.fs.collection(`${basePath}`).doc(`${this.postFeedback}`).set(
-    {
+    if(this.postFeedback  == "")
+      {
+        this.alert("Empty Field(s)", "Fill in all empty field(s)");
+      }
+      else
+      {
+        let basePath:string="/t_feedback";
+        this.fs.collection(`${basePath}`).doc(`${this.postFeedback}`).set(
+      {
       feedback : this.postFeedback,
-  }
+      }
   ).then(data=>
     {
-      console.log("Feedback data: "+data);
-        this.alert("Successful","Thank You for your feedback");
-       // this.navCtl.navigateForward('/feedback');
-      console.log(data);
+        console.log("Feedback data: "+data);
+        this.alert("Successful","Your feedback has been successfully posted.");
+        this.navCtl.navigateForward('/post-feedback');
+        console.log(data);
     }
     )
+  }
 }
+
 //for the alert
-async alert(header : string, message : string)
-{
-  const alert = await this.altCtl.create({
-    header : header,
-    message : message,
-    cssClass : 'ok',
-    buttons : ['OK']
-  });
-  alert.present();
-}
+async alert(header:string,message:any) {
+    const alert = await this.altCtl.create({
+      header: header,
+      cssClass:'alert',
+      message: message,
+      buttons: [
+        {
+          text: 'Okay',
+          handler: () => {
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 }
 

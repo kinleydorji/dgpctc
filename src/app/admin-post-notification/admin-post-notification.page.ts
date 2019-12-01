@@ -102,8 +102,8 @@ export class AdminPostNotificationPage implements OnInit {
     let basePath:string="/t_notification";
     this.fs.collection(`${basePath}`).doc(`${id}`).delete().then(data=>
       {
-          this.alert("For Information","Deletion successful");
-          this.navCtl.navigateForward('/notification');
+          this.alert("Successfull","Notification deleted successfully.");
+          this.navCtl.navigateForward('/admin-post-notification');
       }
       )
   }
@@ -115,14 +115,19 @@ export class AdminPostNotificationPage implements OnInit {
   }
 
   //for the alert
-  async alert(header : string, message : string)
-    {
+    async alert(header:string,message:any) {
       const alert = await this.altCtl.create({
-        header : header,
-        message : message,
-        cssClass : 'ok',
-        buttons : ['OK']
+        header: header,
+        cssClass:'alert',
+        message: message,
+        buttons: [
+          {
+            text: 'Okay',
+            handler: () => {
+            }
+          }
+        ]
       });
-      alert.present();
+      await alert.present();
     }
   }

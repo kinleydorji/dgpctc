@@ -18,4 +18,7 @@ export class InternetStatusPage implements OnInit {
   goAddmore(){
     this.navCtl.navigateForward('/add-notification');
   }
+  goHome(){
+    this.navCtl.navigateForward('/home');
+  }
 }

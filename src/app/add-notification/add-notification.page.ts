@@ -10,12 +10,11 @@ import {formatDate} from '@angular/common';
 })
 export class AddNotificationPage implements OnInit {
   
-  postId : any;
-  postTitle : any;
-  postMessage : any;
+  private postId ="";
+  private postTitle ="";
+  private postMessage ="";
   postOn : any;
   dateTime: any;
-  // postDate : any;
   constructor(
     private fs : AngularFirestore,
     private altCtl : AlertController,
@@ -25,8 +24,15 @@ export class AddNotificationPage implements OnInit {
 
   ngOnInit() {
   }
-  insertPost(){
-    this.dateTime = formatDate(new Date(), 'MMM-dd-yyyy H:mm:ss', 'en'); //get time and date
+
+  async insertPost(){
+      if(this.postId  == "" || this.postTitle == "" || this.postMessage == "")
+      {
+        this.alert("Empty Field(s)", "Fill in all empty field(s)");
+      }
+      else
+      {
+        this.dateTime = formatDate(new Date(), 'MMM-dd-yyyy H:mm:ss', 'en'); //get time and date
     let basePath:string="/t_notification";
     this.fs.collection(`${basePath}`).doc(`${this.postId}`).set(
       {
@@ -38,26 +44,34 @@ export class AddNotificationPage implements OnInit {
     ).then(data=>
       {
         console.log("reach here with data: "+data);
-          this.alert("For Information","Insertion successful");
-          this.navCtl.navigateForward('conferencetabs');
+          this.alert("Successful","Your post has been successfully posted.");
+          this.navCtl.navigateForward('add-notification');
         console.log(data);
       }
       )
-  }
+      }
+    }
 
-   //for the alert
-   async alert(header : string, message : string)
-   {
-     const alert = await this.altCtl.create({
-       header : header,
-       message : message,
-       cssClass : 'ok',
-       buttons : ['OK']
-     });
-     alert.present();
-   }
+  async alert(header:string,message:any) {
+    const alert = await this.altCtl.create({
+      header: header,
+      cssClass:'alert',
+      message: message,
+      buttons: [
+        {
+          text: 'Okay',
+          handler: () => {
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 
    goUpdate(){
     this.navCtl.navigateForward('/admin-post-notification');
+   }
+   goF(){
+    this.navCtl.navigateForward('/post-feedback');
    }
 }

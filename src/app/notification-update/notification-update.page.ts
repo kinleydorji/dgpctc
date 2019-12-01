@@ -66,23 +66,28 @@ export class NotificationUpdatePage implements OnInit {
   ).then(data=>
     {
       console.log("reach here with data: "+data);
-        this.alert("For Information","update successful");
-        this.navCtl.navigateForward('conferencetabs');
+        this.alert("Successful","Your post has been successfully updated.");
+        this.navCtl.navigateForward('/admin-post-notification');
       console.log(data);
     }
     )
 }
 
 //for the alert
-async alert(header : string, message : string)
-{
-  const alert = await this.altCtl.create({
-    header : header,
-    message : message,
-    cssClass : 'ok',
-    buttons : ['OK']
-  });
-  alert.present();
-}
+  async alert(header:string,message:any) {
+    const alert = await this.altCtl.create({
+      header: header,
+      cssClass:'alert',
+      message: message,
+      buttons: [
+        {
+          text: 'Okay',
+          handler: () => {
+          }
+        }
+      ]
+    });
+    await alert.present();
+  }
 }
 

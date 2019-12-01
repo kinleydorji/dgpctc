@@ -20,7 +20,6 @@ const routes: Routes = [
   { path: 'passwordrecovery', loadChildren: './modal/passwordrecovery/passwordrecovery.module#PasswordrecoveryPageModule' },
   { path: 'overallconference', loadChildren: './overallconference/overallconference.module#OverallconferencePageModule' },
   { path: 'admin-post-notification', loadChildren: './admin-post-notification/admin-post-notification.module#AdminPostNotificationPageModule' },
-  { path: 'notification', loadChildren: './notification/notification.module#NotificationPageModule' },
   { path: 'feedback', loadChildren: './feedback/feedback.module#FeedbackPageModule' },
   { path: 'post-feedback', loadChildren: './post-feedback/post-feedback.module#PostFeedbackPageModule' },
   { path: 'internet-status', loadChildren: './internet-status/internet-status.module#InternetStatusPageModule' },
@@ -42,9 +41,8 @@ const routes: Routes = [
   { path: 'addconferencehall', loadChildren: './addconferencehall/addconferencehall.module#AddconferencehallPageModule' },
   { path: 'addagenda', loadChildren: './addagenda/addagenda.module#AddagendaPageModule' },
   { path: 'addnews', loadChildren: './addnews/addnews.module#AddnewsPageModule' },
+  { path: 'conferenceselect', loadChildren: './conferenceselect/conferenceselect.module#ConferenceselectPageModule' },
   { path: 'result', loadChildren: './result/result.module#ResultPageModule' },
-
-
 
 
 
