@@ -51,6 +51,7 @@ url1:string;
     else{
       if(this.afs.collection('conference').doc('1')){
         this.afs.collection('conference').doc('1').delete();
+        this.afs.collection("News").doc("newscount").set({newscount: 0});
       }
       let file = this.selectedFiles.item(0)
       this.currentUpload = new Upload(file);
@@ -71,6 +72,7 @@ url1:string;
       this.afs.collection("conference").doc(confDetails.id).set(confDetails).
       then(data=>
         {
+          this.afs.collection("News").doc("newscount").set({newscount: 0})
           this.pushUpload1(this.currentUpload);
           this.alert("Info","Successfuly added event.");
           this.navCtrl.navigateForward('/home');

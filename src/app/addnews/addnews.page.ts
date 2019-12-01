@@ -39,7 +39,7 @@ export class AddnewsPage implements OnInit {
   
  async addNews()
   {
-    if(this.serial  == "" || this.title == "" || this.description == "" || this.hall == "")
+    if(this.title == "" || this.description == "" || this.hall == "")
     {
       this.alert("Empty Field(s)", "Fill in all empty field(s)");
     }
@@ -66,14 +66,14 @@ export class AddnewsPage implements OnInit {
         this.newsCount += 1;
         this.postingDate = formatDate(new Date(), 'MMM-dd-yyyy H:mm:ss','en');
         this.afs.collection("News").doc("newscount").set({newscount: this.newsCount});
-        this.afs.collection("News").doc("news"+this.newsCount).set({title: this.title, description: this.description, hall: this.hall}).then(
+        this.afs.collection("News").doc("news"+this.newsCount).set({title: this.title, description: this.description, hall: this.hall, url: "none"}).then(
          data =>
          {
           if(this.selectedFiles != undefined)
           {
             this.pushUpload1(this.currentUpload);
           }
-          this.afs.collection("Conference Hall").doc(this.hall).collection("news").doc("news"+this.newsCount).update({postingDate: this.postingDate});
+          this.afs.collection("News").doc("news"+this.newsCount).update({postingDate: this.postingDate});
           this.alert("Successful","Your post has been successfully posted.");
          }
         );
@@ -93,7 +93,7 @@ export class AddnewsPage implements OnInit {
 
   getCount()
   {
-    this.afs.collection("Conference Hall").doc(this.hall).collection("news").valueChanges().subscribe(data=>
+    this.afs.collection("News").valueChanges().subscribe(data=>
       {
           this.newsCount = parseInt(data[data.length - 1].newscount);
           console.log("getcount="+this.newsCount);
@@ -145,7 +145,7 @@ export class AddnewsPage implements OnInit {
     this.uploadFs.url=url;
     console.log('save data url='+url)
     console.log(this.uploadFs.name,this.uploadFs.url,this.uploadFs.createdAt);
-    this.afs.collection("Conference Hall").doc(this.hall).collection("news").doc("news"+this.newsCount).update(this.uploadFs);
+    this.afs.collection("News").doc("news"+this.newsCount).update(this.uploadFs);
   }
 
   ngOnInit() {
