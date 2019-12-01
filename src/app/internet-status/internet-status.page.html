@@ -1,14 +1,17 @@
-<ion-header >
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button color = "primary"></ion-menu-button>
-        <ion-back-button color="primary"></ion-back-button>
-        <ion-title id="title" color="primary"><b>Error message</b></ion-title>
-        <p button="true" (click)="goAddmore()" style="color:dodgerblue">Add post</p>
-      </ion-buttons>
-    </ion-toolbar>
-  </ion-header>
+<ion-header no-shadow no-border>
+  <ion-toolbar>
+   <ion-buttons>
+      <ion-back-button (click)="goHome()"></ion-back-button>
+      <ion-title>Sorry something is wrong</ion-title>
+   </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 
 <ion-content>
-<p>Something went wrong. No data available or No internet connection</p>
+   <ion-item>
+     <ion-col>
+       No Internet connection. Make sure the <span style="color: teal;">Wi-Fi</span> or <span style="color: teal;">cellular mobile data</span> is turn on and try again.
+       <ion-back-button></ion-back-button>
+    </ion-col>
+   </ion-item>
 </ion-content>
