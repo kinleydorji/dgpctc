@@ -22,6 +22,7 @@ export class AddagendaPage implements OnInit {
   private selectedDay = "";
   private confDuration;
   private days:any = [];
+  private serial:number;
   constructor(private alertCtrl: AlertController, private afs: AngularFirestore) { }
 
   
@@ -33,16 +34,19 @@ export class AddagendaPage implements OnInit {
       console.log("selected Hall : ", this.selectedHall);
     }
     else{
+    
+      console.log("count="+this.agendaCount);
+   
+      this.getAgendaCount();
+      this.agendaCount += 1;
+      this.serial = Number(this.agendaCount);
       let presenterDetails = {
         presentername : this.presenterName,
         topic : this.topic,
         startTime : this.startTime,
         endTime : this.endTime,
+        serial : this.serial
       }
-      console.log("count="+this.agendaCount);
-   
-      this.getAgendaCount();
-      this.agendaCount += 1;
       this.afs.collection("Conference Hall").doc(this.selectedHall).collection("agenda").doc("agendacount").set({agendacount: this.agendaCount});
       this.afs
       .collection("Conference Hall").doc(this.selectedHall)

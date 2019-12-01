@@ -17,6 +17,7 @@ export class AgendaPage implements OnInit {
   private confDuration;
   private days:any = [];
   private resultsObj:any = [];
+  private temp;
   constructor(private storage: Storage, private afs: AngularFirestore,public loadingController: LoadingController) {
 
 
@@ -59,7 +60,7 @@ export class AgendaPage implements OnInit {
   }
 
 
-  getAgendaDetails()
+  async getAgendaDetails()
   {
     this.presentLoading();
 
@@ -70,11 +71,24 @@ export class AgendaPage implements OnInit {
       .collection(this.selectedDay).doc(this.docId[i]).valueChanges().subscribe(result => {
         this.loadingController.dismiss();          
         this.resultsObj.push(result);
-        console.log("result: ", result)
+        for(let i = 0; i < this.resultsObj.length; i++)
+        {
+          for(let j = i + 1; j < this.resultsObj.length; j++)
+          {
+            if(this.resultsObj[i].serial > this.resultsObj[j].serial)
+            {
 
+              this.temp = this.resultsObj[i];
+              this.resultsObj[i] = this.resultsObj[j];
+              this.resultsObj[j] = this.temp;
+            }
+          }
+        }
       })
     }
+    console.log(this.resultsObj);
   }
+
 
   
   getConferenceDay()
