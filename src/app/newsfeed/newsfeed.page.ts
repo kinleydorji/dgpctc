@@ -32,7 +32,7 @@ export class NewsfeedPage implements OnInit {
   {
 
     console.log('triggered'+selectedHall);
-    this.afs.firestore.collection('Conference Hall').doc(selectedHall).collection('news').get().then((querySnapshot) => { 
+    this.afs.firestore.collection('News').get().then((querySnapshot) => { 
       querySnapshot.forEach((doc) => {
         console.log("doc: ", doc.id)
         this.docId.push(doc.id);
@@ -54,17 +54,18 @@ export class NewsfeedPage implements OnInit {
           title: "",
           description: "",
           url: "",
-          postingdate: ""    
+          postingdate: "",
+          hall: ""    
       
         }
-        this.afs.collection('Conference Hall').doc(this.selectedHall)
-        .collection('news').doc(this.docId[i]).get().subscribe(result => {
+        this.afs.collection('News').doc(this.docId[i]).get().subscribe(result => {
           console.log(result)
           console.log(result.data().presenter);
           this.result[i].title = result.data().title;
           this.result[i].description = result.data().description;
           this.result[i].url = result.data().url;
           this.result[i].postingdate = result.data().postingDate;
+          this.result[i].hall = result.data().hall;
         })
       }
     }

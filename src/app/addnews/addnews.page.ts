@@ -65,8 +65,8 @@ export class AddnewsPage implements OnInit {
         }
         this.newsCount += 1;
         this.postingDate = formatDate(new Date(), 'MMM-dd-yyyy H:mm:ss','en');
-        this.afs.collection("Conference Hall").doc(this.hall).collection("news").doc("newscount").set({newscount: this.newsCount});
-        this.afs.collection("Conference Hall").doc(this.hall).collection("news").doc("news"+this.newsCount).set({title: this.title, description: this.description}).then(
+        this.afs.collection("News").doc("newscount").set({newscount: this.newsCount});
+        this.afs.collection("News").doc("news"+this.newsCount).set({title: this.title, description: this.description, hall: this.hall}).then(
          data =>
          {
           if(this.selectedFiles != undefined)

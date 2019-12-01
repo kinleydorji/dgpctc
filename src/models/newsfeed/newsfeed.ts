@@ -4,5 +4,6 @@ export class NewsFeedModel{
     description:string;
     url:string;
     postingdate:string;
+    hall: string;
 
 }
