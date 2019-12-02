@@ -49,11 +49,7 @@ export class AddnewsPage implements OnInit {
     }
     else
     {
-      // await this.afs.collection("Conference Hall").doc(this.hall).collection("news").valueChanges().subscribe(data=>
-      //   {
-      //       this.newsCount = parseInt(data[data.length - 1].newscount);
-      //       console.log("count="+this.newsCount);
-      //   })
+ 
       if(this.selectedFiles != undefined)
       {
         let file = this.selectedFiles.item(0)
@@ -67,39 +63,55 @@ export class AddnewsPage implements OnInit {
           console.log("hello");
           this.getCount();
         }
-        this.newsCount += 1;
         this.postingDate = formatDate(new Date(), 'MMM-dd-yyyy H:mm:ss','en');
-        this.afs.collection("News").doc("newscount").set({newscount: this.newsCount});
-        this.afs.collection("News").doc("news"+this.newsCount).set({title: this.title, description: this.description, hall: this.hall, url: "none"}).then(
-         data =>
-         {
-          if(this.selectedFiles != undefined)
-          {
-            this.pushUpload1(this.currentUpload);
-          }
-          this.afs.collection("News").doc("news"+this.newsCount).update({postingDate: this.postingDate});
-          this.alert("Successful","Your post has been successfully posted.");
-         }
-        );
+        if(this.newsCount < 1)
+        {
+          let increment = 1;
+          this.afs.collection("News").doc(increment.toString()).set(
+            {
+              id : increment,
+              title: this.title,
+               description: this.description,
+                hall: this.hall, 
+                url: "none"
+            }).then(data=>
+            {
+              if(this.selectedFiles != undefined)
+              {
+                this.pushUpload1(this.currentUpload);
+              }
+              this.afs.collection("News").doc("news"+this.newsCount).update({postingDate: this.postingDate});
+              this.alert("Successful","Your post has been successfully posted.");    
+            })
+        }
+        else
+        {
+          this.afs.collection("News").doc((this.newsCount + 1).toString()).set(
+            {
+              id : (this.newsCount + 1),
+              title: this.title,
+               description: this.description,
+                hall: this.hall, 
+                url: "none"
+            }).then(data=>
+            {
+              if(this.selectedFiles != undefined)
+              {
+                this.pushUpload1(this.currentUpload);
+              }
+              this.afs.collection("News").doc("news"+this.newsCount).update({postingDate: this.postingDate});
+              this.alert("Successful","Your post has been successfully posted.");    
+            })
+        }
     }
-    
-    // if(this.newsCount == '1')
-    // {
-    //   console.log("Hello");
-    // }
-    // else
-    // {
-    //   console.log("No");
-    // }
-    
-    
   }
 
   getCount()
   {
     this.afs.collection("News").valueChanges().subscribe(data =>{
-        this.newsCount = data[data.length - 1].newscount;
-          console.log("getcount="+this.newsCount);
+        this.newsCount = data.length;
+        console.log("News Count : ", this.newsCount);
+
       })
   }
 
@@ -145,7 +157,7 @@ export class AddnewsPage implements OnInit {
     this.uploadFs.url=url;
     console.log('save data url='+url)
     console.log(this.uploadFs.name,this.uploadFs.url,this.uploadFs.createdAt);
-    this.afs.collection("News").doc("news"+this.newsCount).update(this.uploadFs);
+    this.afs.collection("News").doc((this.newsCount).toString()).update(this.uploadFs);
   }
 
   ngOnInit() {
@@ -156,6 +168,14 @@ export class AddnewsPage implements OnInit {
       })
     })
 
+
  
+ 
+  }
+
+
+  ionViewWillEnter()
+  {
+   this.getCount();
   }
 }
