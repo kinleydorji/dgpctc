@@ -13,11 +13,19 @@ export class NewsfeedPage implements OnInit {
   private selectedHall;
   private docId:any = [];
   result: NewsFeedModel[] = [];
+  private resultLength = 0;
+  private docIdLength;
+  constructor(private storage: Storage, private afs: AngularFirestore, public loadingController: LoadingController) {
 
 
-  constructor(private storage: Storage, private afs: AngularFirestore, public loadingController: LoadingController) { }
+   }
 
   ngOnInit() {
+ 
+   
+  }
+  ionViewWillEnter()
+  {
     this.presentLoading();
     this.storage.get('hall').then((hall) => {
       this.selectedHall = hall;
@@ -25,20 +33,20 @@ export class NewsfeedPage implements OnInit {
       console.log('Hall Stored : ' , this.selectedHall);
       this.getNewsDoc(this.selectedHall);
    });
-   
   }
 
   getNewsDoc(selectedHall: any)
   {
-
+    this.docId = [];
     console.log('triggered'+selectedHall);
     this.afs.firestore.collection('News').get().then((querySnapshot) => { 
       querySnapshot.forEach((doc) => {
         console.log("doc: ", doc.id)
         this.docId.push(doc.id);
         })
-
-        this.loadingController.dismiss();          
+        this.loadingController.dismiss(); 
+        this.docIdLength = this.docId.length;  
+        console.log("doc length after Insertion: ", this.docIdLength);    
         this.getNewsFeed();
       })
   }
@@ -56,7 +64,6 @@ export class NewsfeedPage implements OnInit {
           url: "",
           postingdate: "",
           hall: ""    
-      
         }
         this.afs.collection('News').doc(this.docId[i]).get().subscribe(result => {
           console.log(result)
@@ -69,6 +76,8 @@ export class NewsfeedPage implements OnInit {
         })
       }
     }
+    //this.resultLength = this.result.length;
+    console.log("docId length : ", this.docId.length);
   }
   
   async presentLoading() {
@@ -80,4 +89,16 @@ export class NewsfeedPage implements OnInit {
     });
     return await loading.present();
   }
+
+  async onRefresh(event)
+    {
+  
+      console.log("refreshing");
+      this.getNewsDoc(this.selectedHall);
+     
+      setTimeout(()=>{
+        event.target.complete();
+      }, 1500)
+    
+    }
 }

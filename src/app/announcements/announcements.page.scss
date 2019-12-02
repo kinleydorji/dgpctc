@@ -27,7 +27,6 @@ ion-toolbar{
   }
   .createpollbtn{
   
-  font-family: 'raleway-regular';
   text-transform: none;
       
   }
@@ -35,4 +34,10 @@ ion-toolbar{
   .avatar{
       margin: auto;
   
+  }
+
+  .date{
+      font-size: 12px;
+      color: gray;
+    
   }

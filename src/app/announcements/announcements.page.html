@@ -6,15 +6,17 @@
     </ion-toolbar>
 </ion-header>
 <ion-content>
+    <ion-refresher  slot="fixed" (ionRefresh)="onRefresh($event)">
+        <ion-refresher-content 
+                refreshingSpinner="crescent"
+                refreshingText="Refreshing ...">
+        </ion-refresher-content>
+    </ion-refresher>
     <ion-card *ngFor='let data of postData'>
-        <ion-card-content style="font-family: 'Times New Roman', Times, serif;">
-            <span style="color:dodgerblue; font-size: 12pt;">
-                <span color="primary" style="font-size: 12pt;">{{data.title}}</span><br>
-                <span style="color:black; font-size: 12pt;">{{data.message}}</span><br>
-                <span>Posted On:</span>
-                <span>{{data.poston}}</span>
-            </span>
+        <ion-card-content>
+            <span style = "color: dodgerblue; font-size: 12pt; font-family: 'Roboto-Bold'">{{data.title}}</span><br>
+            <span style="font-size: 12pt; font-family : 'Roboto-Regular'; color: black;">{{data.message}}</span><br>
+            <span class = "date">{{data.poston}}</span>
         </ion-card-content>
       </ion-card>
 </ion-content>
-

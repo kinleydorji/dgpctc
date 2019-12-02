@@ -22,7 +22,7 @@ export class AddnewsPage implements OnInit {
   private title = "";
   private description = "";
   private halls: any = [];
-  private hall;
+  private hall = "";
   private postingDate: any;
   constructor(private alertCtrl: AlertController, private afs: AngularFirestore) { }
 
@@ -39,9 +39,13 @@ export class AddnewsPage implements OnInit {
   
  async addNews()
   {
-    if(this.title == "" || this.description == "" || this.hall == "")
+    if(this.title == "" || this.description == "")
     {
       this.alert("Empty Field(s)", "Fill in all empty field(s)");
+    }
+    else if(this.hall == "") {
+      this.alert("Select Hall", "Hall not selected");
+
     }
     else
     {
@@ -93,17 +97,13 @@ export class AddnewsPage implements OnInit {
 
   getCount()
   {
-    this.afs.collection("News").valueChanges().subscribe(data=>
-      {
-          this.newsCount = parseInt(data[data.length - 1].newscount);
+    this.afs.collection("News").valueChanges().subscribe(data =>{
+        this.newsCount = data[data.length - 1].newscount;
           console.log("getcount="+this.newsCount);
       })
   }
 
-  getHall()
-  {
-    
-  }
+  
 
 
   async alert(header:string,message:any) {

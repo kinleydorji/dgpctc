@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AlertController, NavController, LoadingController} from '@ionic/angular';
 import {formatDate} from '@angular/common';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-add-notification',
@@ -15,6 +16,8 @@ export class AddNotificationPage implements OnInit {
   private postMessage ="";
   postOn : any;
   dateTime: any;
+  private docId =[];
+  private announcementLength;
   constructor(
     private fs : AngularFirestore,
     private altCtl : AlertController,
@@ -25,30 +28,55 @@ export class AddNotificationPage implements OnInit {
   ngOnInit() {
   }
 
+  ionViewWillEnter()
+  {
+    this.getAnnouncementLength();
+
+  }
+
   async insertPost(){
-      if(this.postId  == "" || this.postTitle == "" || this.postMessage == "")
+      if(this.postTitle == "" || this.postMessage == "")
       {
         this.alert("Empty Field(s)", "Fill in all empty field(s)");
       }
       else
       {
         this.dateTime = formatDate(new Date(), 'MMM-dd-yyyy H:mm:ss', 'en'); //get time and date
-    let basePath:string="/t_notification";
-    this.fs.collection(`${basePath}`).doc(`${this.postId}`).set(
-      {
-        id : this.postId,
-        title : this.postTitle,
-        message : this.postMessage,
-        poston : this. dateTime
-    }
-    ).then(data=>
-      {
-        console.log("reach here with data: "+data);
-          this.alert("Successful","Your post has been successfully posted.");
-          this.navCtl.navigateForward('add-notification');
-        console.log(data);
-      }
-      )
+        let basePath:string="/t_notification";
+        if(this.announcementLength < 1)
+        {
+          let increment = 1;
+          this.fs.collection(`${basePath}`).doc(increment.toString()).set(
+            {
+              id : increment,
+              title : this.postTitle,
+              message : this.postMessage,
+              poston : this. dateTime
+            }).then(data=>
+            {
+              console.log("reach here with data: "+data);
+                this.alert("Successful","Your post has been successfully posted.");
+                this.navCtl.navigateForward('add-notification');
+              console.log(data);
+            })
+        }
+        else{
+            this.fs.collection(`${basePath}`).doc((this.announcementLength + 1).toString()).set(
+              {
+                id : (this.announcementLength + 1),
+                title : this.postTitle,
+                message : this.postMessage,
+                poston : this. dateTime
+              }).then(data=>
+              {
+                console.log("reach here with data: "+data);
+                  this.alert("Successful","Your post has been successfully posted.");
+                  this.navCtl.navigateForward('add-notification');
+                console.log(data);
+              })  
+            }
+    
+     
       }
     }
 
@@ -74,4 +102,15 @@ export class AddNotificationPage implements OnInit {
    goF(){
     this.navCtl.navigateForward('/post-feedback');
    }
+
+   getAnnouncementLength()
+   {
+     this.fs.collection("t_notification").valueChanges().subscribe(data=>{
+        this.announcementLength = data.length;
+        console.log("announcement count : ", this.announcementLength);
+    })
+   }
+
+ 
+
 }
