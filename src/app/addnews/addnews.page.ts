@@ -80,7 +80,7 @@ export class AddnewsPage implements OnInit {
               {
                 this.pushUpload1(this.currentUpload);
               }
-              this.afs.collection("News").doc("news"+this.newsCount).update({postingDate: this.postingDate});
+              this.afs.collection("News").doc(increment.toString()).update({postingDate: this.postingDate});
               this.alert("Successful","Your post has been successfully posted.");    
             })
         }
@@ -99,7 +99,7 @@ export class AddnewsPage implements OnInit {
               {
                 this.pushUpload1(this.currentUpload);
               }
-              this.afs.collection("News").doc("news"+this.newsCount).update({postingDate: this.postingDate});
+              this.afs.collection("News").doc(this.newsCount.toString()).update({postingDate: this.postingDate});
               this.alert("Successful","Your post has been successfully posted.");    
             })
         }
