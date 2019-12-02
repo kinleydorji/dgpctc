@@ -22,6 +22,7 @@ private startdate = "";
 private enddate = "";
 private duration = "";
 private imageName = "";
+private description = "";
 url1:string;
   constructor(private alertCtrl: AlertController, private afs : AngularFirestore , 
     private fileChooser: FileChooser, private file : File,private navCtrl: NavController) { }
@@ -68,6 +69,7 @@ url1:string;
         url4 : "none",
         url5 : "none",
         url6 : "none",
+        description : this.description
       }
       this.afs.collection("conference").doc(confDetails.id).set(confDetails).
       then(data=>
