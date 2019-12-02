@@ -50,7 +50,7 @@ export class NewsfeedPage implements OnInit {
               hall : doc.data().hall,
               url : doc.data().url
             })
-        
+
           })
         })
       console.log("Documents : ", this.documents);

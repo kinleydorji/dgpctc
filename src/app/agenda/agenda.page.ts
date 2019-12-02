@@ -12,12 +12,10 @@ export class AgendaPage implements OnInit {
   private selectedHall;
   private startTime;
   private endTime;
-  private docId:any = [];
+  private agendaData:any = [];
   private selectedDay:any;
   private confDuration;
   private days:any = [];
-  private resultsObj:any = [];
-  private temp;
   constructor(private storage: Storage, private afs: AngularFirestore,public loadingController: LoadingController) {
 
 
@@ -35,62 +33,29 @@ export class AgendaPage implements OnInit {
     
   }
 
-  async emptyTheArray()
-  {
-    this.docId = [];
-    this.resultsObj = [];
-    console.log("length : ", this.docId.length);
-  }
-
   getAgendaDoc()
   {
-   this.emptyTheArray().then(()=>{
-    console.log('triggered');
-    this.afs.firestore.collection('Conference Hall')
-    .doc(this.selectedHall).collection('agenda')
-    .doc('days').collection(this.selectedDay).get().then((querySnapshot) => { 
-      querySnapshot.forEach((doc) => {
-        console.log("doc: ", doc.id)
-        this.docId.push(doc.id);
-        })
-        this.getAgendaDetails();
-      })
-   })
-
-  }
-
-
-  async getAgendaDetails()
-  {
     this.presentLoading();
-
-    for(let i = 0; i < this.docId.length; i++)
-    {
-      this.afs.collection('Conference Hall').doc(this.selectedHall)
-      .collection('agenda').doc('days')
-      .collection(this.selectedDay).doc(this.docId[i]).valueChanges().subscribe(result => {
-        this.loadingController.dismiss();          
-        this.resultsObj.push(result);
-        for(let i = 0; i < this.resultsObj.length; i++)
-        {
-          for(let j = i + 1; j < this.resultsObj.length; j++)
+    this.agendaData = [];
+    console.log('triggered');
+    this.afs.collection('Conference Hall').doc(this.selectedHall)
+    .collection('agenda').doc('days')
+    .collection(this.selectedDay,ref=>ref.orderBy('serial', 'asc')).get().subscribe((res) => { 
+      res.forEach((doc) => {
+        this.agendaData.push(
           {
-            if(this.resultsObj[i].serial > this.resultsObj[j].serial)
-            {
-
-              this.temp = this.resultsObj[i];
-              this.resultsObj[i] = this.resultsObj[j];
-              this.resultsObj[j] = this.temp;
-            }
-          }
-        }
+            presentername : doc.data().presentername,
+            endTime : doc.data().endTime,
+            startTime : doc.data().startTime,
+            topic: doc.data().topic
+          })
+        })
       })
-    }
-    console.log(this.resultsObj);
+
+      console.log("Agenda : ", this.agendaData);
+      this.loadingController.dismiss();
   }
 
-
-  
   getConferenceDay()
   {
 
@@ -110,10 +75,13 @@ export class AgendaPage implements OnInit {
 
   async presentLoading() {
     const loading = await this.loadingController.create({
-      duration: 3000,
+      duration: 1500,
       spinner: 'crescent',
       cssClass: 'loaderClass'
     });
     return await loading.present();
   }
+
+
+ 
 }

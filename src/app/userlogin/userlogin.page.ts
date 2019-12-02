@@ -3,7 +3,7 @@ import { UserloginService } from '../services/userlogin/userlogin.service';
 import { AlertController, NavController, ModalController,LoadingController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { PasswordrecoveryPage } from '../modal/passwordrecovery/passwordrecovery.page';
-
+import { Storage} from '@ionic/storage';
 @Component({
   selector: 'app-userlogin',
   templateUrl: './userlogin.page.html',
@@ -12,15 +12,15 @@ import { PasswordrecoveryPage } from '../modal/passwordrecovery/passwordrecovery
 export class UserloginPage implements OnInit {
 
   errorMessage: string;
-  inputEmail = "";
-  password = "";
+  inputEmail:any = "";
+  password:any = "";
 
   inputStyleUN: string = 'inputStyle1';
   inputStylePW: string = 'inputStyle1';
 
   constructor(private userLogin: UserloginService, private alertCtrl: AlertController, 
     private navCtrl: NavController, private afAuth: AngularFireAuth, private modalController: ModalController,
-    public loadingController: LoadingController) { 
+    public loadingController: LoadingController, private storage: Storage) { 
 
   }
   login(){
@@ -43,8 +43,10 @@ export class UserloginPage implements OnInit {
           this.navCtrl.navigateRoot('changepassword');      
         }
         else{
+          this.storage.set("email",this.inputEmail);
+          this.storage.set("password",this.password);  
           this.navCtrl.navigateRoot('conferencetabs');  
-          this.loadingController.dismiss();          
+          this.loadingController.dismiss();  
           console.log("password:",this.afAuth.auth.currentUser.uid);    
         }
       }, err => {
@@ -117,6 +119,16 @@ export class UserloginPage implements OnInit {
   }
 
   ngOnInit() {
+    this.storage.get('email').then((email) => {
+      this.inputEmail = email;
+      console.log(this.inputEmail)
+    });
+    this.storage.get('password').then((passwd) => {
+      this.password = passwd;
+      console.log(this.password);
+   });
+  
+
   }
 
 }

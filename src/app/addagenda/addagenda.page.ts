@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Upload } from 'src/models/upload/upload';
 import * as firebase from 'firebase';
@@ -23,7 +23,7 @@ export class AddagendaPage implements OnInit {
   private confDuration;
   private days:any = [];
   private serial:number;
-  constructor(private alertCtrl: AlertController, private afs: AngularFirestore) { }
+  constructor(private alertCtrl: AlertController, private afs: AngularFirestore, private loadingController: LoadingController) { }
 
   
   async addAgenda()
@@ -36,7 +36,7 @@ export class AddagendaPage implements OnInit {
     else{
     
       console.log("count="+this.agendaCount);
-   
+      this.presentLoading();
       this.getAgendaCount();
       this.agendaCount += 1;
       this.serial = Number(this.agendaCount);
@@ -51,7 +51,10 @@ export class AddagendaPage implements OnInit {
       this.afs
       .collection("Conference Hall").doc(this.selectedHall)
       .collection("agenda").doc("days")
-      .collection(this.selectedDay).doc(this.agendaCount.toString()).set(presenterDetails);
+      .collection(this.selectedDay).doc(this.agendaCount.toString()).set(presenterDetails).then(()=>{
+        this.alert("Successful", "Agenda Added");
+        this.loadingController.dismiss();
+      });
     }
   }
 
@@ -110,4 +113,12 @@ export class AddagendaPage implements OnInit {
     this.getConferenceDay();
   }
 
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      spinner: 'crescent',
+      cssClass: 'loaderClass'
+    });
+    return await loading.present();
+  }
 }
