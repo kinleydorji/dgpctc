@@ -15,6 +15,7 @@ export class UserDashboardPage implements OnInit {
   private time;
   private startdate;
   private enddate;
+  private description;
   private banner;
   private sponsor1;
   private sponsor2;
@@ -72,6 +73,7 @@ export class UserDashboardPage implements OnInit {
           endDateArray = this.enddate.split('-')
           this.enddate = endDateArray[2]+'-'+endDateArray[1]+'-'+endDateArray[0];
 
+          this.description = data[0].description;
           this.time = data[0].time;
           this.banner = data[0].url;
           this.sponsor1 = data[0].url1;
