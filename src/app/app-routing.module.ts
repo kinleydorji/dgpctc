@@ -27,6 +27,7 @@ const routes: Routes = [
   { path: 'notification-update/:id', loadChildren: './notification-update/notification-update.module#NotificationUpdatePageModule' },
   { path: 'feedback-update', loadChildren: './feedback-update/feedback-update.module#FeedbackUpdatePageModule' },
   { path: 'createpoll', loadChildren: './createpoll/createpoll.module#CreatepollPageModule' },
+  { path: 'registration', loadChildren: './registration/registration.module#RegistrationPageModule', runGuardsAndResolvers:'always' },
   { path: 'conferencetabs', loadChildren: './conferencetabs/conferencetabs.module#ConferencetabsPageModule' },
   { path: '', loadChildren: './conferencetabs/conferencetabs.module#ConferencetabsPageModule' },
   { path: 'castvote', loadChildren: './castvote/castvote.module#CastvotePageModule' },

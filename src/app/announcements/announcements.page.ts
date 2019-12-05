@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AlertController, NavController, LoadingController} from '@ionic/angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-announcements',
@@ -13,24 +14,25 @@ export class AnnouncementsPage implements OnInit {
   postData:any[]=[];
   postTime : any;
   timeoutStatus: any;
+  private announcementLength;
   constructor(private fs : AngularFirestore,
     private altCtl : AlertController,
     private navCtl : NavController,
-    public loadingController: LoadingController
-    ) { 
+    public loadingController: LoadingController,
+    private storage: Storage ) { 
     
     this.presentLoading();
-
-   
+  
   }
 
   ionViewWillEnter()
   {
     this.getAnnouncement();
+    //this.basetabs.refreshPage();
   }
+
   ngOnInit() {
- //for retriving the post data from the firestore
- 
+  
   }
 
   async presentLoading() {
@@ -42,16 +44,10 @@ export class AnnouncementsPage implements OnInit {
     return await loading.present();
   }
 
-  // getAnnouncementCount(){
-  //   this.fs.collection ("Conference Hall").doc(this.selectedHall).collection("agenda").valueChanges().subscribe( data =>{
-  //     this.agendaCount = data[data.length - 1].agendacount;
-  //     console.log("getcount="+this.agendaCount);   
-  //     })  
-  // }
   
 
 
-  getAnnouncement()
+  async getAnnouncement()
   {
     this.postData = [];
     this.fs.collection('/t_notification',ref=>ref.orderBy('id', 'desc')).get().subscribe(res=>
@@ -81,6 +77,17 @@ export class AnnouncementsPage implements OnInit {
     }, 5000);
     
   }
+
+
+  
+  // async getAnnouncementLength()
+  // {
+  //   this.fs.collection("t_notification").valueChanges().subscribe(data=>{
+  //      this.announcementLength = data.length;
+  //      console.log("announcement count : ", this.announcementLength);
+  //      this.storage.set("badge",this.announcementLength);
+  //  })
+  // }
 
 
   

@@ -60,7 +60,7 @@ export class NewsfeedPage implements OnInit {
   async presentLoading() {
     console.log("loading");
     const loading = await this.loadingController.create({
-      duration: 3000,
+      duration: 1500,
       spinner: 'crescent',
       cssClass: 'loaderClass'
     });
