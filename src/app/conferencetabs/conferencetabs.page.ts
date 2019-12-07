@@ -19,10 +19,13 @@ export class ConferencetabsPage implements OnInit {
   private resultOption;
   private feedbackOption;
   private announcementLength;
+  private newsLength;
   private hall="";
   private selectedHall;
   private badgeCount;
+  private newsbadgeCount;
   private localBadgeCount:any;
+  private newslocalBadgeCount:any;
   constructor(private router: Router, private afs: AngularFirestore, private route: ActivatedRoute, private storage: Storage) { 
     this.getAnnouncementLength();
 
@@ -85,9 +88,24 @@ export class ConferencetabsPage implements OnInit {
    }
 
 
+   getNewsLength()
+   {
+    this.afs.collection("News").valueChanges().subscribe(data=>{
+      this.newsLength = data.length;
+      console.log("News count : ", this.newsLength);
+      this.storage.get('newsbadge').then(count=>{
+      this.newslocalBadgeCount = count;
+      this.newsbadgeCount = parseInt(this.newsLength) - parseInt(this.newslocalBadgeCount);
+      console.log("News Count: ", this.newsbadgeCount);
+      })
+    }) 
+  }
+
+
   ionViewWillEnter()
   {
     this.getAnnouncementLength();
+    this.getNewsLength();
   }
 
   getActiveTab()
@@ -96,6 +114,11 @@ export class ConferencetabsPage implements OnInit {
     if(this.tabRef.getSelected() == "announcements"){
       this.storage.set('badge',this.announcementLength);
       this.getAnnouncementLength();
+    }
+    else if(this.tabRef.getSelected() == "newsfeed")
+    {
+      this.storage.set('newsbadge', this.newsLength);
+      this.getNewsLength();
     }
   }
 

@@ -22,8 +22,6 @@ export class AddconferencehallPage implements OnInit {
     }
     else{
       this.afs.collection("Conference Hall").doc(this.hallName).set({});
-      this.afs.collection("Conference Hall").doc(this.hallName).collection("agenda").doc("agendacount").set({agendacount : 1});
-      this.afs.collection("Conference Hall").doc(this.hallName).collection("news").doc("newscount").set({newscount : 0});
       this.alert("Successful", "Conference hall added");
 
     }

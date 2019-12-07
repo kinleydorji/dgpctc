@@ -14,6 +14,7 @@
         <ion-tab-button tab="newsfeed">
           <ion-icon name="paper"></ion-icon>
           <ion-label>News Feed</ion-label>
+          <ion-badge color = "danger" *ngIf = "newsbadgeCount > 0">{{newsbadgeCount}}</ion-badge>
         </ion-tab-button>
     
         <ion-tab-button tab="announcements">
