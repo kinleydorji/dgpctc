@@ -10,6 +10,11 @@
 
 <ion-content>
   <div class = "inputDiv">
+      <ion-item lines ="none">
+          <ion-input type="number" placeholder = "Hall Id" [(ngModel)] = "hallCount" >
+            <ion-icon name = "reorder" class= 'inputIcon' color = "medium" ></ion-icon>
+          </ion-input>
+        </ion-item><br>
     <ion-item lines ="none">
       <ion-input type="text" placeholder = "Hall Name" [(ngModel)] = "hallName" >
         <ion-icon name = "home" class= 'inputIcon' color = "medium" ></ion-icon>

@@ -21,8 +21,8 @@ export class ConferenceselectPage implements OnInit {
  
   ngOnInit() {
     this.presentLoading();
-    this.afs.firestore.collection('Conference Hall').get().then((querySnapshot) => { 
-      querySnapshot.forEach((doc) => {
+    this.afs.collection('/Conference Hall',ref=>ref.orderBy('id', 'asc')).get().subscribe(res => { 
+      res.forEach((doc:any) => {
         this.loadingController.dismiss();          
         console.log(doc.id); 
         this.halls.push(doc.id); 

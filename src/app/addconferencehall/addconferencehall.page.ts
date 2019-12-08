@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Component({
   selector: 'app-addconferencehall',
@@ -9,19 +9,19 @@ import { AlertController } from '@ionic/angular';
 })
 export class AddconferencehallPage implements OnInit {
   private hallName = "";
-
-  constructor(private afs: AngularFirestore, private alertCtrl: AlertController) { }
+  hallCount: number = undefined;
+  constructor(private afs: AngularFirestore, private alertCtrl: AlertController, public loadingController: LoadingController) { }
 
 
   addhall()
   {
 
-    if(this.hallName == "")
+    if(this.hallName == "" || this.hallCount == undefined)
     {
       this.alert("Empty Field(s)", "Fill in all empty field(s)");
     }
     else{
-      this.afs.collection("Conference Hall").doc(this.hallName).set({});
+      this.afs.collection("Conference Hall").doc(this.hallName).set({id:this.hallCount});
       this.alert("Successful", "Conference hall added");
 
     }
@@ -45,6 +45,15 @@ export class AddconferencehallPage implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      duration: 3000,
+      spinner: 'crescent',
+      cssClass: 'loaderClass'
+    });
+    return await loading.present();
   }
 
 }
