@@ -10,11 +10,11 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./newsfeed.page.scss'],
 })
 export class NewsfeedPage implements OnInit {
-  private selectedHall;
-  private documents:any = [];
-  private resultLength = 0;
-  private docIdLength;
-  constructor(private storage: Storage, private afs: AngularFirestore, public loadingController: LoadingController) {
+  public selectedHall;
+  public documents:any = [];
+  public resultLength = 0;
+  public docIdLength;
+  constructor(public storage: Storage, public afs: AngularFirestore, public loadingController: LoadingController) {
 
 
    }
@@ -23,8 +23,8 @@ export class NewsfeedPage implements OnInit {
  
    
   }
-  ionViewWillEnter()
-  {
+
+  ionViewDidEnter(){
     this.presentLoading();
     this.storage.get('hall').then((hall) => {
       this.selectedHall = hall;
@@ -33,7 +33,6 @@ export class NewsfeedPage implements OnInit {
       this.getNewsDoc(this.selectedHall);
    });
   }
-
 
   
   getNewsDoc(selectedHall: any)

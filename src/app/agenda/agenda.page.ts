@@ -9,19 +9,24 @@ import { LoadingController } from '@ionic/angular';
   styleUrls: ['./agenda.page.scss'],
 })
 export class AgendaPage implements OnInit {
-  private selectedHall;
-  private startTime;
-  private endTime;
-  private agendaData:any = [];
-  private selectedDay:any;
-  private confDuration;
-  private days:any = [];
-  constructor(private storage: Storage, private afs: AngularFirestore,public loadingController: LoadingController) {
+  public selectedHall;
+  public startTime;
+  public endTime;
+  public agendaData:any = [];
+  public selectedDay:any;
+  public confDuration;
+  public days:any = [];
+  constructor(public storage: Storage, public afs: AngularFirestore,public loadingController: LoadingController) {
 
 
    }
 
   ngOnInit() {
+    
+    
+  }
+
+  ionViewDidEnter(){
     this.presentLoading();
     this.storage.get('hall').then((hall) => {
        this.selectedHall = hall;
@@ -30,7 +35,6 @@ export class AgendaPage implements OnInit {
        console.log('Hall Stored : ' , this.selectedHall);
     });
     this.getConferenceDay();
-    
   }
 
   getAgendaDoc()

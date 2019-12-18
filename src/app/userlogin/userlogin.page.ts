@@ -119,6 +119,10 @@ export class UserloginPage implements OnInit {
   }
 
   ngOnInit() {
+    
+  }
+
+  ionViewDidEnter(){
     this.storage.get('email').then((email) => {
       this.inputEmail = email;
       console.log(this.inputEmail)
@@ -127,8 +131,6 @@ export class UserloginPage implements OnInit {
       this.password = passwd;
       console.log(this.password);
    });
-  
-
   }
 
 }

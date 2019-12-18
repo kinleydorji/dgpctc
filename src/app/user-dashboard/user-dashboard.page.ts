@@ -9,22 +9,25 @@ import { AngularFirestore } from '@angular/fire/firestore';
   styleUrls: ['./user-dashboard.page.scss'],
 })
 export class UserDashboardPage implements OnInit {
-  private userName: any;
-  private confName;
-  private venue;
-  private time;
-  private startdate;
-  private enddate;
-  private description;
-  private banner;
-  private sponsor1;
-  private sponsor2;
-  private sponsor3;
-  private sponsor4;
-  private sponsor5;
-  private sponsor6;
-  constructor( private afAuth: AngularFireAuth, private alertCtrl: AlertController, 
-    private navCtrl: NavController, private afs: AngularFirestore, public loadingController: LoadingController) { 
+  public userName: any;
+  public confName;
+  public venue;
+  public time;
+  public startdate;
+  public enddate;
+  public description;
+  public banner;
+  public sponsor1;
+  public sponsor2;
+  public sponsor3;
+  public sponsor4;
+  public sponsor5;
+  public sponsor6;
+
+  public wholePageShowVar : boolean = false;
+
+  constructor( public afAuth: AngularFireAuth, public alertCtrl: AlertController, 
+    public navCtrl: NavController, public afs: AngularFirestore, public loadingController: LoadingController) { 
   }
 
   logout()
@@ -83,6 +86,7 @@ export class UserDashboardPage implements OnInit {
           this.sponsor5 = data[0].url5;
           this.sponsor6 = data[0].url6;
         };
+        this.wholePageShowVar = true;
         this.loadingController.dismiss();          
        })
   }
