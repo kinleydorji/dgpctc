@@ -62,7 +62,7 @@ export class AgendaPage implements OnInit {
 
   getConferenceDay()
   {
-
+    this.days = [];
     this.afs.collection<any>('conference',ref => ref.where('id','==','1'))
     .valueChanges().subscribe(data =>{     
         if(data.length > 0)
